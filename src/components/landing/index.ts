@@ -1,0 +1,12 @@
+export { AnimatedGrid } from './animated-grid';
+export { HeroSection } from './hero-section';
+export { FeaturesSection } from './features-section';
+export { ToolPreviewSection } from './tool-preview-section';
+export { WorkspacePreview } from './workspace-preview';
+export { ComparisonSection } from './comparison-section';
+export { StatsSection } from './stats-section';
+export { OpenSourceSection } from './open-source-section';
+export { TestimonialsSection } from './testimonials-section';
+export { FAQSection } from './faq-section';
+export { Footer } from './footer';
+export { EasterEggs } from './easter-eggs';
