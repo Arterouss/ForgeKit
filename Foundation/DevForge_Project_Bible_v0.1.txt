@@ -1,0 +1,173 @@
+DEVFORGE PROJECT BIBLE v0.1
+
+This document is intended as the master specification for AntiGravity.
+
+==================================================================== 1.
+PRODUCT VISION
+====================================================================
+
+Name: DevForge
+
+Mission: Build the best all-in-one toolbox for software developers.
+
+Core Principles: - Fast - Beautiful - Useful - Offline-first when
+possible - Keyboard-first - Open Source - Modular
+
+Target Users: - Students - Backend Developers - Frontend Developers -
+DevOps Engineers - Security Engineers - QA Engineers
+
+Success Metrics: - 100+ utilities - Lighthouse >95 - Mobile responsive -
+PWA - Plugin architecture
+
+==================================================================== 2.
+BRANDING
+====================================================================
+
+Theme: Developer Arcade
+
+Not pixel art. Not Windows 95 clone. Not cyberpunk overload.
+
+Mix inspirations: - Teenage Engineering - Arc Browser - Raycast - Panic
+Playdate - Retro terminals - Nothing OS
+
+Mood: Fun + Professional
+
+==================================================================== 3.
+DESIGN SYSTEM
+====================================================================
+
+Colors
+
+Background: #111111
+
+Surface: #1B1B1B
+
+Border: #2E2E2E
+
+Accent: #00F5D4 #7C5CFF #FFD60A #FF5A5F
+
+Fonts: - Geist - JetBrains Mono - Space Grotesk
+
+Border Radius: 24px
+
+Animation: 200ms-300ms Spring transitions Subtle glow
+
+==================================================================== 4.
+INFORMATION ARCHITECTURE
+====================================================================
+
+Landing Dashboard Workspace Favorites History Categories Settings About
+Docs
+
+==================================================================== 5.
+CORE CATEGORIES
+====================================================================
+
+Formatting Encoding Generators Docker Linux Git Database Network API
+Security Utilities Images Color Time Text
+
+Each category must have: - hero - icon - search - filters - keyboard
+shortcut
+
+==================================================================== 6.
+MVP TOOLS
+====================================================================
+
+Formatting: - JSON Formatter - JSON Validator - XML Formatter - YAML
+Formatter - SQL Formatter - HTML Formatter - CSS Beautifier - JS
+Beautifier
+
+Encoding: - Base64 - URL Encode - URL Decode - JWT Decoder
+
+Generators: - UUID - NanoID - Password - QR - Barcode - Dockerfile -
+docker-compose - .env - .gitignore - robots.txt - sitemap.xml
+
+Docker: - Compose Builder - Dockerfile Builder
+
+Linux: - chmod Calculator - Linux Command Explorer
+
+Git: - Conventional Commit - Git Ignore
+
+Database: - CSV to SQL - JSON to SQL
+
+Utilities: - Regex Tester - Timestamp - Diff Checker - Text Compare
+
+==================================================================== 7.
+WORKSPACE MODE
+====================================================================
+
+Multiple tabs.
+
+Pin tools.
+
+Split view.
+
+Resizable panels.
+
+Persistent workspace.
+
+Autosave.
+
+==================================================================== 8.
+COMMAND PALETTE
+====================================================================
+
+CTRL+K
+
+Search: - tools - commands - categories
+
+==================================================================== 9.
+OPEN SOURCE
+====================================================================
+
+README LICENSE CONTRIBUTING CODE_OF_CONDUCT
+
+GitHub Actions
+
+Issue Templates
+
+PR Templates
+
+==================================================================== 10.
+DEVELOPMENT RULES
+====================================================================
+
+Strict TypeScript.
+
+Feature-based architecture.
+
+Reusable hooks.
+
+Reusable components.
+
+No duplicated logic.
+
+Accessibility first.
+
+Responsive first.
+
+Write production-ready code only.
+
+Never generate placeholder pages.
+
+==================================================================== 11.
+ROADMAP
+====================================================================
+
+v1 Core toolbox.
+
+v2 Workspace.
+
+v3 Plugin API.
+
+v4 Desktop app.
+
+v5 Community marketplace.
+
+END OF SPEC v0.1
+
+IMPORTANT FOR ANTIGRAVITY:
+
+Treat this document as the single source of truth. When a requirement is
+missing, prefer maintainability, scalability, and premium UX over
+shortcuts.

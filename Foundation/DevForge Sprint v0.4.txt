@@ -1,0 +1,420 @@
+# DevForge Sprint v0.4
+# Dashboard Core Experience
+
+You are continuing an existing project.
+
+Never recreate the project.
+
+Never replace existing components.
+
+Never change the design language.
+
+Only extend the current project.
+
+==================================================
+MISSION
+==================================================
+
+Build the DevForge Dashboard.
+
+The dashboard should NOT feel like a website.
+
+The dashboard should feel like a desktop application.
+
+Think about combining
+
+VS Code
+
+Raycast
+
+Arc Browser
+
+Linear
+
+Warp Terminal
+
+GitHub Desktop
+
+into one experience.
+
+Users should immediately understand
+
+"This is my workspace."
+
+==================================================
+LAYOUT
+==================================================
+
+Desktop Layout
+
+------------------------------------------------
+
+Sidebar
+
+Top Bar
+
+Workspace
+
+Right Panel
+
+Status Bar
+
+------------------------------------------------
+
+The layout should be resizable in future versions.
+
+Design the layout with this in mind.
+
+==================================================
+SIDEBAR
+==================================================
+
+Create a premium animated sidebar.
+
+Sections
+
+Home
+
+Workspace
+
+Categories
+
+Favorites
+
+History
+
+Recently Used
+
+Collections
+
+Settings
+
+Feedback
+
+Sidebar must support
+
+Collapse
+
+Expand
+
+Animated Width
+
+Keyboard Navigation
+
+Hover State
+
+Pinned State
+
+Mobile Drawer
+
+==================================================
+TOPBAR
+==================================================
+
+Contains
+
+Global Search
+
+Command Palette Button
+
+Notifications
+
+Theme Switch
+
+Profile
+
+Workspace Name
+
+Current Version
+
+Keyboard Shortcut Hint
+
+==================================================
+COMMAND PALETTE
+==================================================
+
+Shortcut
+
+CTRL + K
+
+Build UI only.
+
+No functionality yet.
+
+Looks similar to
+
+Raycast
+
+VS Code
+
+Search Categories
+
+Search Tools
+
+Recent Searches
+
+Pinned Tools
+
+Quick Actions
+
+==================================================
+WORKSPACE
+==================================================
+
+This is the most important area.
+
+Build a modern workspace.
+
+Support
+
+Multiple Tabs
+
+Empty State
+
+Loading State
+
+Future Split View
+
+Future Docking
+
+Future Resizable Panels
+
+Future Floating Windows
+
+Only create UI.
+
+==================================================
+WELCOME SCREEN
+==================================================
+
+When no tool is open
+
+Display
+
+Welcome Message
+
+Quick Start
+
+Favorite Tools
+
+Recent Tools
+
+Keyboard Shortcuts
+
+Featured Tools
+
+Popular Categories
+
+==================================================
+TOOL GRID
+==================================================
+
+Display categories
+
+Formatting
+
+Encoding
+
+Docker
+
+Git
+
+Linux
+
+API
+
+Database
+
+Security
+
+Utilities
+
+Network
+
+Each category contains beautiful cards.
+
+Hover animation.
+
+Glow effect.
+
+Smooth motion.
+
+==================================================
+TOOL CARD
+==================================================
+
+Display
+
+Icon
+
+Name
+
+Description
+
+Popularity
+
+Favorite Button
+
+Open Button
+
+Keyboard Shortcut
+
+Category Badge
+
+Recently Updated Badge
+
+Hover Animation
+
+==================================================
+RIGHT PANEL
+==================================================
+
+Create a utility panel.
+
+Contains
+
+Pinned Tools
+
+Recent Activity
+
+Tips
+
+Shortcuts
+
+News Placeholder
+
+Can be collapsed.
+
+==================================================
+STATUS BAR
+==================================================
+
+Bottom of screen.
+
+Display
+
+Online
+
+Version
+
+Selected Workspace
+
+Theme
+
+Keyboard Hint
+
+Build Status Placeholder
+
+==================================================
+EMPTY STATES
+==================================================
+
+Create beautiful empty states.
+
+Illustrations
+
+Small animations
+
+Helpful messages
+
+==================================================
+MICRO INTERACTIONS
+==================================================
+
+Hover
+
+Focus
+
+Click
+
+Page Transition
+
+Card Lift
+
+Sidebar Expand
+
+Button Press
+
+Tab Switch
+
+Use Framer Motion.
+
+==================================================
+ANIMATIONS
+==================================================
+
+Everything should feel alive.
+
+Small.
+
+Fast.
+
+Professional.
+
+Never distracting.
+
+==================================================
+ACCESSIBILITY
+==================================================
+
+Keyboard First.
+
+Tab Navigation.
+
+Visible Focus.
+
+ARIA Labels.
+
+==================================================
+RESPONSIVE
+==================================================
+
+Desktop
+
+Tablet
+
+Mobile
+
+Ultra Wide
+
+==================================================
+PERFORMANCE
+==================================================
+
+Use
+
+Dynamic Imports
+
+Lazy Loading
+
+Memoization
+
+Code Splitting
+
+Reusable Components
+
+==================================================
+DO NOT IMPLEMENT
+==================================================
+
+Do NOT build any tools.
+
+Do NOT connect APIs.
+
+Do NOT create backend logic.
+
+UI only.
+
+==================================================
+ACCEPTANCE CRITERIA
+==================================================
+
+When opening DevForge,
+
+it should immediately feel like a premium desktop application,
+
+not a traditional website.
+
+The workspace should be the visual centerpiece of the application.
+
+All layouts must be future-proof for upcoming features.

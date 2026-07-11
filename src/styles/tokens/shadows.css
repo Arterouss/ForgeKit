@@ -1,0 +1,19 @@
+/* ============================================
+ * DevForge Design Tokens — Shadows
+ * ============================================
+ * Soft shadows only. No heavy shadows.
+ * Premium depth.
+ * ============================================ */
+
+:root {
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+  --shadow-xl: 0 16px 48px rgba(0, 0, 0, 0.6);
+
+  /* Glow shadows for accent elements */
+  --shadow-glow-primary: 0 0 20px rgba(0, 229, 255, 0.3);
+  --shadow-glow-secondary: 0 0 20px rgba(124, 77, 255, 0.3);
+  --shadow-glow-success: 0 0 20px rgba(0, 230, 118, 0.3);
+  --shadow-glow-danger: 0 0 20px rgba(255, 82, 82, 0.3);
+}

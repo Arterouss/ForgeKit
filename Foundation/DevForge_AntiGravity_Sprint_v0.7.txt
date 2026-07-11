@@ -1,0 +1,165 @@
+DevForge AntiGravity Sprint v0.7
+
+Workspace Engine UI Foundation
+
+Continue the existing DevForge project.
+
+IMPORTANT - Do NOT recreate the project. - Do NOT redesign previous
+work. - Keep the existing Design System. - Extend only.
+
+================================================== MISSION
+==================================================
+
+Build the Workspace experience.
+
+The Workspace should feel like a desktop application, not a traditional
+website.
+
+Inspired by: - VS Code - Arc Browser - Raycast - Warp
+
+UI foundation only.
+
+================================================== LAYOUT
+==================================================
+
+Workspace occupies the main content area.
+
+Sections:
+
+-   Workspace Header
+-   Tab Bar
+-   Active Tool Area
+-   Optional Right Utility Panel
+-   Bottom Status Bar
+
+Future-ready for: - Split View - Docking - Floating Panels - Multiple
+Workspaces
+
+================================================== WORKSPACE HEADER
+==================================================
+
+Display: - Current Tool - Breadcrumb - Favorite Toggle - Share Button
+(placeholder) - Open in New Tab (placeholder)
+
+================================================== TAB SYSTEM
+==================================================
+
+Support UI for:
+
+-   Multiple tabs
+-   Active tab
+-   Close button
+-   Drag handle (visual only)
+-   Overflow indicator
+-   Pin icon
+
+Provide animations for: - Open - Close - Switch
+
+================================================== EMPTY STATE
+==================================================
+
+When no tool is open show:
+
+Welcome to DevForge
+
+Quick Start
+
+Favorite Tools
+
+Recently Used
+
+Popular Categories
+
+Keyboard Shortcuts
+
+Beautiful illustration placeholder.
+
+================================================== ACTIVE TOOL CONTAINER
+==================================================
+
+Reusable container.
+
+Contains: - Tool title - Description - Content area - Toolbar - Actions
+
+No tool logic.
+
+================================================== RIGHT PANEL
+==================================================
+
+Collapsible panel.
+
+Sections: - Tips - Recent Activity - Pinned Tools - Notes (placeholder)
+
+================================================== STATUS BAR
+==================================================
+
+Display:
+
+Version
+
+Theme
+
+Workspace Name
+
+Keyboard Hint
+
+Online Status
+
+================================================== MICRO INTERACTIONS
+==================================================
+
+Smooth tab switching
+
+Hover lift
+
+Toolbar hover
+
+Collapse animation
+
+Fade transitions
+
+================================================== RESPONSIVE
+==================================================
+
+Desktop
+
+Tablet
+
+Mobile
+
+On mobile: Workspace becomes stacked layout.
+
+================================================== ACCESSIBILITY
+==================================================
+
+Keyboard navigation
+
+Focus management
+
+ARIA labels
+
+================================================== PERFORMANCE
+==================================================
+
+Reusable components
+
+Dynamic imports
+
+No duplicated code
+
+================================================== DO NOT IMPLEMENT
+==================================================
+
+No backend.
+
+No persistence.
+
+No actual tool functionality.
+
+UI only.
+
+================================================== ACCEPTANCE CRITERIA
+==================================================
+
+The workspace should immediately feel like the center of the DevForge
+experience and be ready for future tools without major redesign.

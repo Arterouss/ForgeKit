@@ -1,0 +1,206 @@
+DevForge AntiGravity Sprint v0.8
+
+Universal Search & Command Palette
+
+Continue the existing DevForge project.
+
+IMPORTANT - Never recreate the project. - Never redesign existing
+pages. - Extend only. - Reuse existing design tokens and components.
+
+================================================== MISSION
+==================================================
+
+Create the DevForge Universal Search and Command Palette.
+
+This feature should become the fastest way to navigate DevForge.
+
+Inspired by: - Raycast - VS Code Command Palette - Arc Browser -
+Spotlight Search
+
+UI foundation only.
+
+================================================== TRIGGER
+==================================================
+
+Keyboard Shortcut
+
+Ctrl + K (Windows/Linux)
+
+⌘ + K (macOS)
+
+Display shortcut hints throughout the application.
+
+================================================== COMMAND PALETTE
+==================================================
+
+Centered modal.
+
+Blurred backdrop.
+
+Rounded corners.
+
+Premium animation.
+
+Support future categories.
+
+================================================== SEARCH INPUT
+==================================================
+
+Placeholder:
+
+Search tools, commands, categories…
+
+Animated focus.
+
+Clear button.
+
+Keyboard hints.
+
+================================================== RESULT SECTIONS
+==================================================
+
+Pinned Tools
+
+Recent Tools
+
+Popular Tools
+
+Categories
+
+Quick Actions
+
+History
+
+Empty State
+
+No Results
+
+All data can be placeholder.
+
+================================================== QUICK ACTIONS
+==================================================
+
+Prepare UI for future actions.
+
+Examples:
+
+Open Workspace
+
+Open Favorites
+
+Toggle Theme
+
+Go to Settings
+
+Open GitHub
+
+Report Issue
+
+================================================== KEYBOARD NAVIGATION
+==================================================
+
+Arrow Up
+
+Arrow Down
+
+Enter
+
+Escape
+
+Tab
+
+Display keyboard hints.
+
+================================================== RESULT ITEM
+==================================================
+
+Each item contains:
+
+Icon
+
+Title
+
+Category
+
+Description
+
+Shortcut
+
+Badge
+
+Hover
+
+Selected State
+
+================================================== ANIMATIONS
+==================================================
+
+Open animation
+
+Close animation
+
+Selection animation
+
+Hover glow
+
+Focus transition
+
+================================================== EMPTY STATE
+==================================================
+
+Display friendly message.
+
+Suggest popular tools.
+
+================================================== RECENT SEARCHES
+==================================================
+
+Create reusable UI.
+
+No persistence yet.
+
+================================================== RESPONSIVE
+==================================================
+
+Desktop
+
+Tablet
+
+Mobile
+
+Fullscreen on mobile.
+
+================================================== ACCESSIBILITY
+==================================================
+
+Focus trap
+
+ARIA roles
+
+Keyboard first
+
+================================================== PERFORMANCE
+==================================================
+
+Lazy load modal.
+
+Reusable components.
+
+Minimal re-renders.
+
+================================================== DO NOT IMPLEMENT
+==================================================
+
+No backend.
+
+No real search indexing.
+
+No API.
+
+UI only.
+
+================================================== ACCEPTANCE CRITERIA
+==================================================
+
+The command palette should feel as polished as desktop-class developer
+software and be ready for future search functionality.

@@ -1,0 +1,36 @@
+/* ============================================
+ * DevForge Design Tokens — Typography
+ * ============================================ */
+
+:root {
+  /* Font Families */
+  --font-heading: var(--font-space-grotesk), 'Space Grotesk', sans-serif;
+  --font-body: var(--font-geist), 'Geist', sans-serif;
+  --font-code: var(--font-jetbrains-mono), 'JetBrains Mono', monospace;
+
+  /* Font Sizes */
+  --text-h1: 3rem; /* 48px */
+  --text-h2: 2.25rem; /* 36px */
+  --text-h3: 1.5rem; /* 24px */
+  --text-h4: 1.25rem; /* 20px */
+  --text-body-lg: 1.125rem; /* 18px */
+  --text-body: 1rem; /* 16px */
+  --text-sm: 0.875rem; /* 14px */
+  --text-caption: 0.75rem; /* 12px */
+
+  /* Line Heights */
+  --leading-tight: 1.2;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.75;
+
+  /* Font Weights */
+  --weight-normal: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  /* Letter Spacing */
+  --tracking-tight: -0.025em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.025em;
+}

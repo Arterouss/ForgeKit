@@ -1,0 +1,43 @@
+/* ============================================
+ * DevForge Design Tokens — Colors
+ * ============================================
+ * Source of truth for all color values.
+ * Referenced by Tailwind config and components.
+ * ============================================ */
+
+:root {
+  /* Background */
+  --color-bg: #0f1115;
+  --color-surface: #181c24;
+  --color-surface-hover: #1e2430;
+
+  /* Borders */
+  --color-border: #2a3342;
+
+  /* Primary Accent */
+  --color-primary: #00e5ff;
+  --color-primary-hover: #00ccdf;
+  --color-primary-muted: rgba(0, 229, 255, 0.15);
+
+  /* Secondary Accent */
+  --color-secondary: #7c4dff;
+  --color-secondary-hover: #6a3de8;
+  --color-secondary-muted: rgba(124, 77, 255, 0.15);
+
+  /* Semantic */
+  --color-success: #00e676;
+  --color-success-muted: rgba(0, 230, 118, 0.15);
+  --color-warning: #ffb300;
+  --color-warning-muted: rgba(255, 179, 0, 0.15);
+  --color-danger: #ff5252;
+  --color-danger-muted: rgba(255, 82, 82, 0.15);
+
+  /* Text */
+  --color-text-primary: #f5f7fa;
+  --color-text-secondary: #aeb8c5;
+  --color-text-muted: #6b7280;
+
+  /* Glow */
+  --color-glow-primary: rgba(0, 229, 255, 0.4);
+  --color-glow-secondary: rgba(124, 77, 255, 0.4);
+}
