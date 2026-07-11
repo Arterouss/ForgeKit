@@ -3,15 +3,8 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  Home,
-  LayoutDashboard,
-  FolderOpen,
   Pin,
   Clock,
-  Settings,
-  MessageSquare,
-  ChevronLeft,
-  ChevronRight,
   Search,
   Bell,
   Sun,
@@ -23,18 +16,17 @@ import {
   PanelRightClose,
   PanelRight,
 } from 'lucide-react';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
 import { useTheme } from 'next-themes';
+import Link from 'next/link';
 import { cn } from '@/lib/utils';
 import { APP_VERSION } from '@/constants/app';
+import { Sidebar } from './sidebar';
 
 interface DashboardShellProps {
   children: React.ReactNode;
 }
 
 export function DashboardShell({ children }: DashboardShellProps) {
-  const pathname = usePathname();
   const { theme, setTheme } = useTheme();
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [rightPanelOpen, setRightPanelOpen] = useState(true);
@@ -127,104 +119,7 @@ export function DashboardShell({ children }: DashboardShellProps) {
 
       {/* Main Workspace + Sidebar + Panel */}
       <div className="flex flex-1 overflow-hidden">
-        {/* Sidebar */}
-        <aside
-          className={cn(
-            "flex flex-col border-r border-border bg-card/10 transition-all duration-300 ease-in-out shrink-0",
-            sidebarCollapsed ? "w-[72px]" : "w-[260px]"
-          )}
-        >
-          {/* Collapse/Expand Toggle */}
-          <div className="flex justify-end p-2">
-            <button
-              onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
-              className="rounded-lg p-1.5 text-muted-foreground hover:bg-muted hover:text-foreground"
-            >
-              {sidebarCollapsed ? <ChevronRight className="h-4 w-4" /> : <ChevronLeft className="h-4 w-4" />}
-            </button>
-          </div>
-
-          {/* Navigation Links */}
-          <nav className="flex-1 space-y-1 px-3 py-2 overflow-y-auto">
-            {[
-              { label: 'Home', icon: Home, href: '/dashboard' },
-              { label: 'Workspace', icon: LayoutDashboard, href: '/dashboard/workspace' },
-              { label: 'Collections', icon: FolderOpen, href: '/dashboard/collections' },
-              { label: 'Pinned', icon: Pin, href: '/dashboard/pinned' },
-              { label: 'Recent', icon: Clock, href: '/dashboard/recent' },
-            ].map((link) => {
-              const Icon = link.icon;
-              const isActive = pathname === link.href;
-              return (
-                <Link
-                  key={link.label}
-                  href={link.href}
-                  className={cn(
-                    "flex items-center gap-3 rounded-xl px-3 py-2 text-xs font-medium transition-all",
-                    isActive
-                      ? "bg-primary/10 text-primary"
-                      : "text-muted-foreground hover:bg-muted hover:text-foreground"
-                  )}
-                >
-                  <Icon className="h-4 w-4 shrink-0" />
-                  {!sidebarCollapsed && <span>{link.label}</span>}
-                </Link>
-              );
-            })}
-
-            <div className="py-2">
-              <div className="h-px bg-border" />
-            </div>
-
-            {/* Category Section Header */}
-            {!sidebarCollapsed && (
-              <div className="px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
-                Categories
-              </div>
-            )}
-
-            {[
-              { label: 'Formatting', href: '/dashboard/category/formatting' },
-              { label: 'Encoding', href: '/dashboard/category/encoding' },
-              { label: 'Generators', href: '/dashboard/category/generators' },
-              { label: 'Docker', href: '/dashboard/category/docker' },
-              { label: 'Linux', href: '/dashboard/category/linux' },
-              { label: 'Git', href: '/dashboard/category/git' },
-            ].map((cat) => (
-              <Link
-                key={cat.label}
-                href={cat.href}
-                className={cn(
-                  "flex items-center gap-3 rounded-xl px-3 py-1.5 text-xs text-muted-foreground hover:bg-muted hover:text-foreground",
-                  pathname === cat.href && "text-foreground font-semibold"
-                )}
-              >
-                <span className="h-1.5 w-1.5 rounded-full bg-muted-foreground/30 shrink-0" />
-                {!sidebarCollapsed && <span>{cat.label}</span>}
-              </Link>
-            ))}
-          </nav>
-
-          {/* Footer Settings & Feedback */}
-          <div className="p-3 border-t border-border">
-            {[
-              { label: 'Settings', icon: Settings, href: '/dashboard/settings' },
-              { label: 'Feedback', icon: MessageSquare, href: '/dashboard/feedback' },
-            ].map((link) => {
-              const Icon = link.icon;
-              return (
-                <Link
-                  key={link.label}
-                  href={link.href}
-                  className="flex items-center gap-3 rounded-xl px-3 py-2 text-xs text-muted-foreground hover:bg-muted hover:text-foreground"
-                >
-                  <Icon className="h-4 w-4 shrink-0" />
-                  {!sidebarCollapsed && <span>{link.label}</span>}
-                </Link>
-              );
-            })}
-          </div>
-        </aside>
+        <Sidebar collapsed={sidebarCollapsed} setCollapsed={setSidebarCollapsed} />
 
         {/* Main Content Area / Workspace */}
         <main className="flex flex-1 flex-col overflow-y-auto bg-background/50">
