@@ -42,7 +42,7 @@ export const popIn: Variants = {
   visible: {
     opacity: 1,
     scale: 1,
-    transition: { type: 'spring', stiffness: 400, damping: 25 },
+    transition: { type: 'spring' as const, stiffness: 400, damping: 25 },
   },
 };
 
@@ -51,7 +51,7 @@ export const cardHover = {
   hover: {
     scale: 1.02,
     y: -4,
-    transition: { type: 'spring', stiffness: 400, damping: 25 },
+    transition: { type: 'spring' as const, stiffness: 400, damping: 25 },
   },
 };
 
