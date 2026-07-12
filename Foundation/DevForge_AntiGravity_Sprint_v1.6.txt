@@ -1,0 +1,115 @@
+DevForge AntiGravity Sprint v1.6
+
+XML Formatter Pro
+
+Continue the existing DevForge project.
+
+IMPORTANT - Reuse Tool SDK, Tool Engine, Workspace and Design System. -
+Extend only. - Do NOT recreate existing components.
+
+================================================== MISSION
+==================================================
+
+Build a production-ready XML Formatter Pro.
+
+Support developers working with: - SOAP APIs - Android XML - Maven -
+RSS/Atom - Generic XML
+
+================================================== CORE FEATURES
+==================================================
+
+-   Beautify XML
+-   Minify XML
+-   Validate XML
+-   Pretty Print
+-   Copy
+-   Paste
+-   Upload .xml
+-   Download
+-   Clear
+-   Drag & Drop
+
+================================================== EDITOR
+==================================================
+
+Use Monaco Editor.
+
+Support: - Syntax Highlight - Line Numbers - Auto Resize - Word Wrap
+
+================================================== VALIDATION
+==================================================
+
+Detect: - Invalid syntax - Unclosed tags - Invalid nesting - Malformed
+XML - Empty document
+
+Display friendly validation messages.
+
+================================================== TREE VIEW
+==================================================
+
+Provide a collapsible XML tree preview.
+
+Allow expand/collapse.
+
+================================================== XPATH (PREPARE)
+==================================================
+
+Prepare architecture for future XPath queries.
+
+UI placeholder only if not implemented.
+
+================================================== TOOLBAR
+==================================================
+
+Beautify
+
+Minify
+
+Validate
+
+Copy
+
+Paste
+
+Upload
+
+Download
+
+Clear
+
+================================================== EXAMPLES
+==================================================
+
+Include examples:
+
+SOAP Envelope
+
+RSS Feed
+
+Android Layout
+
+Maven POM
+
+Sitemap XML
+
+================================================== HOOKS
+==================================================
+
+Reuse Tool SDK hooks and shared utilities.
+
+================================================== TESTING
+==================================================
+
+Add unit tests for:
+
+Formatting
+
+Validation
+
+Parser
+
+================================================== ACCEPTANCE CRITERIA
+==================================================
+
+XML Formatter Pro should provide excellent formatting, clear validation
+messages and a polished developer experience.

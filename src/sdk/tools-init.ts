@@ -1,6 +1,15 @@
 import React from 'react';
 import { registerTool } from './tool-registry';
 import type { ToolDefinition } from './tool-types';
+import { JsonFormatterPro } from '@/components/tools/json-formatter';
+import { JwtDecoderPro } from '@/components/tools/jwt-decoder';
+import { Base64StudioPro } from '@/components/tools/base64-studio';
+import { RegexStudioPro } from '@/components/tools/regex-studio';
+import { YamlFormatterPro } from '@/components/tools/yaml-formatter';
+import { XmlFormatterPro } from '@/components/tools/xml-formatter';
+import { SqlFormatterPro } from '@/components/tools/sql-formatter';
+import { DockerComposeBuilderPro } from '@/components/tools/docker-compose-builder';
+import { GitIgnoreGeneratorPro } from '@/components/tools/gitignore-generator';
 
 // Placeholder Component for all tools prior to full implementation
 const PlaceholderComponent = () => {
@@ -24,7 +33,7 @@ export const mvpTools: ToolDefinition[] = [
     shortcut: 'F1',
     version: '1.0.0',
     status: 'stable',
-    component: PlaceholderComponent,
+    component: JsonFormatterPro,
   },
   {
     slug: 'json-validator',
@@ -47,8 +56,8 @@ export const mvpTools: ToolDefinition[] = [
     tags: ['xml', 'format', 'beautify'],
     keywords: ['xml pretty print', 'xml format'],
     version: '1.0.0',
-    status: 'beta',
-    component: PlaceholderComponent,
+    status: 'stable',
+    component: XmlFormatterPro,
   },
   {
     slug: 'yaml-formatter',
@@ -59,8 +68,8 @@ export const mvpTools: ToolDefinition[] = [
     tags: ['yaml', 'format', 'beautify'],
     keywords: ['yaml pretty', 'yaml format'],
     version: '1.0.0',
-    status: 'beta',
-    component: PlaceholderComponent,
+    status: 'stable',
+    component: YamlFormatterPro,
   },
   {
     slug: 'sql-formatter',
@@ -71,8 +80,8 @@ export const mvpTools: ToolDefinition[] = [
     tags: ['sql', 'format', 'pretty'],
     keywords: ['sql format', 'beautify sql'],
     version: '1.0.0',
-    status: 'experimental',
-    component: PlaceholderComponent,
+    status: 'stable',
+    component: SqlFormatterPro,
   },
 
   // Encoding
@@ -87,7 +96,19 @@ export const mvpTools: ToolDefinition[] = [
     shortcut: 'F2',
     version: '1.0.0',
     status: 'stable',
-    component: PlaceholderComponent,
+    component: Base64StudioPro,
+  },
+  {
+    slug: 'base64-studio',
+    name: 'Base64 Studio Pro',
+    description: 'Encode, decode, and inspect text, images, JSON, and binary files with smart MIME detection.',
+    category: 'encoding',
+    icon: 'Binary',
+    tags: ['base64', 'studio', 'encode', 'decode'],
+    keywords: ['base64 studio', 'encode file', 'decode image'],
+    version: '1.0.0',
+    status: 'stable',
+    component: Base64StudioPro,
   },
   {
     slug: 'jwt-decoder',
@@ -100,7 +121,7 @@ export const mvpTools: ToolDefinition[] = [
     shortcut: 'F3',
     version: '1.0.0',
     status: 'stable',
-    component: PlaceholderComponent,
+    component: JwtDecoderPro,
   },
 
   // Generators
@@ -183,7 +204,47 @@ export const mvpTools: ToolDefinition[] = [
     shortcut: 'F6',
     version: '1.0.0',
     status: 'stable',
-    component: PlaceholderComponent,
+    component: RegexStudioPro,
+  },
+  {
+    slug: 'regex-studio',
+    name: 'Regex Studio Pro',
+    description: 'Design, test, and debug regular expressions with live group captures, flag toggles, and preset library.',
+    category: 'utilities',
+    icon: 'Regex',
+    tags: ['regex', 'studio', 'match', 'replace'],
+    keywords: ['regex studio', 'regex replace', 'test regex'],
+    version: '1.0.0',
+    status: 'stable',
+    component: RegexStudioPro,
+  },
+
+  // Docker
+  {
+    slug: 'docker-compose-builder',
+    name: 'Docker Compose Builder Pro',
+    description: 'Visual Docker Compose builder with live YAML generation, validation, and production-ready templates.',
+    category: 'docker',
+    icon: 'Container',
+    tags: ['docker', 'compose', 'builder', 'yaml'],
+    keywords: ['docker compose', 'docker-compose builder'],
+    version: '1.0.0',
+    status: 'stable',
+    component: DockerComposeBuilderPro,
+  },
+
+  // Git
+  {
+    slug: 'gitignore-generator',
+    name: 'GitIgnore Generator Pro',
+    description: 'Generate production-ready .gitignore files for any technology stack with smart deduplication.',
+    category: 'git',
+    icon: 'FileX',
+    tags: ['gitignore', 'generator', 'git'],
+    keywords: ['gitignore generator', 'gitignore'],
+    version: '1.0.0',
+    status: 'stable',
+    component: GitIgnoreGeneratorPro,
   },
 ];
 

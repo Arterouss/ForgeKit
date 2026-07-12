@@ -1,0 +1,143 @@
+DevForge AntiGravity Sprint v1.7
+
+SQL Formatter Pro
+
+Continue the existing DevForge project.
+
+IMPORTANT - Reuse Tool SDK, Tool Engine, Workspace and Design System. -
+Extend only. - Do NOT recreate existing components.
+
+================================================== MISSION
+==================================================
+
+Build a professional SQL Formatter Pro suitable for backend developers,
+DBAs and data engineers.
+
+================================================== CORE FEATURES
+==================================================
+
+-   Beautify SQL
+-   Minify SQL
+-   Validate basic SQL syntax
+-   Auto Detect SQL Dialect
+-   Copy
+-   Paste
+-   Upload .sql
+-   Download
+-   Clear
+-   Drag & Drop
+
+================================================== SUPPORTED DIALECTS
+==================================================
+
+-   MySQL
+-   PostgreSQL
+-   SQLite
+-   SQL Server
+-   Oracle (basic)
+-   MariaDB
+
+================================================== EDITOR
+==================================================
+
+Use Monaco Editor.
+
+Support: - SQL syntax highlighting - Line numbers - Word wrap - Auto
+resize
+
+================================================== FORMAT OPTIONS
+==================================================
+
+-   Uppercase Keywords
+-   Lowercase Keywords
+-   Indent Size
+-   Align Clauses
+-   Preserve Comments
+-   Compact Mode
+
+================================================== VALIDATION
+==================================================
+
+Detect:
+
+-   Missing semicolons
+-   Unbalanced parentheses
+-   Invalid keywords
+-   Empty query
+
+Provide clear, user-friendly messages.
+
+================================================== QUERY ANALYSIS
+==================================================
+
+Display:
+
+-   Statement type
+-   Tables detected
+-   JOIN count
+-   WHERE usage
+-   ORDER BY
+-   GROUP BY
+-   LIMIT usage
+
+================================================== EXAMPLES
+==================================================
+
+Include templates:
+
+SELECT
+
+INSERT
+
+UPDATE
+
+DELETE
+
+CREATE TABLE
+
+ALTER TABLE
+
+JOIN
+
+CTE
+
+================================================== TOOLBAR
+==================================================
+
+Beautify
+
+Minify
+
+Validate
+
+Copy
+
+Paste
+
+Upload
+
+Download
+
+Clear
+
+================================================== HOOKS
+==================================================
+
+Reuse Tool SDK hooks and shared utilities.
+
+================================================== TESTING
+==================================================
+
+Add unit tests for:
+
+Formatting
+
+Validation
+
+Dialect detection
+
+================================================== ACCEPTANCE CRITERIA
+==================================================
+
+SQL Formatter Pro must provide a polished experience, produce consistent
+formatting and integrate seamlessly with the Tool SDK.

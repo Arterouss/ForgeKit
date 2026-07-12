@@ -1,0 +1,130 @@
+DevForge AntiGravity Sprint v1.4
+
+Regex Studio
+
+Continue the existing DevForge project.
+
+IMPORTANT - Reuse Tool SDK, Tool Engine, Workspace and Design System. -
+Do NOT recreate existing components. - Extend only.
+
+================================================== MISSION
+==================================================
+
+Build a professional Regex Studio for developers.
+
+This tool should help users build, test and understand regular
+expressions with an excellent UX.
+
+================================================== CORE FEATURES
+==================================================
+
+-   Live Regex Matching
+-   Pattern Input
+-   Test Text Input
+-   Match Highlighting
+-   Replace Mode
+-   Global / Multiline / Ignore Case Flags
+-   Copy Pattern
+-   Copy Result
+-   Clear
+-   Load Example
+
+================================================== REGEX FLAGS
+==================================================
+
+Support UI for:
+
+g i m s u y
+
+Allow enabling/disabling visually.
+
+================================================== MATCH RESULTS
+==================================================
+
+Display:
+
+-   Total Matches
+-   Match Index
+-   Groups
+-   Named Groups
+-   Start / End Position
+
+================================================== REPLACE MODE
+==================================================
+
+Replacement input
+
+Live preview
+
+Copy output
+
+================================================== EXAMPLES
+==================================================
+
+Include sample patterns:
+
+Email
+
+Phone Number
+
+URL
+
+IPv4
+
+IPv6
+
+UUID
+
+JWT
+
+HTML Tag
+
+Date
+
+Hex Color
+
+================================================== ERROR HANDLING
+==================================================
+
+Detect invalid regex.
+
+Show friendly explanation.
+
+Never crash.
+
+================================================== TOOLBAR
+==================================================
+
+Run
+
+Replace
+
+Copy
+
+Paste
+
+Clear
+
+Load Example
+
+================================================== HOOKS
+==================================================
+
+Reuse Tool SDK hooks.
+
+================================================== TESTING
+==================================================
+
+Unit tests:
+
+Regex parsing
+
+Replace logic
+
+Flag handling
+
+================================================== ACCEPTANCE CRITERIA
+==================================================
+
+Regex Studio should provide an intuitive developer experience with
+instant feedback and complete integration into DevForge.

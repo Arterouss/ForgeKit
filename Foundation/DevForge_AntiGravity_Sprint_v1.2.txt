@@ -1,0 +1,107 @@
+DevForge AntiGravity Sprint v1.2
+
+JWT Decoder Pro
+
+Continue the existing DevForge project.
+
+IMPORTANT - Do NOT recreate the application. - Reuse Tool SDK, Tool
+Engine and Design System. - Extend only.
+
+================================================== MISSION
+==================================================
+
+Build a production-quality JWT Decoder.
+
+This tool must become one of the flagship utilities.
+
+================================================== FEATURES
+==================================================
+
+-   Decode JWT automatically
+-   Validate token structure
+-   Display Header
+-   Display Payload
+-   Display Signature
+-   Pretty JSON formatting
+-   Copy Header
+-   Copy Payload
+-   Copy Full JSON
+-   Paste Token
+-   Clear Token
+
+================================================== VALIDATION
+==================================================
+
+Detect: - Invalid format - Missing segments - Invalid Base64 - Empty
+token
+
+Show friendly messages.
+
+================================================== SECURITY
+==================================================
+
+Everything runs locally.
+
+Never send tokens to external APIs.
+
+Display a warning that decoding does not verify authenticity.
+
+================================================== LAYOUT
+==================================================
+
+Top: Input
+
+Middle: Decoded Header
+
+Decoded Payload
+
+Bottom: Metadata
+
+================================================== METADATA
+==================================================
+
+Display claims if present:
+
+exp iat nbf iss sub aud jti
+
+Show human-readable timestamps.
+
+================================================== BONUS
+==================================================
+
+Highlight expired tokens.
+
+Highlight tokens not yet valid.
+
+Show relative time.
+
+================================================== TOOLBAR
+==================================================
+
+Paste
+
+Decode
+
+Copy
+
+Clear
+
+Download JSON
+
+================================================== HOOKS
+==================================================
+
+Use Tool SDK hooks.
+
+Reuse shared clipboard, notifications and validation helpers.
+
+================================================== TESTING
+==================================================
+
+Add unit tests for decoding logic.
+
+================================================== ACCEPTANCE CRITERIA
+==================================================
+
+The JWT Decoder must feel polished, secure and fully integrated into
+DevForge.

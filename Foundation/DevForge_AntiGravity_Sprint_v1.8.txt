@@ -1,0 +1,129 @@
+DevForge AntiGravity Sprint v1.8
+
+Docker Compose Builder Pro
+
+Continue the existing DevForge project.
+
+IMPORTANT - Reuse Tool SDK, Tool Engine, Workspace and Design System. -
+Extend only. - Do NOT recreate existing components.
+
+================================================== MISSION
+==================================================
+
+Build a visual Docker Compose Builder for developers.
+
+The tool should help users generate production-ready docker-compose.yml
+files without writing YAML manually.
+
+================================================== CORE FEATURES
+==================================================
+
+-   Visual service builder
+-   Live YAML generation
+-   YAML validation
+-   Copy
+-   Download docker-compose.yml
+-   Import existing docker-compose.yml
+-   Clear project
+-   Load templates
+
+================================================== SERVICE CONFIGURATION
+==================================================
+
+Support configuring:
+
+-   Image
+-   Container Name
+-   Build Context
+-   Ports
+-   Environment Variables
+-   Volumes
+-   Networks
+-   Restart Policy
+-   Depends On
+-   Healthcheck
+-   Command
+
+================================================== SUPPORTED SERVICES
+==================================================
+
+Provide presets for:
+
+-   PostgreSQL
+-   MySQL
+-   MariaDB
+-   Redis
+-   MongoDB
+-   Nginx
+-   Traefik
+-   Node.js
+-   Next.js
+-   Laravel
+-   WordPress
+-   RabbitMQ
+
+================================================== LIVE PREVIEW
+==================================================
+
+Generate docker-compose.yml in real time.
+
+Use Monaco Editor.
+
+Support syntax highlighting.
+
+================================================== VALIDATION
+==================================================
+
+Detect:
+
+-   Duplicate ports
+-   Invalid port mapping
+-   Missing image/build
+-   Invalid YAML
+-   Circular dependencies (basic)
+
+================================================== PROJECT TEMPLATES
+==================================================
+
+Include templates:
+
+-   Next.js + PostgreSQL
+-   Laravel + MySQL
+-   Node API + Redis
+-   WordPress
+-   Fullstack (Next.js + API + DB)
+
+================================================== TOOLBAR
+==================================================
+
+Generate
+
+Copy
+
+Download
+
+Import
+
+Validate
+
+Clear
+
+================================================== HOOKS
+==================================================
+
+Reuse Tool SDK hooks.
+
+================================================== TESTING
+==================================================
+
+Add unit tests for:
+
+-   YAML generation
+-   Validation
+-   Template generation
+
+================================================== ACCEPTANCE CRITERIA
+==================================================
+
+Users should be able to visually create a complete docker-compose.yml
+without manually writing YAML.

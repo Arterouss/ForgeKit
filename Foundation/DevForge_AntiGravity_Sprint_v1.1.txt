@@ -1,0 +1,45 @@
+DevForge AntiGravity Sprint v1.1
+
+Tool SDK & Tool Generator
+
+Continue the existing DevForge project.
+
+IMPORTANT - Do NOT recreate the application. - Reuse the existing Tool
+Engine. - Extend only.
+
+MISSION
+
+Build the reusable Tool SDK that powers every future utility.
+
+GOALS
+
+-   Tool registration
+-   Metadata registry
+-   Category registry
+-   Shared toolbar
+-   Shared layout
+-   Shared hooks
+-   Shared utilities
+
+Implement a clean registration pattern similar to:
+
+registerTool({ slug, name, category, description, icon, component,
+keywords, shortcut, version })
+
+When a tool is registered it should automatically become available
+for: - Dashboard - Search - Command Palette - Categories
+
+Prepare reusable hooks: - useTool - useClipboard - useDownload -
+useUpload - useToolState
+
+Prepare reusable utilities: - clipboard - validation - notifications -
+download - upload
+
+Generate developer documentation describing how to add a new tool.
+
+Refactor the JSON Formatter where appropriate to use this SDK.
+
+Add unit tests for registry and metadata validation.
+
+Acceptance Criteria: Creating a new tool should require only a few files
+plus one registration call. Architecture must support 100+ tools.

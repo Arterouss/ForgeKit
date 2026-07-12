@@ -1,0 +1,87 @@
+DevForge AntiGravity Sprint v1.9
+
+GitIgnore Generator Pro
+
+Continue the existing DevForge project.
+
+IMPORTANT - Reuse Tool SDK, Tool Engine, Workspace and Design System. -
+Extend only. - Do NOT recreate existing components.
+
+================================================== MISSION
+==================================================
+
+Build a professional .gitignore Generator.
+
+The tool should help developers quickly generate accurate .gitignore
+files for any technology stack.
+
+================================================== CORE FEATURES
+==================================================
+
+-   Search technologies
+-   Multi-select frameworks
+-   Live .gitignore preview
+-   Copy
+-   Download .gitignore
+-   Import existing .gitignore
+-   Merge selections
+-   Clear
+-   Favorites (future ready)
+
+================================================== SUPPORTED STACKS
+==================================================
+
+Languages: - JavaScript - TypeScript - Python - Java - Go - Rust - PHP -
+C# - C++ - Kotlin
+
+Frameworks: - Next.js - React - Vue - Angular - Laravel - Django -
+Flask - Spring Boot - Express
+
+Tools: - VSCode - JetBrains - Docker - pnpm - npm - Yarn - TurboRepo -
+Nx
+
+================================================== SMART FEATURES
+==================================================
+
+-   Remove duplicate rules
+-   Conflict detection
+-   Search by keyword
+-   Suggested combinations
+
+================================================== PREVIEW
+==================================================
+
+Live Monaco Editor preview.
+
+Highlight generated sections.
+
+================================================== TOOLBAR
+==================================================
+
+Generate
+
+Copy
+
+Download
+
+Import
+
+Merge
+
+Clear
+
+================================================== HOOKS
+==================================================
+
+Reuse Tool SDK hooks and shared utilities.
+
+================================================== TESTING
+==================================================
+
+Unit tests: - Rule generation - Merge logic - Duplicate removal
+
+================================================== ACCEPTANCE CRITERIA
+==================================================
+
+Developers should be able to generate a clean, production-ready
+.gitignore in seconds.
