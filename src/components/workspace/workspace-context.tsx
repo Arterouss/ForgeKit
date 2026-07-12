@@ -1,6 +1,7 @@
 'use client';
 
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
+import { useRouter, usePathname } from 'next/navigation';
 
 export interface WorkspaceTab {
   id: string;
@@ -116,6 +117,9 @@ const DEFAULT_HISTORY: WorkspaceHistoryItem[] = [
 ];
 
 export function WorkspaceProvider({ children }: { children: React.ReactNode }) {
+  const router = useRouter();
+  const pathname = usePathname();
+
   const [tabs, setTabs] = useState<WorkspaceTab[]>(DEFAULT_TABS);
   const [activeTabId, setActiveTabId] = useState<string | null>('json-formatter');
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -125,6 +129,20 @@ export function WorkspaceProvider({ children }: { children: React.ReactNode }) {
   );
   const [historyItems, setHistoryItems] = useState<WorkspaceHistoryItem[]>(DEFAULT_HISTORY);
   const [snippets, setSnippets] = useState<WorkspaceSnippet[]>(DEFAULT_SNIPPETS);
+
+  // Sync active tab with current pathname
+  useEffect(() => {
+    if (pathname === '/dashboard') {
+      const timer = setTimeout(() => setActiveTabId(null), 0);
+      return () => clearTimeout(timer);
+    } else if (pathname) {
+      const matchingTab = tabs.find((t) => t.href === pathname);
+      if (matchingTab && matchingTab.id !== activeTabId) {
+        const timer = setTimeout(() => setActiveTabId(matchingTab.id), 0);
+        return () => clearTimeout(timer);
+      }
+    }
+  }, [pathname, tabs, activeTabId]);
 
   // Load saved notes from localStorage on mount
   useEffect(() => {
@@ -165,8 +183,11 @@ export function WorkspaceProvider({ children }: { children: React.ReactNode }) {
         return [...prev, newTab];
       });
       setActiveTabId(tabData.id);
+      if (tabData.href && pathname !== tabData.href) {
+        router.push(tabData.href);
+      }
     },
-    []
+    [pathname, router]
   );
 
   const closeTab = useCallback(

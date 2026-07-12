@@ -9,6 +9,7 @@ import {
   Share2,
   Check,
 } from 'lucide-react';
+import { usePathname } from 'next/navigation';
 import { useWorkspace } from './workspace-context';
 import { WorkspaceEmpty } from './workspace-empty';
 import { cn } from '@/lib/utils';
@@ -18,9 +19,20 @@ interface ToolContainerProps {
 }
 
 export function ToolContainer({ children }: ToolContainerProps) {
+  const pathname = usePathname();
   const { activeTab, isFullscreen, toggleFullscreen } = useWorkspace();
   const [splitView, setSplitView] = useState(true);
   const [copied, setCopied] = useState(false);
+
+  const isToolRoute = pathname?.startsWith('/dashboard/tools');
+
+  if (!isToolRoute) {
+    return (
+      <div className="flex flex-1 flex-col overflow-y-auto bg-background/30">
+        {children}
+      </div>
+    );
+  }
 
   if (!activeTab) {
     return <WorkspaceEmpty />;
