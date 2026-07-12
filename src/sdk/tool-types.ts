@@ -14,6 +14,7 @@ export type ToolCategory =
   | 'encoding'
   | 'generators'
   | 'docker'
+  | 'devops'
   | 'linux'
   | 'git'
   | 'database'

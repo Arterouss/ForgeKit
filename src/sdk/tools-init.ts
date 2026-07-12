@@ -10,6 +10,14 @@ import { XmlFormatterPro } from '@/components/tools/xml-formatter';
 import { SqlFormatterPro } from '@/components/tools/sql-formatter';
 import { DockerComposeBuilderPro } from '@/components/tools/docker-compose-builder';
 import { GitIgnoreGeneratorPro } from '@/components/tools/gitignore-generator';
+import { DockerfileBuilderPro } from '@/components/tools/dockerfile-builder';
+import { DockerignoreGeneratorPro } from '@/components/tools/dockerignore-generator';
+import { EnvBuilderPro } from '@/components/tools/env-builder';
+import { KubernetesBuilderPro } from '@/components/tools/kubernetes-builder';
+import { NginxBuilderPro } from '@/components/tools/nginx-builder';
+import { TraefikBuilderPro } from '@/components/tools/traefik-builder';
+import { GitHubActionsBuilderPro } from '@/components/tools/github-actions-builder';
+import { DockerRunBuilderPro } from '@/components/tools/docker-run-builder';
 
 // Placeholder Component for all tools prior to full implementation
 const PlaceholderComponent = () => {
@@ -245,6 +253,102 @@ export const mvpTools: ToolDefinition[] = [
     version: '1.0.0',
     status: 'stable',
     component: GitIgnoreGeneratorPro,
+  },
+  {
+    slug: 'dockerfile-builder',
+    name: 'Dockerfile Builder Pro',
+    description: 'Visual multi-stage Dockerfile generator with live preview, security checks, and cross-tool .dockerignore suggestions.',
+    category: 'docker',
+    icon: 'Container',
+    tags: ['docker', 'dockerfile', 'builder', 'multi-stage'],
+    keywords: ['dockerfile builder', 'create dockerfile', 'docker build'],
+    version: '1.0.0',
+    status: 'stable',
+    component: DockerfileBuilderPro,
+  },
+  {
+    slug: 'dockerignore-generator',
+    name: '.dockerignore Generator Pro',
+    description: 'Generate comprehensive, highly-secure .dockerignore files to prevent secret leakage and optimize build cache.',
+    category: 'docker',
+    icon: 'FileX',
+    tags: ['docker', 'dockerignore', 'security', 'cache'],
+    keywords: ['dockerignore generator', 'docker ignore'],
+    version: '1.0.0',
+    status: 'stable',
+    component: DockerignoreGeneratorPro,
+  },
+  {
+    slug: 'env-builder',
+    name: 'Environment (.env) Builder Pro',
+    description: 'Visual .env file editor with secret masking, .env.example generator, validation, and Docker Compose integration.',
+    category: 'devops',
+    icon: 'Shield',
+    tags: ['env', 'environment', 'secrets', 'devops'],
+    keywords: ['env builder', 'dotenv', 'environment variables'],
+    version: '1.0.0',
+    status: 'stable',
+    component: EnvBuilderPro,
+  },
+  {
+    slug: 'kubernetes-builder',
+    name: 'Kubernetes Manifest Builder Pro',
+    description: 'Visual Kubernetes Deployment, Service, and Ingress manifest generator with resource limits, TLS, and multi-document YAML export.',
+    category: 'devops',
+    icon: 'Layers',
+    tags: ['kubernetes', 'k8s', 'deployment', 'devops', 'manifest'],
+    keywords: ['kubernetes builder', 'k8s manifest', 'k8s generator'],
+    version: '1.0.0',
+    status: 'stable',
+    component: KubernetesBuilderPro,
+  },
+  {
+    slug: 'nginx-builder',
+    name: 'Nginx Config Builder Pro',
+    description: 'Visual Nginx server block builder for reverse proxies, SPA static site routing, SSL TLSv1.3, and Gzip compression.',
+    category: 'devops',
+    icon: 'Server',
+    tags: ['nginx', 'proxy', 'config', 'devops', 'webserver'],
+    keywords: ['nginx config', 'nginx generator', 'reverse proxy'],
+    version: '1.0.0',
+    status: 'stable',
+    component: NginxBuilderPro,
+  },
+  {
+    slug: 'traefik-builder',
+    name: 'Traefik Config Builder Pro',
+    description: 'Visual Traefik v3 static & dynamic YAML generator with Docker auto-discovery and automated Let\'s Encrypt TLS.',
+    category: 'devops',
+    icon: 'Network',
+    tags: ['traefik', 'proxy', 'ingress', 'acme', 'devops'],
+    keywords: ['traefik config', 'traefik yaml', 'traefik generator'],
+    version: '1.0.0',
+    status: 'stable',
+    component: TraefikBuilderPro,
+  },
+  {
+    slug: 'github-actions-builder',
+    name: 'GitHub Actions Workflow Builder Pro',
+    description: 'Visual CI/CD workflow generator with automated Docker build/push integration, multi-branch triggers, and step matrix builder.',
+    category: 'devops',
+    icon: 'Play',
+    tags: ['github', 'actions', 'cicd', 'workflow', 'devops'],
+    keywords: ['github actions', 'ci cd', 'workflow generator'],
+    version: '1.0.0',
+    status: 'stable',
+    component: GitHubActionsBuilderPro,
+  },
+  {
+    slug: 'docker-run-builder',
+    name: 'Docker Run Command Builder Pro',
+    description: 'Visual docker run CLI command generator with volume mounts, environment flags, interactive mode, and Docker Compose import support.',
+    category: 'docker',
+    icon: 'Terminal',
+    tags: ['docker', 'cli', 'run', 'container', 'devops'],
+    keywords: ['docker run', 'docker command', 'cli generator'],
+    version: '1.0.0',
+    status: 'stable',
+    component: DockerRunBuilderPro,
   },
 ];
 
