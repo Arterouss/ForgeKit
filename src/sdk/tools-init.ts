@@ -18,6 +18,16 @@ import { NginxBuilderPro } from '@/components/tools/nginx-builder';
 import { TraefikBuilderPro } from '@/components/tools/traefik-builder';
 import { GitHubActionsBuilderPro } from '@/components/tools/github-actions-builder';
 import { DockerRunBuilderPro } from '@/components/tools/docker-run-builder';
+import { ReadmeGeneratorPro } from '@/components/tools/readme-generator';
+import { ConventionalCommitPro } from '@/components/tools/conventional-commit';
+import { GitAliasBuilderPro } from '@/components/tools/git-alias-builder';
+import { ReleaseNotesGeneratorPro } from '@/components/tools/release-notes-generator';
+import { GitHookBuilderPro } from '@/components/tools/git-hook-builder';
+import { GitCheatSheetPro } from '@/components/tools/git-cheat-sheet';
+import { GitAttributesGeneratorPro } from '@/components/tools/gitattributes-generator';
+import { GitHubLabelsGeneratorPro } from '@/components/tools/github-labels-generator';
+import { IssueTemplateBuilderPro } from '@/components/tools/issue-template-builder';
+import { PrTemplateBuilderPro } from '@/components/tools/pr-template-builder';
 
 // Placeholder Component for all tools prior to full implementation
 const PlaceholderComponent = () => {
@@ -349,6 +359,126 @@ export const mvpTools: ToolDefinition[] = [
     version: '1.0.0',
     status: 'stable',
     component: DockerRunBuilderPro,
+  },
+  {
+    slug: 'readme-generator',
+    name: 'README Generator Pro',
+    description: 'Visual README.md document builder with dynamic Shields.io badges, features list, tech stack badges, and table of contents.',
+    category: 'git',
+    icon: 'FileText',
+    tags: ['readme', 'markdown', 'documentation', 'git', 'github'],
+    keywords: ['readme generator', 'readme md', 'github readme'],
+    version: '1.0.0',
+    status: 'stable',
+    component: ReadmeGeneratorPro,
+  },
+  {
+    slug: 'conventional-commit',
+    name: 'Conventional Commit Assistant',
+    description: 'Interactive specification builder for standardized git commit messages with semantic versioning triggers, breaking change flags, and issue reference footers.',
+    category: 'git',
+    icon: 'GitCommit',
+    tags: ['git', 'commit', 'conventional', 'semver', 'changelog'],
+    keywords: ['conventional commit', 'git commit', 'commit generator'],
+    version: '1.0.0',
+    status: 'stable',
+    component: ConventionalCommitPro,
+  },
+  {
+    slug: 'git-alias-builder',
+    name: 'Git Alias Builder',
+    description: 'Visual generator for Git terminal shortcuts supporting .gitconfig INI sections, global CLI setup commands, and shell bash/zsh aliases.',
+    category: 'git',
+    icon: 'Terminal',
+    tags: ['git', 'alias', 'gitconfig', 'shortcuts', 'terminal'],
+    keywords: ['git alias', 'git shortcuts', 'gitconfig alias'],
+    version: '1.0.0',
+    status: 'stable',
+    component: GitAliasBuilderPro,
+  },
+  {
+    slug: 'release-notes-generator',
+    name: 'Release Notes Generator',
+    description: 'Automated changelog builder that parses git log --oneline output and groups commits into semantic categories with GitHub comparison links.',
+    category: 'git',
+    icon: 'FileText',
+    tags: ['git', 'release', 'changelog', 'notes', 'github'],
+    keywords: ['release notes', 'changelog generator', 'git log parser'],
+    version: '1.0.0',
+    status: 'stable',
+    component: ReleaseNotesGeneratorPro,
+  },
+  {
+    slug: 'git-hook-builder',
+    name: 'Git Hook Builder (Husky)',
+    description: 'Interactive generator for Husky v9+, Lefthook YAML workflows, and raw git hook scripts covering pre-commit linting, commit-msg checks, and pre-push validation.',
+    category: 'git',
+    icon: 'ShieldCheck',
+    tags: ['git', 'husky', 'hooks', 'lefthook', 'pre-commit', 'lint-staged'],
+    keywords: ['husky builder', 'git hooks', 'pre-commit generator'],
+    version: '1.0.0',
+    status: 'stable',
+    component: GitHookBuilderPro,
+  },
+  {
+    slug: 'git-cheat-sheet',
+    name: 'Interactive Git Cheat Sheet',
+    description: 'Searchable reference guide for Git workflows with live parameter substitution, safety risk indicators, and one-click terminal commands.',
+    category: 'git',
+    icon: 'Terminal',
+    tags: ['git', 'cheat sheet', 'commands', 'reference', 'cli'],
+    keywords: ['git cheat sheet', 'git reference', 'git commands'],
+    version: '1.0.0',
+    status: 'stable',
+    component: GitCheatSheetPro,
+  },
+  {
+    slug: 'gitattributes-generator',
+    name: '.gitattributes Generator',
+    description: 'Visual builder for Git repository normalization covering line ending conversions (LF/CRLF), Git LFS large asset tracking, and GitHub Linguist stats override rules.',
+    category: 'git',
+    icon: 'FileCode',
+    tags: ['git', 'gitattributes', 'lfs', 'line endings', 'crlf', 'linguist'],
+    keywords: ['gitattributes generator', 'git lfs config', 'crlf normalization'],
+    version: '1.0.0',
+    status: 'stable',
+    component: GitAttributesGeneratorPro,
+  },
+  {
+    slug: 'github-labels-generator',
+    name: 'GitHub Labels Generator',
+    description: 'Visual builder for repository issue & PR labels with hex color previews, exporting to GitHub CLI script commands, JSON arrays, or YAML configs.',
+    category: 'git',
+    icon: 'Tag',
+    tags: ['git', 'github', 'labels', 'issues', 'gh-cli', 'triage'],
+    keywords: ['github labels generator', 'gh label create', 'issue triage labels'],
+    version: '1.0.0',
+    status: 'stable',
+    component: GitHubLabelsGeneratorPro,
+  },
+  {
+    slug: 'issue-template-builder',
+    name: 'GitHub Issue Template Builder',
+    description: 'Visual builder for GitHub YAML Issue Forms (.yml) and Markdown templates (.md) with structured fields, dropdown selectors, checkboxes, and required validation rules.',
+    category: 'git',
+    icon: 'FileSpreadsheet',
+    tags: ['git', 'github', 'issue template', 'yaml form', 'bug report'],
+    keywords: ['issue template builder', 'github issue form', 'bug report template'],
+    version: '1.0.0',
+    status: 'stable',
+    component: IssueTemplateBuilderPro,
+  },
+  {
+    slug: 'pr-template-builder',
+    name: 'Pull Request Template Builder',
+    description: 'Interactive generator for .github/PULL_REQUEST_TEMPLATE.md with structured review checklists, issue linkage, change type categories, and quality verification steps.',
+    category: 'git',
+    icon: 'CheckSquare',
+    tags: ['git', 'github', 'pr template', 'pull request', 'code review', 'checklist'],
+    keywords: ['pr template builder', 'pull request template', 'github pr checklist'],
+    version: '1.0.0',
+    status: 'stable',
+    component: PrTemplateBuilderPro,
   },
 ];
 

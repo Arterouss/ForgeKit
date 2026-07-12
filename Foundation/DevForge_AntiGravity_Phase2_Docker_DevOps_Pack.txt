@@ -1,0 +1,33 @@
+DevForge AntiGravity Phase 2
+
+Docker & DevOps Pack (v2.0)
+
+Continue the existing DevForge project.
+
+IMPORTANT - Continue from the existing codebase. - Do NOT recreate the
+application. - Reuse Tool SDK, Tool Engine, Design System and
+Workspace. - Extend only.
+
+MISSION
+
+Build the Docker & DevOps ecosystem.
+
+Implement: 1. Dockerfile Builder Pro 2. .dockerignore Generator 3.
+Environment (.env) Builder 4. Kubernetes Manifest Builder 5. Nginx
+Config Builder 6. Traefik Config Builder 7. GitHub Actions Workflow
+Builder 8. Docker Run Command Builder
+
+Requirements: - Live Preview - Monaco Editor - Templates - Validation -
+Import/Export - Download generated files - Copy/Paste - Responsive UI -
+Keyboard shortcuts - Full Tool SDK integration
+
+Cross Tool Integration: - Dockerfile Builder suggests .dockerignore. -
+Docker Compose Builder generates .env.example. - Kubernetes Builder
+reuses Docker Compose concepts. - GitHub Actions integrates generated
+Docker images.
+
+Quality: - Unit tests - Documentation - Error handling - Loading state -
+Empty state
+
+Acceptance Criteria: All tools must pass lint, type-check, tests and
+build. Stop after Phase 2 and wait for further instructions.

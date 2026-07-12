@@ -1,0 +1,45 @@
+DevForge AntiGravity Phase 3
+
+Git Productivity Pack
+
+Continue the existing DevForge project.
+
+IMPORTANT - Continue from the existing codebase. - Do NOT recreate the
+application. - Reuse Tool SDK, Tool Engine, Design System and
+Workspace. - Extend only.
+
+MISSION
+
+Build the Git Productivity ecosystem.
+
+Implement:
+
+1.  README Generator Pro
+2.  Conventional Commit Assistant
+3.  Git Alias Builder
+4.  Release Notes Generator
+5.  Git Hook Builder (Husky)
+6.  Interactive Git Cheat Sheet
+7.  .gitattributes Generator
+8.  GitHub Labels Generator
+9.  GitHub Issue Template Builder
+10. Pull Request Template Builder
+
+Requirements: - Live Preview - Templates - Validation - Copy/Paste -
+Import/Export - Download generated files - Responsive UI - Keyboard
+shortcuts - Tool SDK integration
+
+README Generator: Generate complete README.md files with badges,
+installation, usage, features, tech stack, contributing and license.
+
+Conventional Commits: Support feat, fix, docs, style, refactor, perf,
+test, build, ci, chore and revert.
+
+Quality: - Unit tests - Documentation - Error handling - Loading
+states - Empty states
+
+Final validation: Run: pnpm lint pnpm type-check pnpm test pnpm build
+
+Fix all issues.
+
+Stop after Phase 3 and wait for further instructions.

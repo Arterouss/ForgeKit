@@ -1,0 +1,38 @@
+Continue the existing DevForge project.
+
+Current Status:
+- Phase 1 (v0.1–v1.9) has been fully completed.
+- Tool SDK is already implemented.
+- Workspace, Tool Engine, Design System, Command Palette and existing utilities are available.
+
+Your task is to implement ONLY Phase 2 (Docker & DevOps Pack).
+
+IMPORTANT
+
+- Do NOT recreate the application.
+- Do NOT redesign completed pages.
+- Do NOT rename the existing architecture.
+- Reuse every existing component whenever possible.
+- Reuse Tool SDK.
+- Reuse Tool Engine.
+- Reuse shared hooks.
+- Reuse shared utilities.
+- Follow the existing coding style.
+
+After completing the implementation:
+
+Run:
+
+pnpm lint
+
+pnpm type-check
+
+pnpm test
+
+pnpm build
+
+Fix every issue before finishing.
+
+Do NOT continue to Phase 3.
+
+Stop and wait for further instructions.
