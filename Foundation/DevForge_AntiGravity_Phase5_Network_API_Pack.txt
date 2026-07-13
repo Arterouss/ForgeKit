@@ -1,0 +1,26 @@
+DevForge AntiGravity Phase 5
+
+Network & API Pack
+
+Continue the existing DevForge project.
+
+IMPORTANT - Continue from the existing codebase. - Do NOT recreate the
+application. - Reuse Tool SDK, Tool Engine, Design System and
+Workspace. - Extend only.
+
+MISSION
+
+Build the Network & API ecosystem.
+
+Implement: 1. REST Request Builder 2. HTTP Header Inspector 3. DNS
+Lookup Tool 4. URL Encoder / Decoder 5. cURL Builder 6. Webhook Tester
+7. JSON Schema Builder 8. OpenAPI Viewer 9. GraphQL Explorer 10. API
+Authentication Helper
+
+Requirements: - Tool SDK integration - Validation - Live Preview -
+Responsive UI - Copy/Paste - Import/Export - Download output - Keyboard
+shortcuts - Documentation - Unit tests
+
+Run before completion: pnpm lint pnpm type-check pnpm test pnpm build
+
+Fix all issues and stop after Phase 5.

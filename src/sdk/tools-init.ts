@@ -28,6 +28,17 @@ import { GitAttributesGeneratorPro } from '@/components/tools/gitattributes-gene
 import { GitHubLabelsGeneratorPro } from '@/components/tools/github-labels-generator';
 import { IssueTemplateBuilderPro } from '@/components/tools/issue-template-builder';
 import { PrTemplateBuilderPro } from '@/components/tools/pr-template-builder';
+import { ChmodCalculatorPro } from '@/components/tools/chmod-calculator';
+import { ChownBuilderPro } from '@/components/tools/chown-builder';
+import { CronBuilderPro } from '@/components/tools/cron-builder';
+import { SystemdBuilderPro } from '@/components/tools/systemd-builder';
+import { BashScriptGeneratorPro } from '@/components/tools/bash-script-generator';
+import { SshConfigBuilderPro } from '@/components/tools/ssh-config-builder';
+import { SshConfigValidatorPro } from '@/components/tools/ssh-config-validator';
+import { SshKeyViewerPro } from '@/components/tools/ssh-key-viewer';
+import { ApacheBuilderPro } from '@/components/tools/apache-builder';
+import { CaddyBuilderPro } from '@/components/tools/caddy-builder';
+import { LinuxCommandExplorerPro } from '@/components/tools/linux-command-explorer';
 
 // Placeholder Component for all tools prior to full implementation
 const PlaceholderComponent = () => {
@@ -479,6 +490,138 @@ export const mvpTools: ToolDefinition[] = [
     version: '1.0.0',
     status: 'stable',
     component: PrTemplateBuilderPro,
+  },
+  {
+    slug: 'chmod-calculator',
+    name: 'chmod Calculator Pro',
+    description: 'Interactive Linux permission matrix calculator with bidirectional Octal (755) and Symbolic (-rwxr-xr-x) conversion, special bits (SUID/SGID/Sticky), and CLI chmod command builder.',
+    category: 'linux',
+    icon: 'ShieldCheck',
+    tags: ['linux', 'chmod', 'permissions', 'octal', 'symbolic', 'suid'],
+    keywords: ['chmod calculator', 'linux permissions', 'octal 755', 'chmod command'],
+    version: '1.0.0',
+    status: 'stable',
+    component: ChmodCalculatorPro,
+  },
+  {
+    slug: 'chown-builder',
+    name: 'chown Command Builder',
+    description: 'Interactive Linux chown & chgrp command generator with recursive ownership rules, UID/GID syntax, symlink dereference options, and preserve-root safeguards.',
+    category: 'linux',
+    icon: 'UserCheck',
+    tags: ['linux', 'chown', 'chgrp', 'ownership', 'uid', 'gid', 'www-data'],
+    keywords: ['chown command builder', 'linux ownership', 'chown -R www-data'],
+    version: '1.0.0',
+    status: 'stable',
+    component: ChownBuilderPro,
+  },
+  {
+    slug: 'cron-builder',
+    name: 'Cron Expression Builder',
+    description: 'Interactive 5-field Linux crontab schedule generator with human-readable natural language descriptor, execution presets, and system user crontab formatting.',
+    category: 'linux',
+    icon: 'Clock',
+    tags: ['linux', 'cron', 'crontab', 'schedule', 'expression', 'timer'],
+    keywords: ['cron expression builder', 'crontab generator', 'cron schedule explain'],
+    version: '1.0.0',
+    status: 'stable',
+    component: CronBuilderPro,
+  },
+  {
+    slug: 'systemd-builder',
+    name: 'Systemd Service Builder',
+    description: 'Visual generator for Linux .service unit files with security hardening flags, environment variables, restart policies, and systemctl lifecycle commands.',
+    category: 'linux',
+    icon: 'Cpu',
+    tags: ['linux', 'systemd', 'service', 'daemon', 'unit', 'systemctl'],
+    keywords: ['systemd service builder', 'linux unit file', 'systemctl enable service'],
+    version: '1.0.0',
+    status: 'stable',
+    component: SystemdBuilderPro,
+  },
+  {
+    slug: 'bash-script-generator',
+    name: 'Bash Script Generator',
+    description: 'Interactive generator for production-grade Linux Bash scripts with strict mode (set -euo pipefail), ANSI logging helpers, trap cleanup handlers, and CLI flag parsers.',
+    category: 'linux',
+    icon: 'Terminal',
+    tags: ['linux', 'bash', 'shell', 'script', 'boilerplate', 'trap'],
+    keywords: ['bash script generator', 'linux shell script', 'bash boilerplate set -euo pipefail'],
+    version: '1.0.0',
+    status: 'stable',
+    component: BashScriptGeneratorPro,
+  },
+  {
+    slug: 'ssh-config-builder',
+    name: 'SSH Config Builder',
+    description: 'Visual multi-host generator for ~/.ssh/config supporting ProxyJump bastion routing, IdentityFile selection, LocalForward SSH tunnels, and keep-alive intervals.',
+    category: 'linux',
+    icon: 'Key',
+    tags: ['linux', 'ssh', 'config', 'proxyjump', 'bastion', 'tunnel'],
+    keywords: ['ssh config builder', 'ssh proxyjump bastion', 'ssh config multi host'],
+    version: '1.0.0',
+    status: 'stable',
+    component: SshConfigBuilderPro,
+  },
+  {
+    slug: 'ssh-config-validator',
+    name: 'SSH Config Validator',
+    description: 'Interactive ~/.ssh/config security scanner and syntax linter detecting duplicate Host aliases, wildcard shadowing, Agent Forwarding risks, and formatting issues.',
+    category: 'linux',
+    icon: 'ShieldCheck',
+    tags: ['linux', 'ssh', 'config', 'validator', 'scanner', 'linter'],
+    keywords: ['ssh config validator', 'ssh config linter', 'check ~/.ssh/config'],
+    version: '1.0.0',
+    status: 'stable',
+    component: SshConfigValidatorPro,
+  },
+  {
+    slug: 'ssh-key-viewer',
+    name: 'SSH Key Viewer',
+    description: 'Cryptographic inspection tool for SSH public and private keys to identify algorithm, estimate bit strength, verify passphrase protection, and extract email comments.',
+    category: 'linux',
+    icon: 'KeyRound',
+    tags: ['linux', 'ssh', 'key', 'pubkey', 'ed25519', 'rsa', 'inspector'],
+    keywords: ['ssh key viewer', 'inspect ssh public key', 'check ssh key type ed25519'],
+    version: '1.0.0',
+    status: 'stable',
+    component: SshKeyViewerPro,
+  },
+  {
+    slug: 'apache-builder',
+    name: 'Apache Virtual Host Builder',
+    description: 'Visual generator for Apache 2.4 VirtualHost configurations with SSL/TLS certificates, mod_proxy reverse proxying, AllowOverride .htaccess permissions, and HTTP redirect blocks.',
+    category: 'linux',
+    icon: 'Globe',
+    tags: ['linux', 'apache', 'virtualhost', 'httpd', 'vhost', 'mod_proxy'],
+    keywords: ['apache virtual host builder', 'apache reverse proxy', 'apache ssl vhost conf'],
+    version: '1.0.0',
+    status: 'stable',
+    component: ApacheBuilderPro,
+  },
+  {
+    slug: 'caddy-builder',
+    name: 'Caddy Config Builder',
+    description: 'Visual Caddyfile generator for Caddy v2 with automatic Let\'s Encrypt HTTPS, reverse proxy routing, static file SPA servers, gzip/zstd compression, and security headers.',
+    category: 'linux',
+    icon: 'Zap',
+    tags: ['linux', 'caddy', 'caddyfile', 'proxy', 'https', 'acme'],
+    keywords: ['caddy config builder', 'caddyfile reverse proxy', 'caddy automatic https'],
+    version: '1.0.0',
+    status: 'stable',
+    component: CaddyBuilderPro,
+  },
+  {
+    slug: 'linux-command-explorer',
+    name: 'Linux Command Explorer',
+    description: 'Interactive Linux server administration and DevOps CLI database with flag reference breakdowns, syntax templates, and real-world production examples.',
+    category: 'linux',
+    icon: 'Terminal',
+    tags: ['linux', 'cli', 'command', 'bash', 'devops', 'reference', 'cheatsheet'],
+    keywords: ['linux command explorer', 'devops linux commands', 'ps aux lsof ss curl chmod reference'],
+    version: '1.0.0',
+    status: 'stable',
+    component: LinuxCommandExplorerPro,
   },
 ];
 
