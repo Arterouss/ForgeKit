@@ -1,0 +1,29 @@
+DevForge AntiGravity Phase 6
+
+Security Pack
+
+Continue the existing DevForge project.
+
+IMPORTANT - Continue from the existing codebase. - Do NOT recreate the
+application. - Reuse Tool SDK, Tool Engine, Design System and
+Workspace. - Extend only.
+
+MISSION
+
+Build the Security toolkit.
+
+Implement: 1. Password Generator Pro 2. Password Strength Analyzer 3.
+Hash Generator 4. HMAC Generator 5. UUID / ULID Generator 6. CSR Decoder
+7. X.509 Certificate Viewer 8. JWT Inspector 9. Base32 Encoder/Decoder
+10. Hex Encoder/Decoder
+
+Requirements: - Tool SDK integration - Validation - Live Preview -
+Responsive UI - Copy/Paste - Import/Export - Download output - Keyboard
+shortcuts - Documentation - Unit tests
+
+Security: - Process everything locally. - Never transmit sensitive data
+externally. - Reuse JWT/Base64 utilities.
+
+Run before completion: pnpm lint pnpm type-check pnpm test pnpm build
+
+Stop after Phase 6.

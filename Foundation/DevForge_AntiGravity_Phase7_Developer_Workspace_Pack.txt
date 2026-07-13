@@ -1,0 +1,29 @@
+DevForge AntiGravity Phase 7
+
+Developer Workspace Pack
+
+Continue the existing DevForge project.
+
+IMPORTANT - Continue from the existing codebase. - Do NOT recreate the
+application. - Reuse Tool SDK, Tool Engine, Design System and
+Workspace. - Extend only.
+
+MISSION
+
+Build the Developer Workspace ecosystem.
+
+Implement: 1. Saved Workspaces 2. Collections Manager 3. Favorites
+Manager 4. Recent Activity Timeline 5. Global Snippet Manager 6. Notes
+Workspace 7. Workspace Import / Export 8. Workspace Backup / Restore 9.
+Custom Dashboard Widgets 10. Advanced Command Palette
+
+Requirements: - Workspace Engine integration - Tool SDK integration -
+Local persistence - Responsive UI - Keyboard shortcuts - Documentation -
+Unit tests
+
+Prepare architecture for future cloud sync. Do not implement
+authentication or cloud sync.
+
+Before completion run: pnpm lint pnpm type-check pnpm test pnpm build
+
+Stop after Phase 7.

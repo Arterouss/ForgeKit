@@ -17,12 +17,14 @@ import { SearchBar } from '@/components/ui/search-bar';
 import { ToolCard } from '@/components/ui/tool-card';
 import { CategoryCard } from '@/components/ui/category-card';
 import { EmptyState } from '@/components/ui/empty-state';
+import { useRouter } from 'next/navigation';
 import { Badge } from '@/components/ui/badge';
 
 // Initialize registry once when the module loads
 initializeRegistry();
 
 export default function DashboardPage() {
+  const router = useRouter();
   const [searchQuery, setSearchQuery] = useState('');
   const [favorites, setFavorites] = useState<string[]>(['json-formatter', 'jwt-decoder']);
   const [recentTools, setRecentTools] = useState<string[]>(['base64', 'uuid-generator']);
@@ -42,7 +44,7 @@ export default function DashboardPage() {
       const filtered = prev.filter((s) => s !== slug);
       return [slug, ...filtered].slice(0, 5);
     });
-    alert(`Tool "${slug}" clicked. The Workspace tab engine will render this in Sprint v0.7!`);
+    router.push(`/dashboard/tools/${slug}`);
   };
 
   const favoriteToolObjects = getAllTools().filter((tool) =>
