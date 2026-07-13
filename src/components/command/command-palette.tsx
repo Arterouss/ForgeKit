@@ -21,10 +21,13 @@ import {
   Sparkles,
   History,
   Trash2,
+  Package,
 } from 'lucide-react';
 import { useTheme } from 'next-themes';
+import { useRouter } from 'next/navigation';
 import { useCommand } from './command-context';
 import { useWorkspace } from '@/components/workspace';
+import { getAllTools } from '@/sdk/tool-registry';
 import { cn } from '@/lib/utils';
 
 export interface PaletteItem {
@@ -37,6 +40,7 @@ export interface PaletteItem {
 }
 
 export function CommandPalette() {
+  const router = useRouter();
   const { isOpen, closeCommandPalette, recentCommandIds, addRecentCommand } = useCommand();
   const { openTab, closeTab, closeAllTabs, activeTabId, isFullscreen, toggleFullscreen, clearHistory } = useWorkspace();
   const { setTheme } = useTheme();
@@ -57,105 +61,113 @@ export function CommandPalette() {
     }
   }, [isOpen]);
 
-  // All available commands and tools
-  const allItems: PaletteItem[] = useMemo(
-    () => [
-      // TOOLS
-      {
-        id: 'tool-json-formatter',
-        title: 'JSON Formatter Pro',
-        description: 'Format, validate, minify, and inspect JSON structures',
-        category: 'Tools',
-        shortcut: 'J',
-        action: () => {
-          openTab({
-            id: 'json-formatter',
-            title: 'JSON Formatter',
-            category: 'Formatters',
-            href: '/dashboard/tools/json-formatter',
-          });
-        },
+  // All available commands and tools (All 60 registered tools + Workspace Ecosystem commands)
+  const allItems: PaletteItem[] = useMemo(() => {
+    const tools = getAllTools();
+    const toolItems: PaletteItem[] = tools.map((tool) => ({
+      id: `tool-${tool.slug}`,
+      title: tool.name,
+      description: tool.description,
+      category: 'Tools' as const,
+      action: () => {
+        openTab({
+          id: tool.slug,
+          title: tool.name,
+          category: tool.category,
+          href: `/dashboard/tools/${tool.slug}`,
+        });
+        closeCommandPalette();
       },
-      {
-        id: 'tool-regex-tester',
-        title: 'Regex Tester & Debugger',
-        description: 'Real-time regular expression evaluation & match highlighting',
-        category: 'Tools',
-        shortcut: 'R',
-        action: () => {
-          openTab({
-            id: 'regex-tester',
-            title: 'Regex Tester',
-            category: 'Text',
-            href: '/dashboard/tools/regex-tester',
-          });
-        },
-      },
-      {
-        id: 'tool-jwt-decoder',
-        title: 'JWT Token Inspector',
-        description: 'Decode and verify JSON Web Token claims and headers',
-        category: 'Tools',
-        action: () => {
-          openTab({
-            id: 'jwt-decoder',
-            title: 'JWT Decoder',
-            category: 'Security',
-            href: '/dashboard/tools/jwt-decoder',
-          });
-        },
-      },
-      {
-        id: 'tool-sql-formatter',
-        title: 'SQL Formatter & Validator',
-        description: 'Beautify messy PostgreSQL, MySQL, and SQLite queries',
-        category: 'Tools',
-        action: () => {
-          openTab({
-            id: 'sql-formatter',
-            title: 'SQL Formatter',
-            category: 'Formatters',
-            href: '/dashboard/tools/sql-formatter',
-          });
-        },
-      },
-      {
-        id: 'tool-base64-encoder',
-        title: 'Base64 String & File Studio',
-        description: 'Encode and decode Base64 strings and binary files',
-        category: 'Tools',
-        action: () => {
-          openTab({
-            id: 'base64-encoder',
-            title: 'Base64 Encoder',
-            category: 'Encoding',
-            href: '/dashboard/tools/base64-encoder',
-          });
-        },
-      },
-      {
-        id: 'tool-curl-builder',
-        title: 'HTTP cURL Builder',
-        description: 'Construct cURL requests with headers, auth, and bodies',
-        category: 'Tools',
-        action: () => {
-          openTab({
-            id: 'curl-builder',
-            title: 'cURL Builder',
-            category: 'Network',
-            href: '/dashboard/tools/curl-builder',
-          });
-        },
-      },
+    }));
 
-      // WORKSPACE
+    const workspaceItems: PaletteItem[] = [
+      {
+        id: 'ws-marketplace',
+        title: 'Open Plugin Marketplace & Extension Hub',
+        description: 'Browse, install, and sandbox third-party developer plugins',
+        category: 'Workspace',
+        shortcut: 'Ctrl+M',
+        action: () => {
+          router.push('/dashboard/marketplace');
+          closeCommandPalette();
+        },
+      },
+      {
+        id: 'ws-hub',
+        title: 'Open Workspace Ecosystem Hub',
+        description: 'Manage saved workspaces, snapshots, and JSON import/export',
+        category: 'Workspace',
+        shortcut: 'Ctrl+1',
+        action: () => {
+          router.push('/dashboard/workspace');
+          closeCommandPalette();
+        },
+      },
+      {
+        id: 'ws-collections',
+        title: 'Open Collections Manager',
+        description: 'Browse and organize custom tool collections & kits',
+        category: 'Workspace',
+        shortcut: 'Ctrl+2',
+        action: () => {
+          router.push('/dashboard/collections');
+          closeCommandPalette();
+        },
+      },
+      {
+        id: 'ws-favorites',
+        title: 'Open Favorites Manager',
+        description: 'Manage pinned favorite developer tools',
+        category: 'Workspace',
+        shortcut: 'Ctrl+3',
+        action: () => {
+          router.push('/dashboard/pinned');
+          closeCommandPalette();
+        },
+      },
+      {
+        id: 'ws-recent',
+        title: 'Open Recent Activity Timeline',
+        description: 'Inspect execution history and re-run recent tools',
+        category: 'Workspace',
+        shortcut: 'Ctrl+4',
+        action: () => {
+          router.push('/dashboard/recent');
+          closeCommandPalette();
+        },
+      },
+      {
+        id: 'ws-snippets',
+        title: 'Open Global Snippet Manager',
+        description: 'Manage reusable JSON, Regex, Bash, and SQL code snippets',
+        category: 'Workspace',
+        shortcut: 'Ctrl+5',
+        action: () => {
+          router.push('/dashboard/snippets');
+          closeCommandPalette();
+        },
+      },
+      {
+        id: 'ws-notes',
+        title: 'Open Notes Workspace',
+        description: 'Persistent markdown developer scratchpad',
+        category: 'Workspace',
+        shortcut: 'Ctrl+6',
+        action: () => {
+          router.push('/dashboard/notes');
+          closeCommandPalette();
+        },
+      },
       {
         id: 'ws-toggle-fullscreen',
         title: isFullscreen ? 'Exit Workspace Fullscreen' : 'Enter Workspace Fullscreen',
         description: 'Maximize or restore the tool container area',
         category: 'Workspace',
         shortcut: 'F11',
-        action: () => toggleFullscreen(),
+        action: () => {
+          toggleFullscreen();
+          closeCommandPalette();
+        },
       },
       {
         id: 'ws-close-tab',
@@ -165,6 +177,7 @@ export function CommandPalette() {
         shortcut: 'Ctrl+W',
         action: () => {
           if (activeTabId) closeTab(activeTabId);
+          closeCommandPalette();
         },
       },
       {
@@ -172,43 +185,61 @@ export function CommandPalette() {
         title: 'Close All Unpinned Tabs',
         description: 'Clear all unpinned tool tabs from the workspace',
         category: 'Workspace',
-        action: () => closeAllTabs(),
+        action: () => {
+          closeAllTabs();
+          closeCommandPalette();
+        },
       },
+    ];
 
-      // THEME
+    const themeItems: PaletteItem[] = [
       {
         id: 'theme-dark',
         title: 'Switch to Dark Theme',
         description: 'Enable sleek dark aesthetics',
         category: 'Theme',
-        action: () => setTheme('dark'),
+        action: () => {
+          setTheme('dark');
+          closeCommandPalette();
+        },
       },
       {
         id: 'theme-light',
         title: 'Switch to Light Theme',
         description: 'Enable clean high-contrast light aesthetics',
         category: 'Theme',
-        action: () => setTheme('light'),
+        action: () => {
+          setTheme('light');
+          closeCommandPalette();
+        },
       },
       {
         id: 'theme-system',
         title: 'Use System Theme',
         description: 'Sync appearance with OS settings',
         category: 'Theme',
-        action: () => setTheme('system'),
+        action: () => {
+          setTheme('system');
+          closeCommandPalette();
+        },
       },
+    ];
 
-      // ACTIONS
+    const actionItems: PaletteItem[] = [
       {
         id: 'action-clear-history',
         title: 'Clear Activity History',
         description: 'Remove all recorded logs from utility center',
         category: 'Actions',
-        action: () => clearHistory(),
+        action: () => {
+          clearHistory();
+          closeCommandPalette();
+        },
       },
-    ],
-    [openTab, isFullscreen, toggleFullscreen, activeTabId, closeTab, closeAllTabs, setTheme, clearHistory]
-  );
+    ];
+
+    return [...toolItems, ...workspaceItems, ...themeItems, ...actionItems];
+  }, [openTab, closeCommandPalette, router, isFullscreen, toggleFullscreen, activeTabId, closeTab, closeAllTabs, setTheme, clearHistory]);
 
   // Filter items by search query
   const filteredItems = useMemo(() => {
@@ -283,6 +314,8 @@ export function CommandPalette() {
         return <FileCode className="h-4 w-4 text-primary" />;
       case 'tool-curl-builder':
         return <Globe className="h-4 w-4 text-primary" />;
+      case 'ws-marketplace':
+        return <Package className="h-4 w-4 text-primary" />;
       case 'ws-toggle-fullscreen':
         return isFullscreen ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />;
       case 'ws-close-tab':

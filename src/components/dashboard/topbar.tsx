@@ -14,9 +14,10 @@ import {
   Info,
   LogOut,
   Menu,
+  Package,
 } from 'lucide-react';
 import { useTheme } from 'next-themes';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import { useCommand } from '@/components/command';
 import { Breadcrumb } from '@/components/ui/breadcrumb';
@@ -41,6 +42,7 @@ export function TopBar({
   rightPanelOpen,
 }: TopBarProps) {
   const pathname = usePathname();
+  const router = useRouter();
   const { theme, setTheme } = useTheme();
   const { openCommandPalette } = useCommand();
 
@@ -138,6 +140,16 @@ export function TopBar({
         >
           <Github className="h-4 w-4" />
         </a>
+
+        {/* Plugin Marketplace */}
+        <button
+          onClick={() => router.push('/dashboard/marketplace')}
+          className="flex items-center gap-1.5 rounded-xl px-3 py-2 text-xs font-semibold text-muted-foreground transition-all hover:bg-muted hover:text-foreground"
+          title="Open Plugin Marketplace (Ctrl+M)"
+        >
+          <Package className="h-4 w-4 text-primary" />
+          <span className="hidden md:inline">Plugins</span>
+        </button>
 
         {/* Theme Toggle */}
         <button

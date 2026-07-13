@@ -2,6 +2,8 @@
 
 import React, { createContext, useContext, useState, useEffect, useCallback } from 'react';
 
+import { useRouter } from 'next/navigation';
+
 interface CommandContextType {
   isOpen: boolean;
   openCommandPalette: () => void;
@@ -14,6 +16,7 @@ interface CommandContextType {
 const CommandContext = createContext<CommandContextType | undefined>(undefined);
 
 export function CommandProvider({ children }: { children: React.ReactNode }) {
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
   const [recentCommandIds, setRecentCommandIds] = useState<string[]>([]);
 
@@ -52,18 +55,22 @@ export function CommandProvider({ children }: { children: React.ReactNode }) {
   const closeCommandPalette = useCallback(() => setIsOpen(false), []);
   const toggleCommandPalette = useCallback(() => setIsOpen((prev) => !prev), []);
 
-  // Global keyboard shortcuts: Ctrl+K or Cmd+K
+  // Global keyboard shortcuts: Ctrl+K or Cmd+K, Ctrl+M for Marketplace
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') {
         event.preventDefault();
         setIsOpen((prev) => !prev);
+      } else if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'm') {
+        event.preventDefault();
+        router.push('/dashboard/marketplace');
+        setIsOpen(false);
       }
     };
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []);
+  }, [router]);
 
   return (
     <CommandContext.Provider

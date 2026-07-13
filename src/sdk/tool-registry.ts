@@ -20,6 +20,20 @@ export function registerTool(tool: ToolDefinition): void {
 }
 
 /**
+ * Unregister a tool from the global registry (used by dynamic plugins).
+ */
+export function unregisterTool(slug: string): boolean {
+  return toolRegistry.delete(slug);
+}
+
+/**
+ * Check if a tool slug is registered.
+ */
+export function isToolRegistered(slug: string): boolean {
+  return toolRegistry.has(slug);
+}
+
+/**
  * Get a tool by its slug.
  */
 export function getToolBySlug(slug: string): ToolDefinition | undefined {

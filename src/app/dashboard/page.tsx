@@ -19,31 +19,20 @@ import { CategoryCard } from '@/components/ui/category-card';
 import { EmptyState } from '@/components/ui/empty-state';
 import { useRouter } from 'next/navigation';
 import { Badge } from '@/components/ui/badge';
+import { useWorkspace } from '@/components/workspace';
 
 // Initialize registry once when the module loads
 initializeRegistry();
 
 export default function DashboardPage() {
   const router = useRouter();
+  const { favorites, toggleFavorite, historyItems, dashboardWidgets } = useWorkspace();
   const [searchQuery, setSearchQuery] = useState('');
-  const [favorites, setFavorites] = useState<string[]>(['json-formatter', 'jwt-decoder']);
-  const [recentTools, setRecentTools] = useState<string[]>(['base64', 'uuid-generator']);
 
   // Compute filtered tools dynamically to avoid setState in useEffect
   const filteredTools = searchQuery ? searchTools(searchQuery) : getAllTools();
 
-  const toggleFavorite = (slug: string) => {
-    setFavorites((prev) =>
-      prev.includes(slug) ? prev.filter((s) => s !== slug) : [...prev, slug]
-    );
-  };
-
   const handleToolClick = (slug: string) => {
-    // Add to recent list
-    setRecentTools((prev) => {
-      const filtered = prev.filter((s) => s !== slug);
-      return [slug, ...filtered].slice(0, 5);
-    });
     router.push(`/dashboard/tools/${slug}`);
   };
 
@@ -51,9 +40,10 @@ export default function DashboardPage() {
     favorites.includes(tool.slug)
   );
 
+  const recentToolNames = historyItems.map((h) => h.toolName);
   const recentToolObjects = getAllTools().filter((tool) =>
-    recentTools.includes(tool.slug)
-  );
+    recentToolNames.includes(tool.name) || recentToolNames.includes(tool.slug)
+  ).slice(0, 4);
 
   return (
     <div className="space-y-10">
@@ -102,7 +92,7 @@ export default function DashboardPage() {
                   key={tool.slug}
                   tool={tool}
                   isFavorite={favorites.includes(tool.slug)}
-                  isRecentlyUsed={recentTools.includes(tool.slug)}
+                  isRecentlyUsed={recentToolNames.includes(tool.name) || recentToolNames.includes(tool.slug)}
                   onFavoriteToggle={() => toggleFavorite(tool.slug)}
                   onClick={() => handleToolClick(tool.slug)}
                 />
@@ -121,69 +111,73 @@ export default function DashboardPage() {
           {/* Dashboard Hub: Favorites, Recents, Shortcuts */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Favorites Widget */}
-            <div className="rounded-2xl border border-border bg-card/30 p-5 space-y-4">
-              <div className="flex items-center justify-between">
-                <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground flex items-center gap-1.5">
-                  <Star className="h-3.5 w-3.5 text-primary" />
-                  Favorites
-                </h4>
-                <Badge variant="outline" className="text-[10px] px-1.5 py-0">
-                  {favoriteToolObjects.length} pinned
-                </Badge>
+            {dashboardWidgets.showFavorites && (
+              <div className="rounded-2xl border border-border bg-card/30 p-5 space-y-4">
+                <div className="flex items-center justify-between">
+                  <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground flex items-center gap-1.5">
+                    <Star className="h-3.5 w-3.5 text-primary" />
+                    Favorites
+                  </h4>
+                  <Badge variant="outline" className="text-[10px] px-1.5 py-0">
+                    {favoriteToolObjects.length} pinned
+                  </Badge>
+                </div>
+                {favoriteToolObjects.length > 0 ? (
+                  <div className="space-y-2">
+                    {favoriteToolObjects.map((tool) => (
+                      <button
+                        key={tool.slug}
+                        onClick={() => handleToolClick(tool.slug)}
+                        className="w-full flex items-center justify-between rounded-xl p-2.5 bg-background/50 hover:bg-muted/50 border border-border/50 text-left transition-all"
+                      >
+                        <div className="flex flex-col gap-0.5">
+                          <span className="text-xs font-semibold text-foreground">{tool.name}</span>
+                          <span className="text-[10px] text-muted-foreground">{tool.description}</span>
+                        </div>
+                        <ChevronRight className="h-3.5 w-3.5 text-muted-foreground shrink-0" />
+                      </button>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="text-center py-6 text-xs text-muted-foreground">
+                    No favorites pinned yet. Click the heart icon on any tool card.
+                  </div>
+                )}
               </div>
-              {favoriteToolObjects.length > 0 ? (
-                <div className="space-y-2">
-                  {favoriteToolObjects.map((tool) => (
-                    <button
-                      key={tool.slug}
-                      onClick={() => handleToolClick(tool.slug)}
-                      className="w-full flex items-center justify-between rounded-xl p-2.5 bg-background/50 hover:bg-muted/50 border border-border/50 text-left transition-all"
-                    >
-                      <div className="flex flex-col gap-0.5">
-                        <span className="text-xs font-semibold text-foreground">{tool.name}</span>
-                        <span className="text-[10px] text-muted-foreground">{tool.description}</span>
-                      </div>
-                      <ChevronRight className="h-3.5 w-3.5 text-muted-foreground shrink-0" />
-                    </button>
-                  ))}
-                </div>
-              ) : (
-                <div className="text-center py-6 text-xs text-muted-foreground">
-                  No favorites pinned yet. Click the heart icon on any tool card.
-                </div>
-              )}
-            </div>
+            )}
 
             {/* Recently Used Widget */}
-            <div className="rounded-2xl border border-border bg-card/30 p-5 space-y-4">
-              <div className="flex items-center justify-between">
-                <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground flex items-center gap-1.5">
-                  <Clock className="h-3.5 w-3.5 text-primary" />
-                  Recently Used
-                </h4>
+            {dashboardWidgets.showRecent && (
+              <div className="rounded-2xl border border-border bg-card/30 p-5 space-y-4">
+                <div className="flex items-center justify-between">
+                  <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground flex items-center gap-1.5">
+                    <Clock className="h-3.5 w-3.5 text-primary" />
+                    Recently Used
+                  </h4>
+                </div>
+                {recentToolObjects.length > 0 ? (
+                  <div className="space-y-2">
+                    {recentToolObjects.map((tool) => (
+                      <button
+                        key={tool.slug}
+                        onClick={() => handleToolClick(tool.slug)}
+                        className="w-full flex items-center justify-between rounded-xl p-2.5 bg-background/50 hover:bg-muted/50 border border-border/50 text-left transition-all"
+                      >
+                        <div className="flex flex-col gap-0.5">
+                          <span className="text-xs font-semibold text-foreground">{tool.name}</span>
+                          <span className="text-[10px] text-muted-foreground">{tool.description}</span>
+                        </div>
+                        <ChevronRight className="h-3.5 w-3.5 text-muted-foreground shrink-0" />
+                      </button>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="text-center py-6 text-xs text-muted-foreground">
+                    No recently used tools yet. Start opening some tools.
+                  </div>
+                )}
               </div>
-              {recentToolObjects.length > 0 ? (
-                <div className="space-y-2">
-                  {recentToolObjects.map((tool) => (
-                    <button
-                      key={tool.slug}
-                      onClick={() => handleToolClick(tool.slug)}
-                      className="w-full flex items-center justify-between rounded-xl p-2.5 bg-background/50 hover:bg-muted/50 border border-border/50 text-left transition-all"
-                    >
-                      <div className="flex flex-col gap-0.5">
-                        <span className="text-xs font-semibold text-foreground">{tool.name}</span>
-                        <span className="text-[10px] text-muted-foreground">{tool.description}</span>
-                      </div>
-                      <ChevronRight className="h-3.5 w-3.5 text-muted-foreground shrink-0" />
-                    </button>
-                  ))}
-                </div>
-              ) : (
-                <div className="text-center py-6 text-xs text-muted-foreground">
-                  No recently used tools yet. Start opening some tools.
-                </div>
-              )}
-            </div>
+            )}
 
             {/* Quick Tips & Resources */}
             <div className="rounded-2xl border border-border bg-card/30 p-5 space-y-4">
@@ -219,70 +213,74 @@ export default function DashboardPage() {
           </div>
 
           {/* Popular Categories */}
-          <section className="space-y-4">
-            <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-2">
-              <TrendingUp className="h-3.5 w-3.5 text-primary" />
-              Popular Categories
-            </h3>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
-              {categories.slice(0, 6).map((cat) => {
-                const categoryTools = getAllTools().filter((t) => t.category === cat.id);
-                return (
-                  <CategoryCard
-                    key={cat.id}
-                    category={cat}
-                    toolCount={categoryTools.length}
-                    onClick={() => {
-                      alert(`Category "${cat.name}" selected.`);
-                    }}
-                  />
-                );
-              })}
-            </div>
-          </section>
+          {dashboardWidgets.showCategories && (
+            <section className="space-y-4">
+              <h3 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider flex items-center gap-2">
+                <TrendingUp className="h-3.5 w-3.5 text-primary" />
+                Popular Categories
+              </h3>
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
+                {categories.slice(0, 6).map((cat) => {
+                  const categoryTools = getAllTools().filter((t) => t.category === cat.id);
+                  return (
+                    <CategoryCard
+                      key={cat.id}
+                      category={cat}
+                      toolCount={categoryTools.length}
+                      onClick={() => {
+                        router.push('/dashboard/collections');
+                      }}
+                    />
+                  );
+                })}
+              </div>
+            </section>
+          )}
 
           {/* Tool Grid (Divided by Categories) */}
-          <section className="space-y-8">
-            <div className="flex items-center justify-between border-b border-border pb-2">
-              <h3 className="text-sm font-semibold text-foreground uppercase tracking-wider">
-                Browse Tool Registry
-              </h3>
-              <Badge variant="secondary" className="text-[10px]">
-                {getAllTools().length} tools registered
-              </Badge>
-            </div>
+          {dashboardWidgets.showAllTools && (
+            <section className="space-y-8">
+              <div className="flex items-center justify-between border-b border-border pb-2">
+                <h3 className="text-sm font-semibold text-foreground uppercase tracking-wider">
+                  Browse Tool Registry
+                </h3>
+                <Badge variant="secondary" className="text-[10px]">
+                  {getAllTools().length} tools registered
+                </Badge>
+              </div>
 
-            {categories.map((cat) => {
-              const categoryTools = getAllTools().filter((t) => t.category === cat.id);
-              if (categoryTools.length === 0) return null;
+              {categories.map((cat) => {
+                const categoryTools = getAllTools().filter((t) => t.category === cat.id);
+                if (categoryTools.length === 0) return null;
 
-              return (
-                <div key={cat.id} className="space-y-3">
-                  <div className="flex items-center gap-2">
-                    <div
-                      className="h-2 w-2 rounded-full"
-                      style={{ backgroundColor: cat.color }}
-                    />
-                    <h4 className="text-xs font-bold text-foreground tracking-wide uppercase">
-                      {cat.name}
-                    </h4>
-                  </div>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                    {categoryTools.map((tool) => (
-                      <ToolCard
-                        key={tool.slug}
-                        tool={tool}
-                        isFavorite={favorites.includes(tool.slug)}
-                        isRecentlyUsed={recentTools.includes(tool.slug)}
-                        onFavoriteToggle={() => toggleFavorite(tool.slug)}
-                        onClick={() => handleToolClick(tool.slug)}
+                return (
+                  <div key={cat.id} className="space-y-3">
+                    <div className="flex items-center gap-2">
+                      <div
+                        className="h-2 w-2 rounded-full"
+                        style={{ backgroundColor: cat.color }}
                       />
-                    ))}
+                      <h4 className="text-xs font-bold text-foreground tracking-wide uppercase">
+                        {cat.name}
+                      </h4>
+                    </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                      {categoryTools.map((tool) => (
+                        <ToolCard
+                          key={tool.slug}
+                          tool={tool}
+                          isFavorite={favorites.includes(tool.slug)}
+                          isRecentlyUsed={recentToolNames.includes(tool.name) || recentToolNames.includes(tool.slug)}
+                          onFavoriteToggle={() => toggleFavorite(tool.slug)}
+                          onClick={() => handleToolClick(tool.slug)}
+                        />
+                      ))}
+                    </div>
                   </div>
-                </div>
-              );
-            })}
-          </section>
+                );
+              })}
+            </section>
+          )}
         </>
       )}
     </div>
