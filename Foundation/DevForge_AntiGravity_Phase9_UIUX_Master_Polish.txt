@@ -1,0 +1,48 @@
+DevForge AntiGravity Phase 9
+
+UI/UX Master Polish
+
+Continue the existing DevForge project.
+
+IMPORTANT - Continue from the existing codebase. - Do NOT recreate the
+application. - Preserve all existing features. - Focus only on UI, UX,
+accessibility and performance polish.
+
+MISSION
+
+Transform DevForge into a premium developer experience.
+
+OBJECTIVES
+
+1.  Redesign tool cards with richer information and better hierarchy.
+2.  Improve spacing, typography and visual consistency.
+3.  Refine sidebar, topbar and workspace interactions.
+4.  Add smooth micro-interactions and page transitions.
+5.  Improve loading, empty and error states.
+6.  Improve responsive layouts for desktop, tablet and mobile.
+7.  Improve keyboard navigation and accessibility (WCAG minded).
+8.  Expand theme system (Dark, Light, Midnight, Nord, Tokyo Night,
+    Dracula).
+9.  Optimize Monaco lazy loading and code splitting.
+10. Improve Command Palette UX and search experience.
+
+REQUIREMENTS
+
+-   Do not change business logic.
+-   Reuse existing Design System.
+-   Reuse Tool SDK and Workspace.
+-   Keep visual language consistent.
+-   Add skeleton loaders where appropriate.
+-   Improve icons and visual feedback.
+-   Maintain excellent performance.
+
+FINAL VALIDATION
+
+Run: pnpm lint pnpm type-check pnpm test pnpm build
+
+Also verify: - Lighthouse Performance - Accessibility - Best Practices -
+Responsive behavior
+
+Fix all issues.
+
+Stop after Phase 9 and wait for Phase 10.

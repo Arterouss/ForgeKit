@@ -22,6 +22,7 @@ import {
   History,
   Trash2,
   Package,
+  Palette,
 } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { useRouter } from 'next/navigation';
@@ -214,6 +215,46 @@ export function CommandPalette() {
         },
       },
       {
+        id: 'theme-midnight',
+        title: 'Switch to Midnight OLED Theme',
+        description: 'Deep violet-black OLED theme with neon cyan accents',
+        category: 'Theme',
+        action: () => {
+          setTheme('midnight');
+          closeCommandPalette();
+        },
+      },
+      {
+        id: 'theme-nord',
+        title: 'Switch to Nord Frost Theme',
+        description: 'Clean Arctic frost palette for focused development',
+        category: 'Theme',
+        action: () => {
+          setTheme('nord');
+          closeCommandPalette();
+        },
+      },
+      {
+        id: 'theme-tokyo-night',
+        title: 'Switch to Tokyo Night Theme',
+        description: 'Cyberpunk indigo-slate theme with neon blue highlights',
+        category: 'Theme',
+        action: () => {
+          setTheme('tokyo-night');
+          closeCommandPalette();
+        },
+      },
+      {
+        id: 'theme-dracula',
+        title: 'Switch to Dracula Theme',
+        description: 'Classic dark vampire purple theme with pink accents',
+        category: 'Theme',
+        action: () => {
+          setTheme('dracula');
+          closeCommandPalette();
+        },
+      },
+      {
         id: 'theme-system',
         title: 'Use System Theme',
         description: 'Sync appearance with OS settings',
@@ -322,9 +363,14 @@ export function CommandPalette() {
       case 'ws-close-all':
         return <X className="h-4 w-4" />;
       case 'theme-dark':
-        return <Moon className="h-4 w-4" />;
+        return <Moon className="h-4 w-4 text-primary" />;
       case 'theme-light':
-        return <Sun className="h-4 w-4" />;
+        return <Sun className="h-4 w-4 text-primary" />;
+      case 'theme-midnight':
+      case 'theme-nord':
+      case 'theme-tokyo-night':
+      case 'theme-dracula':
+        return <Palette className="h-4 w-4 text-primary" />;
       case 'theme-system':
         return <Laptop className="h-4 w-4" />;
       case 'action-clear-history':
