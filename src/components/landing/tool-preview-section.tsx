@@ -75,7 +75,7 @@ export function ToolPreviewSection() {
   const [activeTab, setActiveTab] = useState('JSON Formatter');
 
   return (
-    <section id="preview" className="relative px-4 py-24 sm:py-32">
+    <section id="preview" className="relative z-10 px-4 py-24 sm:py-32 overflow-hidden">
       <div className="mx-auto max-w-5xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

@@ -38,7 +38,7 @@ const features = [
 
 export function FeaturesSection() {
   return (
-    <section id="features" className="relative px-4 py-24 sm:py-32">
+    <section id="features" className="relative z-10 px-4 py-24 sm:py-32 overflow-hidden">
       <div className="mx-auto max-w-6xl">
         {/* Section header */}
         <motion.div
@@ -62,7 +62,7 @@ export function FeaturesSection() {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-50px' }}
-          className="grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:gap-4"
+          className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 pb-12"
         >
           {features.map((feature) => (
             <motion.div

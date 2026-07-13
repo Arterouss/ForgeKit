@@ -28,8 +28,10 @@ export function ToolContainer({ children }: ToolContainerProps) {
 
   if (!isToolRoute) {
     return (
-      <div className="flex flex-1 flex-col overflow-y-auto bg-background/30">
-        {children}
+      <div className="flex flex-1 flex-col overflow-y-auto bg-background/30 p-6 md:p-10">
+        <div className="mx-auto w-full max-w-[1550px]">
+          {children}
+        </div>
       </div>
     );
   }
