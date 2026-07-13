@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import {
   Home,
@@ -93,6 +93,11 @@ export function Sidebar({ collapsed, setCollapsed }: SidebarProps) {
   const pathname = usePathname();
   const { theme, setTheme } = useTheme();
   const [activeWorkspace, setActiveWorkspace] = useState('Default Workspace');
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   // Sidebar navigation groups spec
   const navigationGroups: {
@@ -321,7 +326,7 @@ export function Sidebar({ collapsed, setCollapsed }: SidebarProps) {
                 className="rounded-lg p-1.5 text-muted-foreground hover:bg-muted hover:text-foreground transition-colors"
                 title="Toggle Theme"
               >
-                {theme === 'dark' ? <Sun className="h-3.5 w-3.5" /> : <Moon className="h-3.5 w-3.5" />}
+                {mounted && theme === 'dark' ? <Sun className="h-3.5 w-3.5" /> : <Moon className="h-3.5 w-3.5" />}
               </button>
               <a
                 href="https://github.com/Arterouss/ForgeKit"
