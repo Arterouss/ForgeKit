@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import { DashboardShell } from '@/components/dashboard/dashboard-shell';
 import { DockerfileBuilderPro } from '@/components/tools/dockerfile-builder';
 
 export const metadata: Metadata = {
@@ -10,10 +9,8 @@ export const metadata: Metadata = {
 
 export default function DockerfileBuilderPage() {
   return (
-    <DashboardShell>
       <div className="flex flex-1 flex-col p-6">
         <DockerfileBuilderPro />
       </div>
-    </DashboardShell>
   );
 }

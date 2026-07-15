@@ -21,6 +21,9 @@ const eslintConfig = defineConfig([
         "error",
         { argsIgnorePattern: "^_", varsIgnorePattern: "^_" },
       ],
+      // Developer-facing snippets deliberately include `//` and quote characters.
+      "react/jsx-no-comment-textnodes": "off",
+      "react/no-unescaped-entities": "off",
     },
   },
 ]);

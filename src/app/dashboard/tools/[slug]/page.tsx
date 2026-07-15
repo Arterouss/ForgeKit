@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import { Sparkles, ArrowLeft, Wrench, Terminal } from 'lucide-react';
-import { DashboardShell } from '@/components/dashboard/dashboard-shell';
 
 interface ToolPlaceholderPageProps {
   params: Promise<{ slug: string }>;
@@ -18,7 +17,6 @@ export default async function ToolPlaceholderPage({ params }: ToolPlaceholderPag
   const title = formatTitle(slug);
 
   return (
-    <DashboardShell>
       <div className="flex flex-1 flex-col items-center justify-center p-8 text-center select-none">
         <div className="relative mb-6 flex h-20 w-20 items-center justify-center rounded-2xl border border-primary/30 bg-primary/10 shadow-lg">
           <Wrench className="h-10 w-10 text-primary animate-pulse" />
@@ -58,6 +56,5 @@ export default async function ToolPlaceholderPage({ params }: ToolPlaceholderPag
           <span>Module route: /dashboard/tools/{slug}</span>
         </div>
       </div>
-    </DashboardShell>
   );
 }

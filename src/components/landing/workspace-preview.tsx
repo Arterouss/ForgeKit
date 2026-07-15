@@ -1,122 +1,130 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { Terminal, Shield, Braces, Layers } from 'lucide-react';
 
-const tabs = ['JSON Formatter', 'Regex Tester', 'JWT Decoder', 'Docker'];
+const TABS = [
+  { label: 'JSON_Formatter.wasm', icon: Braces, active: true },
+  { label: 'JWT_Security_Core.wasm', icon: Shield, active: false },
+  { label: 'Regex_Compiler.re', icon: Terminal, active: false },
+];
 
 export function WorkspacePreview() {
   return (
-    <section id="workspace" className="relative px-4 py-24 sm:py-32">
-      <div className="mx-auto max-w-5xl">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.5 }}
-          className="mb-12 text-center"
-        >
-          <h2 className="font-heading text-3xl font-bold sm:text-4xl md:text-5xl">
-            Your Workspace, Your Way
+    <section id="workspace-ide" className="relative w-full select-none font-mono">
+      <div className="w-full space-y-8">
+        {/* Header */}
+        <div className="text-center space-y-4 max-w-3xl mx-auto">
+          <div className="inline-flex items-center gap-2 terminal-badge">
+            <Layers className="h-3.5 w-3.5 text-cyan-400 animate-pulse" />
+            <span>// MULTI_PANEL_DOCKING_SYSTEM</span>
+          </div>
+          <h2 className="font-heading text-3xl sm:text-[36px] font-black uppercase tracking-tight text-foreground leading-tight">
+            SPLIT-VIEW <span className="glow-cyan-text">DESKTOP IDE</span>. <br />
+            ZERO CLOUD DOWNLOAD REQUIRED.
           </h2>
-          <p className="mt-4 text-muted-foreground sm:text-lg">
-            Work on multiple tools simultaneously with tabs.
+          <p className="text-base sm:text-[16px] text-cyan-200/80 font-sans leading-relaxed">
+            Keep your tool sessions organized across persistent tabs. Split panels horizontally or vertically, compare live data streams, and retain state across restarts inside your IndexedDB vault.
           </p>
-        </motion.div>
+        </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-50px' }}
-          transition={{ duration: 0.6 }}
-          className="overflow-hidden rounded-2xl border border-border bg-card shadow-2xl"
-        >
-          {/* Window chrome */}
-          <div className="flex items-center gap-2 border-b border-border bg-muted/30 px-4 py-3">
-            <div className="flex gap-1.5">
-              <div className="h-3 w-3 rounded-full bg-destructive/60" />
-              <div className="h-3 w-3 rounded-full bg-warning/60" />
-              <div className="h-3 w-3 rounded-full bg-success/60" />
+        {/* Retro Workstation OS Window Mockup */}
+        <div className="rounded-3xl border-2 border-cyan-500/40 bg-[#070512]/95 shadow-[0_0_50px_rgba(0,240,255,0.25)] overflow-hidden">
+          {/* Top Bar */}
+          <div className="flex items-center justify-between border-b border-cyan-500/30 bg-[#0c091f] px-5 py-3 text-xs">
+            <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2">
+                <span className="h-3 w-3 rounded-full bg-fuchsia-500/80 border border-fuchsia-400" />
+                <span className="h-3 w-3 rounded-full bg-yellow-400/80 border border-yellow-300" />
+                <span className="h-3 w-3 rounded-full bg-lime-400/80 border border-lime-300" />
+              </div>
+              <span className="text-cyan-300 font-extrabold tracking-wider hidden sm:inline">
+                DEVFORGE_MULTI_SPLIT_WORKSTATION // WINDOW_ID: #001
+              </span>
             </div>
-            <div className="ml-4 flex items-center gap-1">
-              {tabs.map((tab, i) => (
-                <div
-                  key={tab}
-                  className={`rounded-lg px-3 py-1 text-[11px] font-medium ${
-                    i === 0
-                      ? 'bg-primary/10 text-primary'
-                      : 'text-muted-foreground'
-                  }`}
-                >
-                  {tab}
-                </div>
-              ))}
+
+            <div className="flex items-center gap-2 overflow-x-auto">
+              {TABS.map((tab) => {
+                const Icon = tab.icon;
+                return (
+                  <div
+                    key={tab.label}
+                    className={`flex items-center gap-2 rounded-xl px-3.5 py-1.5 text-xs font-bold transition-all ${
+                      tab.active
+                        ? 'border border-cyan-400 bg-cyan-500/20 text-cyan-300 shadow-[0_0_12px_rgba(0,240,255,0.3)]'
+                        : 'text-muted-foreground hover:bg-cyan-500/10 hover:text-cyan-200'
+                    }`}
+                  >
+                    <Icon className="h-3.5 w-3.5" />
+                    <span>{tab.label}</span>
+                  </div>
+                );
+              })}
+            </div>
+
+            <div className="hidden sm:flex items-center gap-2">
+              <span className="rounded bg-lime-500/15 border border-lime-500/40 px-2.5 py-0.5 text-[10px] font-extrabold text-lime-400">
+                WASM WORKERS: 4 ONLINE
+              </span>
             </div>
           </div>
 
-          {/* Fake workspace content */}
-          <div className="grid grid-cols-12 divide-x divide-border">
-            {/* Sidebar */}
-            <div className="col-span-3 hidden space-y-1 p-3 md:block">
-              {['Home', 'Workspace', 'Collections', 'Pinned', 'Recent'].map((item) => (
-                <div
-                  key={item}
-                  className={`rounded-lg px-3 py-1.5 text-[11px] ${
-                    item === 'Workspace'
-                      ? 'bg-primary/10 font-medium text-primary'
-                      : 'text-muted-foreground'
-                  }`}
-                >
-                  {item}
+          {/* IDE Body */}
+          <div className="grid grid-cols-12 divide-x divide-cyan-500/20 min-h-[380px] text-xs">
+            {/* Sidebar Explorer */}
+            <div className="col-span-3 hidden md:flex flex-col justify-between p-5 bg-[#080614]">
+              <div className="space-y-4">
+                <div className="text-[10px] font-extrabold uppercase tracking-widest text-cyan-400 flex items-center gap-1.5 border-l-2 border-cyan-400 pl-2">
+                  <span>// ACTIVE_SESSIONS</span>
                 </div>
-              ))}
-              <div className="my-2 border-t border-border" />
-              {['Formatting', 'Encoding', 'Generators', 'Docker'].map((cat) => (
-                <div
-                  key={cat}
-                  className="rounded-lg px-3 py-1.5 text-[11px] text-muted-foreground"
-                >
-                  {cat}
+                <div className="space-y-1.5 text-xs font-bold">
+                  {[
+                    'Staging_JWT_Token.jwt',
+                    'Postgres_Query_Plan.sql',
+                    'API_Webhook_Payload.json',
+                    'Nginx_Proxy_Router.conf',
+                  ].map((s, idx) => (
+                    <div
+                      key={s}
+                      className={`rounded-xl px-3 py-2.5 transition-all ${
+                        idx === 0
+                          ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-400/50 shadow-[0_0_12px_rgba(0,240,255,0.15)]'
+                          : 'text-muted-foreground hover:bg-cyan-500/10 hover:text-cyan-200'
+                      }`}
+                    >
+                      {s}
+                    </div>
+                  ))}
                 </div>
-              ))}
+              </div>
+              <div className="rounded-2xl border border-cyan-500/30 bg-[#0c091f] p-3 text-[11px] text-cyan-300">
+                <span>MEM_POOL: 14.2 MB // ZERO_LEAK</span>
+              </div>
             </div>
 
-            {/* Main content */}
-            <div className="col-span-12 p-4 md:col-span-9">
-              <div className="mb-3 flex items-center gap-2">
-                <div className="h-7 w-7 rounded-lg bg-primary/10" />
-                <span className="text-sm font-semibold text-foreground">JSON Formatter</span>
-                <span className="rounded-full bg-success/10 px-2 py-0.5 text-[9px] font-medium text-success">
-                  Stable
-                </span>
+            {/* Split Code View */}
+            <div className="col-span-12 md:col-span-9 grid grid-cols-1 lg:grid-cols-2 divide-y lg:divide-y-0 lg:divide-x divide-cyan-500/20">
+              <div className="p-6 space-y-4 bg-[#070512]">
+                <div className="flex items-center justify-between text-xs font-bold text-cyan-400 border-b border-cyan-500/20 pb-2">
+                  <span><span className="text-fuchsia-400">{'>'}</span> INPUT_STREAM_BUFFER</span>
+                  <span className="text-cyan-300">218 BYTES</span>
+                </div>
+                <pre className="font-mono text-xs sm:text-sm text-cyan-100 leading-relaxed">
+                  {`{\n  "service": "DevForge Cyber Gateway",\n  "status": "HEALTHY",\n  "uptime_seconds": 86400,\n  "memory_rss": "14.2MB",\n  "wasm_modules": ["json_ast", "jwt_crypto"]\n}`}
+                </pre>
               </div>
 
-              <div className="grid grid-cols-2 gap-3">
-                <div className="rounded-xl bg-muted/50 p-3">
-                  <div className="mb-2 text-[9px] font-medium uppercase tracking-wider text-muted-foreground">Input</div>
-                  <div className="space-y-1">
-                    {[1, 2, 3, 4, 5].map((l) => (
-                      <div key={l} className="h-2.5 rounded bg-muted" style={{ width: `${50 + l * 8}%` }} />
-                    ))}
-                  </div>
+              <div className="p-6 space-y-4 bg-[#090718]">
+                <div className="flex items-center justify-between text-xs font-bold text-lime-400 border-b border-cyan-500/20 pb-2">
+                  <span><span className="text-fuchsia-400">{'>'}</span> OUTPUT_AST_INSPECTOR</span>
+                  <span>VALID JSON // 0.14ms</span>
                 </div>
-                <div className="rounded-xl bg-primary/5 p-3">
-                  <div className="mb-2 text-[9px] font-medium uppercase tracking-wider text-primary">Output</div>
-                  <div className="space-y-1">
-                    {[1, 2, 3, 4, 5, 6, 7].map((l) => (
-                      <div key={l} className="h-2.5 rounded bg-primary/10" style={{ width: `${30 + l * 9}%` }} />
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              {/* Status bar */}
-              <div className="mt-3 flex items-center justify-between rounded-lg bg-muted/30 px-3 py-1.5">
-                <span className="text-[9px] text-muted-foreground">UTF-8 • 256 chars</span>
-                <span className="text-[9px] text-success">✓ Valid JSON</span>
+                <pre className="font-mono text-xs sm:text-sm text-lime-300 leading-relaxed">
+                  {`[✓] Schema Validation: PASSED\n[✓] AST Syntax Check: OK\n[✓] Encoding: UTF-8\n\nObject Keys Found: 5\nDepth Level: 1\nZero memory allocation errors.`}
+                </pre>
               </div>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

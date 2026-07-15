@@ -29,18 +29,18 @@ export function ToolPage({
   splitView = true,
 }: ToolPageProps) {
   return (
-    <div className={cn('flex flex-1 flex-col space-y-4 overflow-hidden', className)}>
+    <div className={cn('flex flex-1 flex-col space-y-5 overflow-hidden', className)}>
       {/* Tool Page Title Header (optional if shown inside container) */}
       {(title || description) && (
         <div className="flex flex-col space-y-1">
           <div className="flex items-center gap-2">
             {title && (
-              <h1 className="font-heading text-xl font-bold tracking-tight text-foreground">
+              <h1 className="font-heading text-xl font-semibold tracking-tight text-foreground">
                 {title}
               </h1>
             )}
             {category && (
-              <span className="rounded-full border border-border bg-muted/60 px-2.5 py-0.5 text-[10px] font-semibold text-muted-foreground">
+              <span className="rounded-full border border-white/[.09] bg-white/[.045] px-2.5 py-1 text-[10px] font-medium text-zinc-400">
                 {category}
               </span>
             )}

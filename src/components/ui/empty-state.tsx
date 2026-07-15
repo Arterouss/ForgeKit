@@ -26,24 +26,24 @@ export function EmptyState({
       initial="hidden"
       animate="visible"
       className={cn(
-        'flex flex-col items-center justify-center gap-4 py-14 px-6 text-center rounded-3xl border border-border/40 bg-card/30 backdrop-blur-sm',
+        'flex flex-col items-center justify-center gap-4 py-16 px-6 text-center rounded-3xl border-2 border-dashed border-cyan-500/40 bg-[#0c091f]/80 backdrop-blur-xl font-mono shadow-[0_0_30px_rgba(0,240,255,0.15)]',
         className
       )}
     >
       {icon && (
-        <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-border/60 bg-primary/10 text-primary shadow-sm">
+        <div className="flex h-20 w-20 items-center justify-center rounded-2xl border border-cyan-400 bg-cyan-500/20 text-cyan-300 shadow-[0_0_20px_rgba(0,240,255,0.3)]">
           {icon}
         </div>
       )}
-      <div className="space-y-1">
-        <h3 className="text-base font-semibold text-foreground">{title}</h3>
+      <div className="space-y-1.5 max-w-md">
+        <h3 className="font-heading text-lg font-black uppercase text-white tracking-wider">{title}</h3>
         {description && (
-          <p className="max-w-sm text-sm text-muted-foreground">
+          <p className="text-xs text-cyan-200/70 font-sans leading-relaxed">
             {description}
           </p>
         )}
       </div>
-      {action && <div className="mt-2">{action}</div>}
+      {action && <div className="mt-3">{action}</div>}
     </motion.div>
   );
 }

@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import { DashboardShell } from '@/components/dashboard/dashboard-shell';
 import { PasswordStrengthPro } from '@/components/tools/password-strength-analyzer';
 
 export const metadata: Metadata = {
@@ -10,10 +9,8 @@ export const metadata: Metadata = {
 
 export default function PasswordStrengthPage() {
   return (
-    <DashboardShell>
       <div className="flex flex-1 flex-col p-6">
         <PasswordStrengthPro />
       </div>
-    </DashboardShell>
   );
 }

@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import { DashboardShell } from '@/components/dashboard/dashboard-shell';
 import { UuidUlidPro } from '@/components/tools/uuid-ulid-generator';
 
 export const metadata: Metadata = {
@@ -10,10 +9,8 @@ export const metadata: Metadata = {
 
 export default function UuidUlidPage() {
   return (
-    <DashboardShell>
       <div className="flex flex-1 flex-col p-6">
         <UuidUlidPro />
       </div>
-    </DashboardShell>
   );
 }

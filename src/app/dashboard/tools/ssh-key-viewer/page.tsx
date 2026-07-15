@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import { DashboardShell } from '@/components/dashboard/dashboard-shell';
 import { SshKeyViewerPro } from '@/components/tools/ssh-key-viewer';
 
 export const metadata: Metadata = {
@@ -10,10 +9,8 @@ export const metadata: Metadata = {
 
 export default function SshKeyViewerPage() {
   return (
-    <DashboardShell>
       <div className="flex flex-1 flex-col p-6">
         <SshKeyViewerPro />
       </div>
-    </DashboardShell>
   );
 }

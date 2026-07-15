@@ -1,6 +1,6 @@
 # DevForge Architecture Bible
 
-This document details the software architecture, design patterns, and module boundaries of **DevForge v1.0.0**.
+This document details the software architecture, design patterns, module boundaries, and UI/UX structure of **DevForge v3.0** (Desktop-First Browser OS).
 
 ---
 
@@ -10,15 +10,15 @@ DevForge is a client-first **Next.js 16 (App Router)** application built with **
 
 ```
 +-----------------------------------------------------------------------------+
-|                               Next.js App Router                            |
-|  +-----------------------+  +----------------------+  +------------------+  |
-|  | /dashboard (Hub/Grid) |  | /dashboard/tools/*   |  | /marketplace     |  |
-|  +-----------------------+  +----------------------+  +------------------+  |
+|                         Next.js App Router & Frame                          |
+|  +--------------------+  +----------------------+  +---------------------+  |
+|  | / (Landing Portal) |  | /dashboard (Hub/Hub) |  | /dashboard/tools/*  |  |
+|  +--------------------+  +----------------------+  +---------------------+  |
 +-----------------------------------------------------------------------------+
-|                            UI & Workspace Layer                             |
+|              UI & Desktop Workspace Layer (v3.0 Spatial Glass)              |
 |  +--------------------+  +-----------------------+  +--------------------+  |
-|  | Command Palette    |  | WorkspaceContext      |  | PluginProvider     |  |
-|  | (Ctrl+K)           |  | (LocalStorage Sync)   |  | (LocalStorage Sync)|  |
+|  | Command Palette    |  | Sidebar & Topbar Shell|  | Split IDE Studio   |  |
+|  | (Ctrl+K Spotlight) |  | (288px / 64px Frame)  |  | (ToolContainer)    |  |
 |  +--------------------+  +-----------------------+  +--------------------+  |
 +-----------------------------------------------------------------------------+
 |                         Core Engine & SDK (`src/sdk/`)                      |
@@ -31,26 +31,32 @@ DevForge is a client-first **Next.js 16 (App Router)** application built with **
 
 ---
 
-## 2. Core Subsystems
+## 2. Core Subsystems & UI/UX Architecture
 
-### A. Dynamic Tool Registry (`src/sdk/tool-registry.ts`)
-- Maintains an in-memory map of registered `ToolDefinition` objects.
-- Supports runtime dynamic registration (`registerTool`, `unregisterTool`) allowing sandboxed plugins to inject custom tools seamlessly into the global search index.
+### A. v3.0 Desktop-First UI Shell (`src/components/dashboard/`)
+- **Spatial Glass Shell (`DashboardShell`, `Sidebar`, `TopBar`)**:
+  - Enforces a desktop application frame with a `288px` (`w-72`) expanded sidebar, `72px` collapsed sidebar (`localStorage` synced via `devforge_sidebar_collapsed`), and sticky `64px` (`h-16`) TopBar.
+  - Sub-pixel border framing (`border-white/[0.08]`) and multi-layer dark glass surfaces (`#09090b` canvas).
 
-### B. Tool Engine & Persistent Caching (`src/sdk/tool-engine.ts`)
-- Wraps tool execution (`runTool`) with execution time tracking, input validation, and optional persistent input/output caching.
+### B. Dynamic Tool Registry (`src/sdk/tool-registry.ts`)
+- Maintains an in-memory map of 60+ registered `ToolDefinition` objects.
+- Supports runtime dynamic registration (`registerTool`, `unregisterTool`) allowing sandboxed plugins to inject custom tools into the global search index.
 
-### C. Workspace Storage Ecosystem (`src/lib/workspace-storage-utils.ts`)
+### C. Tool Engine & Persistent Caching (`src/sdk/tool-engine.ts`)
+- Wraps tool execution (`runTool`) with execution time tracking, client-side WASM sandboxing, input validation, and persistent input/output caching.
+
+### D. Workspace Storage Ecosystem (`src/lib/workspace-storage-utils.ts`)
 - Manages local persistence for:
   - Pinned tools & favorites
   - Custom collections
-  - Activity history
+  - Activity history & telemetry
   - Sticky notes & code snippets
   - Multi-tab dock state (`activeTabs`)
 
-### D. Sandboxed Extension Engine (`src/sdk/plugin-sdk/`)
+### E. Sandboxed Extension Engine (`src/sdk/plugin-sdk/`)
 - Enforces strict manifest validation (`X.Y.Z` semver, allowed capabilities).
 - Intercepts sensitive browser APIs via `executeSandboxed(permission, action)` and logs telemetry into an inspectable audit buffer.
 
-### E. Multi-Theme Design System (`src/app/globals.css`)
+### F. Multi-Theme Design Studio (`src/app/globals.css` & `settings/appearance/`)
 - Uses OKLCH design variables across 6 developer themes (`dark`, `light`, `midnight`, `nord`, `tokyo-night`, `dracula`).
+- Hydration-safe mounting handled via React 19 `useMounted` (`useSyncExternalStore`) pattern.

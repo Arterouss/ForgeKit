@@ -1,102 +1,91 @@
 'use client';
 
-import { Github, Twitter, MessageSquare } from 'lucide-react';
+import { Github } from 'lucide-react';
 import Link from 'next/link';
 
-const footerLinks = [
+const FOOTER_LINKS = [
   {
-    title: 'Product',
+    title: '// WORKSPACE_DOMAINS',
     links: [
-      { label: 'Dashboard', href: '/dashboard' },
-      { label: 'Tools', href: '/dashboard' },
-      { label: 'Changelog', href: '#' },
+      { label: 'Launch Cyber-Deck Hub', href: '/dashboard' },
+      { label: 'JSON AST Formatter', href: '/dashboard/tools/json-formatter' },
+      { label: 'JWT Cryptographic Inspector', href: '/dashboard/tools/jwt-decoder' },
+      { label: 'Regex Expression Debugger', href: '/dashboard/tools/regex-tester' },
     ],
   },
   {
-    title: 'Community',
+    title: '// OPEN_SOURCE_ARCHIVE',
     links: [
-      { label: 'GitHub', href: 'https://github.com/Arterouss/ForgeKit', external: true },
-      { label: 'Discord', href: '#' },
-      { label: 'Issues', href: 'https://github.com/Arterouss/ForgeKit/issues', external: true },
+      { label: 'GitHub Repository', href: 'https://github.com/Arterouss/ForgeKit', external: true },
+      { label: 'Report Issue / Bug', href: 'https://github.com/Arterouss/ForgeKit/issues', external: true },
+      { label: 'Contributing Guide', href: 'https://github.com/Arterouss/ForgeKit/blob/main/CONTRIBUTING.md', external: true },
     ],
   },
   {
-    title: 'Resources',
+    title: '// SYSTEM_ARCHITECTURE',
     links: [
-      { label: 'Documentation', href: '#' },
-      { label: 'Roadmap', href: '#' },
-      { label: 'Contributing', href: 'https://github.com/Arterouss/ForgeKit/blob/main/CONTRIBUTING.md', external: true },
-    ],
-  },
-  {
-    title: 'Legal',
-    links: [
-      { label: 'Privacy', href: '#' },
-      { label: 'Terms', href: '#' },
-      { label: 'License', href: 'https://github.com/Arterouss/ForgeKit/blob/main/LICENSE', external: true },
+      { label: 'WASM Bare-Metal Engine', href: '#features' },
+      { label: 'Zero-Telemetry Sandbox', href: '#features' },
+      { label: 'MIT Open License', href: 'https://github.com/Arterouss/ForgeKit/blob/main/LICENSE', external: true },
     ],
   },
 ];
 
 export function Footer() {
   return (
-    <footer className="border-t border-border bg-card/30 px-4 py-16">
-      <div className="mx-auto max-w-6xl">
-        <div className="grid grid-cols-2 gap-8 sm:grid-cols-4 md:grid-cols-5">
-          {/* Brand */}
-          <div className="col-span-2 sm:col-span-4 md:col-span-1">
-            <Link href="/" className="flex items-center gap-2">
-              <span className="text-2xl">⚒️</span>
-              <span className="font-heading text-lg font-bold">
-                <span className="text-primary">Dev</span>Forge
+    <footer className="border-t border-cyan-500/30 bg-[#070512] py-16 text-foreground select-none font-mono">
+      <div className="w-full space-y-12">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-10">
+          {/* Brand Col */}
+          <div className="md:col-span-2 space-y-4">
+            <Link href="/" className="inline-flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-cyan-400 via-fuchsia-500 to-lime-400 text-[#070512] font-black text-sm shadow-[0_0_15px_rgba(0,240,255,0.4)]">
+                DF
+              </div>
+              <span className="font-heading text-2xl font-black tracking-tight text-white uppercase">
+                DevForge <span className="text-cyan-400">OS</span>
               </span>
             </Link>
-            <p className="mt-3 max-w-xs text-xs text-muted-foreground">
-              The ultimate all-in-one toolbox for software developers.
+            <p className="max-w-sm text-xs text-cyan-200/70 leading-relaxed">
+              The retro-futuristic desktop engineering platform powered by local WebAssembly. Zero network round-trips. Air-gapped privacy by default.
             </p>
-            <div className="mt-4 flex items-center gap-3">
+            <div className="flex items-center gap-3 pt-1">
               <a
                 href="https://github.com/Arterouss/ForgeKit"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted-foreground transition-colors hover:text-foreground"
+                className="flex h-10 w-10 items-center justify-center rounded-xl border border-cyan-500/30 bg-[#0c091f] text-cyan-400 hover:border-cyan-400 hover:bg-cyan-500/20 transition-all shadow-sm"
                 aria-label="GitHub"
               >
-                <Github className="h-4 w-4" />
-              </a>
-              <a href="#" className="text-muted-foreground transition-colors hover:text-foreground" aria-label="Twitter">
-                <Twitter className="h-4 w-4" />
-              </a>
-              <a href="#" className="text-muted-foreground transition-colors hover:text-foreground" aria-label="Discord">
-                <MessageSquare className="h-4 w-4" />
+                <Github className="h-4.5 w-4.5 text-fuchsia-400" />
               </a>
             </div>
           </div>
 
-          {/* Links */}
-          {footerLinks.map((group) => (
-            <div key={group.title}>
-              <h4 className="mb-3 text-xs font-semibold uppercase tracking-wider text-foreground">
-                {group.title}
-              </h4>
-              <ul className="space-y-2">
-                {group.links.map((link) => (
+          {/* Links Col */}
+          {FOOTER_LINKS.map((col) => (
+            <div key={col.title} className="space-y-4">
+              <div className="text-xs font-mono font-extrabold uppercase tracking-wider text-cyan-400 border-l-2 border-cyan-400 pl-2">
+                {col.title}
+              </div>
+              <ul className="space-y-2.5 text-xs font-mono font-bold">
+                {col.links.map((link) => (
                   <li key={link.label}>
                     {link.external ? (
                       <a
                         href={link.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-xs text-muted-foreground transition-colors hover:text-foreground"
+                        className="text-cyan-200/70 hover:text-cyan-300 transition-colors flex items-center gap-1.5"
                       >
-                        {link.label}
+                        <span>{link.label}</span>
                       </a>
                     ) : (
                       <Link
                         href={link.href}
-                        className="text-xs text-muted-foreground transition-colors hover:text-foreground"
+                        className="text-cyan-200/70 hover:text-cyan-300 transition-colors flex items-center gap-1.5"
                       >
-                        {link.label}
+                        <span>{link.label}</span>
                       </Link>
                     )}
                   </li>
@@ -106,22 +95,15 @@ export function Footer() {
           ))}
         </div>
 
-        {/* Copyright */}
-        <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-border pt-8 sm:flex-row">
-          <p className="text-xs text-muted-foreground">
-            © {new Date().getFullYear()} DevForge. MIT License.
-          </p>
-          <p className="text-xs text-muted-foreground">
-            Built with ❤️ by{' '}
-            <a
-              href="https://github.com/Arterouss"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-primary transition-colors hover:text-primary/80"
-            >
-              Arterouss
-            </a>
-          </p>
+        {/* Bottom copyright row */}
+        <div className="flex flex-col sm:flex-row items-center justify-between border-t border-cyan-500/20 pt-8 text-xs font-mono text-cyan-400/70 gap-4">
+          <div>
+            © {new Date().getFullYear()} DEVFORGE_OS // PROTOCOL v3.5
+          </div>
+          <div className="flex items-center gap-2">
+            <span className="h-2 w-2 rounded-full bg-lime-400 animate-ping" />
+            <span className="text-lime-400 font-bold">ALL 60+ TOOLS RUNNING LOCAL WASM</span>
+          </div>
         </div>
       </div>
     </footer>

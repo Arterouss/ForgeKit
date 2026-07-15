@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import { DashboardShell } from '@/components/dashboard/dashboard-shell';
 import { Base64StudioPro } from '@/components/tools/base64-studio';
 
 export const metadata: Metadata = {
@@ -10,10 +9,8 @@ export const metadata: Metadata = {
 
 export default function Base64StudioPage() {
   return (
-    <DashboardShell>
       <div className="flex flex-1 flex-col p-6">
         <Base64StudioPro />
       </div>
-    </DashboardShell>
   );
 }

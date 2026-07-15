@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import { DashboardShell } from '@/components/dashboard/dashboard-shell';
 import { UrlEncoderDecoderPro } from '@/components/tools/url-encoder-decoder';
 
 export const metadata: Metadata = {
@@ -10,10 +9,8 @@ export const metadata: Metadata = {
 
 export default function UrlEncoderDecoderPage() {
   return (
-    <DashboardShell>
       <div className="flex flex-1 flex-col p-6">
         <UrlEncoderDecoderPro />
       </div>
-    </DashboardShell>
   );
 }

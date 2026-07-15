@@ -1,94 +1,82 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { staggerContainer, staggerItem } from '@/animations/variants';
+import { Star, Terminal } from 'lucide-react';
 
-const testimonials = [
+const TESTIMONIALS = [
   {
-    name: 'Alex Chen',
-    role: 'Senior Engineer @ Vercel',
-    content: 'DevForge replaced 12 bookmarks I used to visit daily. Everything is just… there.',
-    avatar: '🧑‍💻',
+    quote:
+      'DevForge completely replaced our fragmented collection of web utilities. Having 60+ tools run locally in WebAssembly with zero latency and zero telemetry is incredible.',
+    author: 'Alex Rivera',
+    role: 'STAFF INFRASTRUCTURE ENGINEER',
+    company: 'CLOUDSCALE SYSTEMS',
   },
   {
-    name: 'Sarah Kim',
-    role: 'DevOps Lead @ Stripe',
-    content: 'The Docker tools alone saved me hours. The keyboard shortcuts make it feel like an IDE for utilities.',
-    avatar: '👩‍🔬',
+    quote:
+      'The air-gapped privacy guarantee is why our enterprise security team approved DevForge instantly. We inspect production JWT payloads and certificates locally without leaks.',
+    author: 'Sarah Chen',
+    role: 'PRINCIPAL SECURITY ARCHITECT',
+    company: 'CYBER FINTECH LABS',
   },
   {
-    name: 'Marcus Rivera',
-    role: 'Full Stack Dev',
-    content: 'Finally, a dev tool that looks as good as it works. The workspace tabs are a game changer.',
-    avatar: '👨‍🎨',
-  },
-  {
-    name: 'Priya Patel',
-    role: 'Indie Hacker',
-    content: 'Open source, fast, beautiful. This is what every dev tool should aspire to be.',
-    avatar: '🚀',
-  },
-  {
-    name: 'James Okonkwo',
-    role: 'Security Engineer',
-    content: 'The hash and encoding tools are surprisingly thorough. And everything runs client-side. Respect.',
-    avatar: '🔐',
-  },
-  {
-    name: 'Luna Nakamura',
-    role: 'Frontend Architect',
-    content: 'I recommend DevForge to every team I work with. It just makes the small tasks disappear.',
-    avatar: '✨',
+    quote:
+      'The Retro-Futuristic Cyber-Deck layout, Spotlight search (Ctrl+K), and split-view docking panels make it feel faster and more powerful than any native desktop OS.',
+    author: 'Marcus Vance',
+    role: 'SENIOR SYSTEMS ARCHITECT',
+    company: 'VOXEL NETWORKS',
   },
 ];
 
 export function TestimonialsSection() {
   return (
-    <section id="testimonials" className="relative px-4 py-24 sm:py-32">
-      <div className="mx-auto max-w-6xl">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.5 }}
-          className="mb-16 text-center"
-        >
-          <h2 className="font-heading text-3xl font-bold sm:text-4xl md:text-5xl">
-            Loved by Developers
+    <section id="testimonials" className="relative w-full select-none font-mono">
+      <div className="w-full space-y-8">
+        {/* Header */}
+        <div className="text-center space-y-4 max-w-3xl mx-auto">
+          <div className="inline-flex items-center gap-2 terminal-badge">
+            <Terminal className="h-3.5 w-3.5 text-lime-400 animate-pulse" />
+            <span>// ENGINEER_LOGS & TESTIMONIALS</span>
+          </div>
+          <h2 className="font-heading text-3xl sm:text-[36px] font-black uppercase tracking-tight text-foreground leading-tight">
+            LOVED BY <span className="glow-cyan-text">ENGINEERING LEADERS</span>. <br />
+            TRUSTED BY SECURITY TEAMS.
           </h2>
-          <p className="mt-4 text-muted-foreground sm:text-lg">
-            Join thousands of developers who made the switch.
+          <p className="text-base sm:text-[16px] text-cyan-200/80 font-sans leading-relaxed">
+            See why senior engineers and architects have abandoned cloud dashboards for the DevForge Cyber-Deck.
           </p>
-        </motion.div>
+        </div>
 
-        <motion.div
-          variants={staggerContainer}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-50px' }}
-          className="columns-1 gap-4 space-y-4 sm:columns-2 lg:columns-3"
-        >
-          {testimonials.map((t) => (
-            <motion.div
-              key={t.name}
-              variants={staggerItem}
-              className="break-inside-avoid rounded-2xl border border-border bg-card/50 p-5"
+        {/* Synthwave Cards Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+          {TESTIMONIALS.map((t, idx) => (
+            <div
+              key={t.author}
+              className="flex flex-col justify-between neo-card p-6 border-cyan-500/30 space-y-6 h-full"
             >
-              <p className="text-sm leading-relaxed text-foreground/80">
-                &ldquo;{t.content}&rdquo;
-              </p>
-              <div className="mt-4 flex items-center gap-3">
-                <span className="flex h-9 w-9 items-center justify-center rounded-full bg-muted text-lg">
-                  {t.avatar}
-                </span>
-                <div>
-                  <div className="text-xs font-semibold text-foreground">{t.name}</div>
-                  <div className="text-[10px] text-muted-foreground">{t.role}</div>
+              <div className="space-y-4">
+                <div className="flex items-center justify-between border-b border-cyan-500/20 pb-2 text-[11px] text-cyan-400 font-bold">
+                  <span>// LOG_ENTRY_0{idx + 1}</span>
+                  <div className="flex items-center gap-1 text-lime-400">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="h-3.5 w-3.5 fill-lime-400" />
+                    ))}
+                  </div>
+                </div>
+                <p className="text-xs sm:text-sm font-mono text-cyan-100/90 leading-relaxed">
+                  "{t.quote}"
+                </p>
+              </div>
+
+              <div className="border-t border-cyan-500/20 pt-4">
+                <div className="font-heading font-black text-white text-base tracking-wide">
+                  {t.author}
+                </div>
+                <div className="text-[11px] font-mono text-cyan-400">
+                  {t.role} // <span className="text-lime-400 font-bold">{t.company}</span>
                 </div>
               </div>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

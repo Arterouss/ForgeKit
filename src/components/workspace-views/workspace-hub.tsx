@@ -11,9 +11,9 @@ import {
   RotateCcw,
   Sliders,
   Layers,
+  Terminal,
 } from 'lucide-react';
 import { useWorkspace } from '@/components/workspace';
-import { Badge } from '@/components/ui/badge';
 
 export function WorkspaceHubView() {
   const {
@@ -62,7 +62,7 @@ export function WorkspaceHubView() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `devforge-workspace-${new Date().toISOString().slice(0, 10)}.json`;
+    a.download = `devforge-cyberos-${new Date().toISOString().slice(0, 10)}.json`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -81,12 +81,12 @@ export function WorkspaceHubView() {
         if (result.success) {
           setImportStatus({
             success: true,
-            message: 'Workspace successfully restored from backup JSON file!',
+            message: '// WORKSPACE_STATE_RESTORED: JSON vault successfully imported to IndexedDB!',
           });
         } else {
           setImportStatus({
             success: false,
-            message: result.error || 'Failed to import backup JSON file.',
+            message: result.error || '// ERR_RESTORE_FAILED: Invalid JSON structure.',
           });
         }
       }
@@ -95,32 +95,34 @@ export function WorkspaceHubView() {
   };
 
   return (
-    <div className="space-y-8 pb-12">
+    <div className="space-y-8 pb-12 font-mono select-none">
       {/* Header */}
-      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 border-b border-border pb-6">
+      <div className="border-b-2 border-cyan-500/30 pb-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-foreground flex items-center gap-2">
-            <Layers className="h-6 w-6 text-primary" />
-            Developer Workspace Ecosystem Hub
+          <h1 className="text-2xl sm:text-3xl font-heading font-black uppercase tracking-wider text-white flex items-center gap-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-cyan-500/20 border border-cyan-400 text-cyan-300 shadow-[0_0_15px_rgba(0,240,255,0.3)]">
+              <Layers className="h-5 w-5" />
+            </div>
+            <span>CYBER_OS // ECOSYSTEM HUB</span>
           </h1>
-          <p className="text-sm text-muted-foreground mt-1">
-            Manage multi-workspace isolation, local backup snapshots, portable JSON export/import, and dashboard widgets.
+          <p className="text-xs text-cyan-200/70 mt-1 font-sans">
+            Manage isolated multi-workspace sessions, local rollback snapshots, JSON vault transport, and terminal widgets.
           </p>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 flex-wrap">
           <button
             onClick={handleDownloadExport}
-            className="inline-flex items-center gap-2 rounded-xl bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground transition hover:bg-primary/90"
+            className="inline-flex items-center gap-2 rounded-xl border border-lime-400 bg-lime-500/20 px-4 py-2.5 text-xs font-bold text-lime-400 transition hover:bg-lime-500/30 shadow-[0_0_12px_rgba(57,255,20,0.25)]"
           >
-            <Download className="h-4 w-4" />
-            Export Portable JSON
+            <Download className="h-4 w-4 stroke-[3]" />
+            EXPORT_VAULT_.JSON
           </button>
           <button
             onClick={() => fileInputRef.current?.click()}
-            className="inline-flex items-center gap-2 rounded-xl border border-border bg-card px-4 py-2 text-sm font-medium text-foreground transition hover:bg-muted"
+            className="inline-flex items-center gap-2 rounded-xl border border-cyan-400 bg-cyan-500/20 px-4 py-2.5 text-xs font-bold text-cyan-300 transition hover:bg-cyan-500/30 shadow-sm"
           >
-            <Upload className="h-4 w-4" />
-            Import JSON Backup
+            <Upload className="h-4 w-4 stroke-[3]" />
+            IMPORT_VAULT_.JSON
           </button>
           <input
             ref={fileInputRef}
@@ -134,10 +136,10 @@ export function WorkspaceHubView() {
 
       {importStatus.message && (
         <div
-          className={`rounded-xl p-4 border text-sm ${
+          className={`rounded-2xl p-4 border-2 font-bold text-xs ${
             importStatus.success
-              ? 'border-emerald-500/30 bg-emerald-500/10 text-emerald-400'
-              : 'border-rose-500/30 bg-rose-500/10 text-rose-400'
+              ? 'border-lime-400 bg-lime-500/15 text-lime-300 shadow-[0_0_15px_rgba(57,255,20,0.2)]'
+              : 'border-rose-400 bg-rose-500/15 text-rose-300 shadow-[0_0_15px_rgba(244,63,94,0.2)]'
           }`}
         >
           {importStatus.message}
@@ -147,13 +149,15 @@ export function WorkspaceHubView() {
       {/* Grid: Workspaces & Dashboard Widgets */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Saved Workspaces Card */}
-        <div className="rounded-2xl border border-border bg-card/40 p-6 space-y-6">
-          <div className="flex items-center justify-between">
-            <h2 className="text-lg font-semibold text-foreground flex items-center gap-2">
-              <Briefcase className="h-5 w-5 text-primary" />
-              Saved Workspaces
+        <div className="rounded-3xl border-2 border-cyan-500/30 bg-[#0c091f]/90 p-6 sm:p-8 space-y-6 shadow-[0_0_25px_rgba(0,240,255,0.15)]">
+          <div className="flex items-center justify-between border-b border-cyan-500/20 pb-3">
+            <h2 className="text-base font-heading font-black text-white uppercase tracking-wider flex items-center gap-2">
+              <Briefcase className="h-4 w-4 text-fuchsia-400" />
+              <span>// ISOLATED_WORKSPACES</span>
             </h2>
-            <Badge variant="outline">{workspaces.length} Active</Badge>
+            <span className="rounded bg-cyan-500/15 border border-cyan-400/40 px-2.5 py-0.5 text-[10px] font-bold text-cyan-300 uppercase">
+              {workspaces.length} ACTIVE
+            </span>
           </div>
 
           <div className="space-y-3">
@@ -162,41 +166,41 @@ export function WorkspaceHubView() {
               return (
                 <div
                   key={ws.id}
-                  className={`flex items-center justify-between rounded-xl border p-4 transition ${
+                  className={`flex items-center justify-between rounded-2xl border-2 p-4 transition-all ${
                     isActive
-                      ? 'border-primary/50 bg-primary/10'
-                      : 'border-border bg-background/50 hover:border-border/80'
+                      ? 'border-cyan-400 bg-cyan-500/20 shadow-[0_0_15px_rgba(0,240,255,0.2)] scale-[1.01]'
+                      : 'border-cyan-500/30 bg-[#070512] hover:border-cyan-400/60'
                   }`}
                 >
-                  <div className="flex flex-col">
-                    <div className="flex items-center gap-2">
-                      <span className="font-semibold text-foreground">
+                  <div className="flex flex-col min-w-0">
+                    <div className="flex items-center gap-2.5">
+                      <span className="font-bold text-white text-sm uppercase truncate">
                         {ws.name}
                       </span>
                       {isActive && (
-                        <Badge className="bg-primary text-primary-foreground text-xs">
-                          Active
-                        </Badge>
+                        <span className="rounded bg-lime-500/20 border border-lime-400 px-2 py-0.5 text-[9px] font-extrabold text-lime-400 uppercase shadow-[0_0_8px_rgba(57,255,20,0.3)]">
+                          ACTIVE_SESSION
+                        </span>
                       )}
                     </div>
-                    <span className="text-xs text-muted-foreground mt-0.5">
-                      {ws.description}
+                    <span className="text-[11px] text-cyan-200/70 mt-1 font-sans truncate">
+                      {ws.description || '// Sandbox environment'}
                     </span>
                   </div>
 
-                  <div className="flex items-center gap-2">
+                  <div className="flex items-center gap-2 shrink-0 ml-3">
                     {!isActive && (
                       <button
                         onClick={() => switchWorkspace(ws.id)}
-                        className="rounded-lg bg-muted px-3 py-1.5 text-xs font-medium text-foreground hover:bg-muted/80 transition"
+                        className="rounded-xl border border-cyan-400 bg-cyan-500/20 px-3 py-1.5 text-xs font-bold text-cyan-300 hover:bg-cyan-500/30 transition shadow-sm"
                       >
-                        Switch
+                        MOUNT
                       </button>
                     )}
                     {!ws.isDefault && (
                       <button
                         onClick={() => deleteWorkspace(ws.id)}
-                        className="rounded-lg p-1.5 text-muted-foreground hover:bg-destructive/10 hover:text-destructive transition"
+                        className="rounded-xl border border-cyan-500/30 bg-[#070512] p-2 text-cyan-400 hover:border-rose-400 hover:text-rose-400 transition"
                         title="Delete workspace"
                       >
                         <Trash2 className="h-4 w-4" />
@@ -211,59 +215,62 @@ export function WorkspaceHubView() {
           {/* New Workspace Form */}
           <form
             onSubmit={handleCreateWorkspace}
-            className="border-t border-border pt-4 space-y-3"
+            className="border-t border-cyan-500/30 pt-4 space-y-3"
           >
-            <h3 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-              Create Custom Workspace
+            <h3 className="text-xs font-bold uppercase tracking-wider text-cyan-300 flex items-center gap-1.5">
+              <Terminal className="h-3.5 w-3.5 text-lime-400" />
+              <span>// CREATE_NEW_PROFILE</span>
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <input
                 type="text"
-                placeholder="Workspace Name (e.g. API Security Kit)"
+                placeholder="Profile Name (e.g. SecOps Lab)"
                 value={newWsName}
                 onChange={(e) => setNewWsName(e.target.value)}
-                className="w-full rounded-xl border border-border bg-background px-3 py-2 text-sm text-foreground focus:border-primary focus:outline-none"
+                className="w-full rounded-xl border border-cyan-500/40 bg-[#070512] px-3.5 py-2 text-xs text-white placeholder:text-cyan-400/50 focus:border-cyan-300 focus:outline-none font-mono"
               />
               <input
                 type="text"
-                placeholder="Description"
+                placeholder="Description..."
                 value={newWsDesc}
                 onChange={(e) => setNewWsDesc(e.target.value)}
-                className="w-full rounded-xl border border-border bg-background px-3 py-2 text-sm text-foreground focus:border-primary focus:outline-none"
+                className="w-full rounded-xl border border-cyan-500/40 bg-[#070512] px-3.5 py-2 text-xs text-white placeholder:text-cyan-400/50 focus:border-cyan-300 focus:outline-none font-mono"
               />
             </div>
             <button
               type="submit"
-              className="inline-flex items-center gap-1.5 rounded-xl bg-primary/20 text-primary px-4 py-2 text-xs font-semibold hover:bg-primary/30 transition"
+              className="inline-flex items-center gap-2 rounded-xl border border-lime-400 bg-lime-500/20 px-4 py-2.5 text-xs font-bold text-lime-400 hover:bg-lime-500/30 transition w-full justify-center shadow-[0_0_12px_rgba(57,255,20,0.25)]"
             >
-              <Plus className="h-3.5 w-3.5" />
-              Create Workspace Profile
+              <Plus className="h-4 w-4 stroke-[3]" />
+              INITIALIZE_PROFILE
             </button>
           </form>
         </div>
 
         {/* Custom Dashboard Widgets Settings Card */}
-        <div className="rounded-2xl border border-border bg-card/40 p-6 space-y-6">
-          <div className="flex items-center justify-between">
-            <h2 className="text-lg font-semibold text-foreground flex items-center gap-2">
-              <Sliders className="h-5 w-5 text-primary" />
-              Dashboard Layout & Widgets Config
+        <div className="rounded-3xl border-2 border-cyan-500/30 bg-[#0c091f]/90 p-6 sm:p-8 space-y-6 shadow-[0_0_25px_rgba(0,240,255,0.15)]">
+          <div className="flex items-center justify-between border-b border-cyan-500/20 pb-3">
+            <h2 className="text-base font-heading font-black text-white uppercase tracking-wider flex items-center gap-2">
+              <Sliders className="h-4 w-4 text-lime-400" />
+              <span>// DASHBOARD_HUD_WIDGETS</span>
             </h2>
-            <Badge variant="outline">Customizable</Badge>
+            <span className="rounded border border-lime-400/50 bg-lime-500/15 px-2.5 py-0.5 text-[10px] font-bold text-lime-400 uppercase">
+              LIVE_TOGGLES
+            </span>
           </div>
 
-          <p className="text-sm text-muted-foreground">
-            Toggle visibility of sections on the main dashboard portal (`/dashboard`).
+          <p className="text-xs text-cyan-200/70 font-sans">
+            Toggle visibility of active telemetry modules across the primary Command Hub (`/dashboard`).
           </p>
 
-          <div className="space-y-4">
-            <label className="flex items-center justify-between rounded-xl border border-border bg-background/40 p-4 cursor-pointer hover:bg-background/60 transition">
+          <div className="space-y-3.5">
+            <label className="flex items-center justify-between rounded-2xl border border-cyan-500/30 bg-[#070512] p-4 cursor-pointer hover:border-cyan-400 transition-all">
               <div>
-                <span className="font-medium text-foreground block">
-                  Show Favorites Widget
+                <span className="font-bold text-white text-xs uppercase block">
+                  SHOW PINNED FAVORITES DOCK
                 </span>
-                <span className="text-xs text-muted-foreground">
-                  Displays your pinned favorite tools at the top of the dashboard.
+                <span className="text-[11px] text-cyan-200/70 font-sans">
+                  Displays high-priority utility cards directly at the top of your workstation HUD.
                 </span>
               </div>
               <input
@@ -272,17 +279,17 @@ export function WorkspaceHubView() {
                 onChange={(e) =>
                   setDashboardWidget('showFavorites', e.target.checked)
                 }
-                className="h-5 w-5 rounded border-border text-primary focus:ring-primary"
+                className="h-5 w-5 rounded border-cyan-400 bg-[#0c091f] text-cyan-400 focus:ring-cyan-400"
               />
             </label>
 
-            <label className="flex items-center justify-between rounded-xl border border-border bg-background/40 p-4 cursor-pointer hover:bg-background/60 transition">
+            <label className="flex items-center justify-between rounded-2xl border border-cyan-500/30 bg-[#070512] p-4 cursor-pointer hover:border-cyan-400 transition-all">
               <div>
-                <span className="font-medium text-foreground block">
-                  Show Recent Activity Widget
+                <span className="font-bold text-white text-xs uppercase block">
+                  SHOW RECENT TELEMETRY FEED
                 </span>
-                <span className="text-xs text-muted-foreground">
-                  Displays recently executed tools and execution history.
+                <span className="text-[11px] text-cyan-200/70 font-sans">
+                  Displays live chronological tool executions and quick-relaunch buttons.
                 </span>
               </div>
               <input
@@ -291,17 +298,17 @@ export function WorkspaceHubView() {
                 onChange={(e) =>
                   setDashboardWidget('showRecent', e.target.checked)
                 }
-                className="h-5 w-5 rounded border-border text-primary focus:ring-primary"
+                className="h-5 w-5 rounded border-cyan-400 bg-[#0c091f] text-cyan-400 focus:ring-cyan-400"
               />
             </label>
 
-            <label className="flex items-center justify-between rounded-xl border border-border bg-background/40 p-4 cursor-pointer hover:bg-background/60 transition">
+            <label className="flex items-center justify-between rounded-2xl border border-cyan-500/30 bg-[#070512] p-4 cursor-pointer hover:border-cyan-400 transition-all">
               <div>
-                <span className="font-medium text-foreground block">
-                  Show Category Collections Grid
+                <span className="font-bold text-white text-xs uppercase block">
+                  SHOW DOMAIN COLLECTIONS GRID
                 </span>
-                <span className="text-xs text-muted-foreground">
-                  Shows cards for Core Tools, DevOps, Git, Linux, Network, and Security.
+                <span className="text-[11px] text-cyan-200/70 font-sans">
+                  Shows cards for domain categories (Core, DevOps, Git, Linux, Network, Security).
                 </span>
               </div>
               <input
@@ -310,17 +317,17 @@ export function WorkspaceHubView() {
                 onChange={(e) =>
                   setDashboardWidget('showCategories', e.target.checked)
                 }
-                className="h-5 w-5 rounded border-border text-primary focus:ring-primary"
+                className="h-5 w-5 rounded border-cyan-400 bg-[#0c091f] text-cyan-400 focus:ring-cyan-400"
               />
             </label>
 
-            <label className="flex items-center justify-between rounded-xl border border-border bg-background/40 p-4 cursor-pointer hover:bg-background/60 transition">
+            <label className="flex items-center justify-between rounded-2xl border border-cyan-500/30 bg-[#070512] p-4 cursor-pointer hover:border-cyan-400 transition-all">
               <div>
-                <span className="font-medium text-foreground block">
-                  Show All 60 Tools Grid
+                <span className="font-bold text-white text-xs uppercase block">
+                  SHOW ALL 60 TOOLS MATRIX
                 </span>
-                <span className="text-xs text-muted-foreground">
-                  Renders the complete interactive catalog of DevForge developer tools.
+                <span className="text-[11px] text-cyan-200/70 font-sans">
+                  Renders the complete interactive catalog of sandboxed WASM developer tools.
                 </span>
               </div>
               <input
@@ -329,7 +336,7 @@ export function WorkspaceHubView() {
                 onChange={(e) =>
                   setDashboardWidget('showAllTools', e.target.checked)
                 }
-                className="h-5 w-5 rounded border-border text-primary focus:ring-primary"
+                className="h-5 w-5 rounded border-cyan-400 bg-[#0c091f] text-cyan-400 focus:ring-cyan-400"
               />
             </label>
           </div>
@@ -337,63 +344,65 @@ export function WorkspaceHubView() {
       </div>
 
       {/* Snapshot Backup & Restore Card */}
-      <div className="rounded-2xl border border-border bg-card/40 p-6 space-y-6">
-        <div className="flex items-center justify-between">
-          <h2 className="text-lg font-semibold text-foreground flex items-center gap-2">
-            <History className="h-5 w-5 text-primary" />
-            Local Snapshot Backup & Restore Points
+      <div className="rounded-3xl border-2 border-cyan-500/30 bg-[#0c091f]/90 p-6 sm:p-8 space-y-6 shadow-[0_0_25px_rgba(0,240,255,0.15)]">
+        <div className="flex items-center justify-between border-b border-cyan-500/20 pb-3">
+          <h2 className="text-base font-heading font-black text-white uppercase tracking-wider flex items-center gap-2">
+            <History className="h-4 w-4 text-fuchsia-400" />
+            <span>// LOCAL_ROLLBACK_SNAPSHOTS</span>
           </h2>
-          <Badge variant="outline">{snapshots.length} Snapshots</Badge>
+          <span className="rounded bg-cyan-500/15 border border-cyan-400/40 px-2.5 py-0.5 text-[10px] font-bold text-cyan-300 uppercase">
+            {snapshots.length} BACKUPS
+          </span>
         </div>
 
-        <form onSubmit={handleCreateSnapshot} className="flex gap-3">
+        <form onSubmit={handleCreateSnapshot} className="flex flex-col sm:flex-row gap-3">
           <input
             type="text"
-            placeholder="Snapshot Label (e.g. Pre-Deployment Backup)"
+            placeholder="> Snapshot Label (e.g. Pre-Deployment Backup)..."
             value={snapLabel}
             onChange={(e) => setSnapLabel(e.target.value)}
-            className="flex-1 rounded-xl border border-border bg-background px-3 py-2 text-sm text-foreground focus:border-primary focus:outline-none"
+            className="flex-1 rounded-xl border border-cyan-500/40 bg-[#070512] px-4 py-2.5 text-xs text-white placeholder:text-cyan-400/50 focus:border-cyan-300 focus:outline-none font-mono"
           />
           <button
             type="submit"
-            className="inline-flex items-center gap-2 rounded-xl bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground hover:bg-primary/90 transition"
+            className="inline-flex items-center justify-center gap-2 rounded-xl border border-lime-400 bg-lime-500/20 px-5 py-2.5 text-xs font-bold text-lime-400 hover:bg-lime-500/30 transition shrink-0 shadow-[0_0_12px_rgba(57,255,20,0.25)]"
           >
-            <Plus className="h-4 w-4" />
-            Create Snapshot Point
+            <Plus className="h-4 w-4 stroke-[3]" />
+            COMMIT_SNAPSHOT
           </button>
         </form>
 
         {snapshots.length === 0 ? (
-          <div className="rounded-xl border border-dashed border-border p-8 text-center text-muted-foreground text-sm">
-            No local snapshots created yet. Create a snapshot point above to easily rollback your workspace anytime.
+          <div className="rounded-2xl border-2 border-dashed border-cyan-500/30 p-12 text-center text-cyan-400/70 text-xs font-mono bg-[#070512]/60">
+            No local snapshots created yet. Commit a checkpoint point above to easily rollback your workspace configuration anytime.
           </div>
         ) : (
           <div className="space-y-3">
             {snapshots.map((snap) => (
               <div
                 key={snap.id}
-                className="flex items-center justify-between rounded-xl border border-border bg-background/60 p-4"
+                className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 rounded-2xl border border-cyan-500/30 bg-[#070512] p-4 hover:border-cyan-400 transition-all"
               >
                 <div>
-                  <span className="font-semibold text-foreground block">
+                  <span className="font-bold text-white uppercase block text-sm">
                     {snap.label}
                   </span>
-                  <span className="text-xs text-muted-foreground">
-                    Created on {new Date(snap.timestamp).toLocaleString()} • Workspace: {snap.workspaceId}
+                  <span className="text-[11px] text-cyan-400/70 font-sans block mt-0.5">
+                    Committed on {new Date(snap.timestamp).toLocaleString()} • Profile: {snap.workspaceId}
                   </span>
                 </div>
 
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2.5 shrink-0">
                   <button
                     onClick={() => restoreSnapshot(snap.id)}
-                    className="inline-flex items-center gap-1.5 rounded-lg bg-emerald-500/10 px-3 py-1.5 text-xs font-semibold text-emerald-400 hover:bg-emerald-500/20 transition"
+                    className="inline-flex items-center gap-1.5 rounded-xl border border-lime-400 bg-lime-500/20 px-3.5 py-1.5 text-xs font-bold text-lime-400 hover:bg-lime-500/30 transition shadow-sm"
                   >
                     <RotateCcw className="h-3.5 w-3.5" />
-                    Restore Rollback
+                    ROLLBACK
                   </button>
                   <button
                     onClick={() => deleteSnapshot(snap.id)}
-                    className="rounded-lg p-1.5 text-muted-foreground hover:bg-destructive/10 hover:text-destructive transition"
+                    className="rounded-xl border border-cyan-500/30 bg-[#0c091f] p-2 text-cyan-400 hover:border-rose-400 hover:text-rose-400 transition"
                     title="Delete Snapshot"
                   >
                     <Trash2 className="h-4 w-4" />

@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import { DashboardShell } from '@/components/dashboard/dashboard-shell';
 import { Base32Pro } from '@/components/tools/base32-encoder-decoder';
 
 export const metadata: Metadata = {
@@ -10,10 +9,8 @@ export const metadata: Metadata = {
 
 export default function Base32Page() {
   return (
-    <DashboardShell>
       <div className="flex flex-1 flex-col p-6">
         <Base32Pro />
       </div>
-    </DashboardShell>
   );
 }

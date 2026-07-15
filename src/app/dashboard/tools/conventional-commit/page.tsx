@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import { DashboardShell } from '@/components/dashboard/dashboard-shell';
 import { ConventionalCommitPro } from '@/components/tools/conventional-commit';
 
 export const metadata: Metadata = {
@@ -10,10 +9,8 @@ export const metadata: Metadata = {
 
 export default function ConventionalCommitPage() {
   return (
-    <DashboardShell>
       <div className="flex flex-1 flex-col p-6">
         <ConventionalCommitPro />
       </div>
-    </DashboardShell>
   );
 }

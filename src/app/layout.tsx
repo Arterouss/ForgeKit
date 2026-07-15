@@ -4,19 +4,18 @@ import './globals.css';
 
 export const metadata: Metadata = {
   title: {
-    default: 'DevForge — The Ultimate Developer Toolbox',
+    default: 'DevForge — A focused workspace for developers',
     template: '%s | DevForge',
   },
   description:
-    'Everything developers need, in one beautiful workspace. Format, encode, generate, and build with 100+ utilities.',
+    'A private developer workspace for formatting, inspecting, generating, and shipping.',
   keywords: [
     'developer tools',
     'json formatter',
-    'base64',
-    'uuid generator',
-    'regex tester',
-    'developer utilities',
-    'devforge',
+    'developer workspace',
+    'wasm tools',
+    'developer workspace',
+    'devforge os',
   ],
   authors: [{ name: 'Arterouss' }],
   creator: 'Arterouss',
@@ -27,15 +26,15 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     siteName: 'DevForge',
-    title: 'DevForge — The Ultimate Developer Toolbox',
+    title: 'DevForge — A focused workspace for developers',
     description:
-      'Everything developers need, in one beautiful workspace. Format, encode, generate, and build with 100+ utilities.',
+      'A private developer workspace for your everyday tools.',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'DevForge — The Ultimate Developer Toolbox',
+    title: 'DevForge — A focused workspace for developers',
     description:
-      'Everything developers need, in one beautiful workspace.',
+      'A private developer workspace for your everyday tools.',
   },
   robots: {
     index: true,
@@ -44,7 +43,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#00e5ff',
+  themeColor: '#09090b',
   width: 'device-width',
   initialScale: 1,
 };
@@ -55,9 +54,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body>
-        <ThemeProvider>{children}</ThemeProvider>
+    <html lang="en" suppressHydrationWarning className="dark">
+      <body className="min-h-screen overflow-x-hidden bg-background text-foreground antialiased">
+        <div className="relative flex min-h-screen flex-col">
+          <ThemeProvider>{children}</ThemeProvider>
+        </div>
       </body>
     </html>
   );

@@ -15,7 +15,6 @@ import {
   Terminal,
 } from 'lucide-react';
 import { usePlugins } from '@/components/plugins';
-import { Badge } from '@/components/ui/badge';
 import { getSandboxAuditLogs, clearSandboxAuditLogs } from '@/sdk/plugin-sdk/plugin-sandbox';
 import { useRouter } from 'next/navigation';
 
@@ -53,19 +52,19 @@ export function MarketplaceView() {
       if (res.success) {
         setInstallStatus({
           success: true,
-          message: 'Plugin manifest validated and installed successfully!',
+          message: '// MANIFEST_OK: Plugin package validated and mounted into WASM sandbox!',
         });
         setCustomManifestJson('');
       } else {
         setInstallStatus({
           success: false,
-          message: res.error || 'Failed to install plugin manifest.',
+          message: res.error || '// ERR_MOUNT_FAILED: Manifest schema rejected.',
         });
       }
     } catch {
       setInstallStatus({
         success: false,
-        message: 'Invalid JSON format. Please paste a valid JSON object.',
+        message: '// ERR_SYNTAX: Invalid JSON format. Please verify syntax integrity.',
       });
     }
   };
@@ -80,63 +79,65 @@ export function MarketplaceView() {
   };
 
   return (
-    <div className="space-y-8 pb-16">
+    <div className="space-y-8 pb-16 font-mono select-none">
       {/* Header Banner */}
-      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 border-b border-border pb-6">
+      <div className="border-b-2 border-cyan-500/30 pb-6 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
         <div>
-          <h1 className="text-2xl font-bold tracking-tight text-foreground flex items-center gap-2.5">
-            <Package className="h-7 w-7 text-primary" />
-            DevForge Plugin Marketplace & Extension Hub
+          <h1 className="text-2xl sm:text-3xl font-heading font-black uppercase tracking-wider text-white flex items-center gap-3">
+            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-cyan-500/20 border border-cyan-400 text-cyan-300 shadow-[0_0_15px_rgba(0,240,255,0.3)]">
+              <Package className="h-5 w-5" />
+            </div>
+            <span>PLUGIN_REGISTRY // EXTENSION HUB</span>
           </h1>
-          <p className="text-sm text-muted-foreground mt-1">
-            Discover community extensions, manage installed plugins, and inspect sandboxed capability permissions.
+          <p className="text-xs text-cyan-200/70 mt-1 font-sans">
+            Discover verified bare-metal extensions, manage installed sandboxes, and inspect real-time capability audit logs.
           </p>
         </div>
 
         {/* Tab Switcher */}
-        <div className="flex flex-wrap items-center gap-2">
+        <div className="flex flex-wrap items-center gap-2 bg-[#0c091f] p-1.5 rounded-2xl border-2 border-cyan-500/30">
           <button
             onClick={() => setActiveTab('explore')}
-            className={`rounded-xl px-4 py-2 text-xs font-semibold transition ${
+            className={`rounded-xl px-4 py-2 text-xs font-bold transition-all ${
               activeTab === 'explore'
-                ? 'bg-primary text-primary-foreground'
-                : 'bg-card text-muted-foreground hover:text-foreground border border-border'
+                ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-400 shadow-sm'
+                : 'text-cyan-400/60 hover:text-white'
             }`}
           >
-            Explore Marketplace ({marketplacePlugins.length})
+            EXPLORE ({marketplacePlugins.length})
           </button>
           <button
             onClick={() => setActiveTab('installed')}
-            className={`rounded-xl px-4 py-2 text-xs font-semibold transition ${
+            className={`rounded-xl px-4 py-2 text-xs font-bold transition-all ${
               activeTab === 'installed'
-                ? 'bg-primary text-primary-foreground'
-                : 'bg-card text-muted-foreground hover:text-foreground border border-border'
+                ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-400 shadow-sm'
+                : 'text-cyan-400/60 hover:text-white'
             }`}
           >
-            Installed Plugins ({installedPlugins.length})
+            INSTALLED ({installedPlugins.length})
           </button>
           <button
             onClick={() => setActiveTab('custom')}
-            className={`rounded-xl px-4 py-2 text-xs font-semibold transition ${
+            className={`rounded-xl px-4 py-2 text-xs font-bold transition-all ${
               activeTab === 'custom'
-                ? 'bg-primary text-primary-foreground'
-                : 'bg-card text-muted-foreground hover:text-foreground border border-border'
+                ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-400 shadow-sm'
+                : 'text-cyan-400/60 hover:text-white'
             }`}
           >
-            Install Custom Manifest
+            LOAD_MANIFEST
           </button>
           <button
             onClick={() => {
               setActiveTab('logs');
               handleRefreshLogs();
             }}
-            className={`rounded-xl px-4 py-2 text-xs font-semibold transition ${
+            className={`rounded-xl px-4 py-2 text-xs font-bold transition-all ${
               activeTab === 'logs'
-                ? 'bg-primary text-primary-foreground'
-                : 'bg-card text-muted-foreground hover:text-foreground border border-border'
+                ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-400 shadow-sm'
+                : 'text-cyan-400/60 hover:text-white'
             }`}
           >
-            Sandbox Audit Logs
+            AUDIT_LOGS ({auditLogs.length})
           </button>
         </div>
       </div>
@@ -145,13 +146,13 @@ export function MarketplaceView() {
       {activeTab === 'explore' && (
         <div className="space-y-6">
           <div className="relative w-full md:w-80">
-            <Search className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+            <Search className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-cyan-400" />
             <input
               type="text"
-              placeholder="Search plugins by keyword..."
+              placeholder="> search_plugins..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full rounded-xl border border-border bg-card pl-10 pr-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none"
+              className="w-full rounded-xl border-2 border-cyan-500/40 bg-[#070512] pl-10 pr-4 py-2.5 text-xs text-cyan-100 placeholder:text-cyan-400/50 focus:border-cyan-300 focus:outline-none font-mono shadow-sm"
             />
           </div>
 
@@ -161,36 +162,36 @@ export function MarketplaceView() {
               return (
                 <div
                   key={plugin.id}
-                  className="flex flex-col justify-between rounded-2xl border border-border bg-card/40 p-6 transition hover:border-primary/50"
+                  className="flex flex-col justify-between rounded-3xl border-2 border-cyan-500/30 bg-[#0c091f]/90 p-6 transition-all hover:border-cyan-400 hover:shadow-[0_0_25px_rgba(0,240,255,0.2)] space-y-6"
                 >
-                  <div className="space-y-3">
-                    <div className="flex items-start justify-between gap-3">
+                  <div className="space-y-4">
+                    <div className="flex items-start justify-between gap-3 border-b border-cyan-500/20 pb-3">
                       <div>
-                        <h3 className="text-base font-bold text-foreground">
+                        <h3 className="text-base font-heading font-black text-white uppercase tracking-wide">
                           {plugin.name}
                         </h3>
-                        <span className="text-xs text-muted-foreground">
-                          by {plugin.author} • v{plugin.version}
+                        <span className="text-[10px] text-cyan-400/70 font-sans block mt-0.5">
+                          // by {plugin.author} • v{plugin.version}
                         </span>
                       </div>
-                      <Badge variant="secondary" className="text-[10px] uppercase">
+                      <span className="rounded bg-cyan-500/15 border border-cyan-400/40 px-2 py-0.5 text-[9px] font-bold text-cyan-300 uppercase">
                         {plugin.category}
-                      </Badge>
+                      </span>
                     </div>
 
-                    <p className="text-xs text-muted-foreground leading-relaxed">
+                    <p className="text-xs text-cyan-200/80 leading-relaxed font-sans">
                       {plugin.description}
                     </p>
 
                     {/* Permissions list */}
                     <div className="flex flex-wrap items-center gap-1.5 pt-1">
-                      <span className="text-[10px] font-semibold text-muted-foreground">
-                        Permissions:
+                      <span className="text-[10px] font-bold text-fuchsia-400 uppercase">
+                        // CAPABILITIES:
                       </span>
                       {plugin.permissions.map((perm) => (
                         <span
                           key={perm}
-                          className="rounded-md bg-muted px-2 py-0.5 text-[10px] font-medium text-foreground"
+                          className="rounded bg-[#070512] border border-cyan-500/30 px-2 py-0.5 text-[10px] font-bold text-cyan-300 uppercase"
                         >
                           {perm}
                         </span>
@@ -198,22 +199,22 @@ export function MarketplaceView() {
                     </div>
 
                     {/* Contributed Tools */}
-                    <div className="rounded-xl border border-border/50 bg-background/50 p-3 space-y-1">
-                      <span className="text-[10px] font-semibold text-primary block uppercase tracking-wider">
-                        Contributes Tool:
+                    <div className="rounded-2xl border border-cyan-500/30 bg-[#070512] p-3.5 space-y-1.5">
+                      <span className="text-[10px] font-bold text-lime-400 block uppercase tracking-wider">
+                        // CONTRIBUTED WASM MODULES:
                       </span>
                       {plugin.tools.map((tool) => (
                         <div
                           key={tool.slug}
-                          className="flex items-center justify-between text-xs text-foreground"
+                          className="flex items-center justify-between text-xs text-white"
                         >
-                          <span className="font-medium">{tool.name}</span>
+                          <span className="font-bold uppercase text-[11px]">{tool.name}</span>
                           {installed && (
                             <button
                               onClick={() => router.push(`/dashboard/tools/${tool.slug}`)}
-                              className="text-[10px] text-primary hover:underline"
+                              className="text-[10px] text-lime-400 hover:underline font-bold"
                             >
-                              Open Tool →
+                              LAUNCH →
                             </button>
                           )}
                         </div>
@@ -221,15 +222,15 @@ export function MarketplaceView() {
                     </div>
                   </div>
 
-                  <div className="mt-6 flex items-center justify-between border-t border-border pt-4">
+                  <div className="flex items-center justify-between border-t border-cyan-500/20 pt-4">
                     {plugin.homepage && (
                       <a
                         href={plugin.homepage}
                         target="_blank"
                         rel="noreferrer"
-                        className="inline-flex items-center gap-1 text-xs text-muted-foreground hover:text-foreground transition"
+                        className="inline-flex items-center gap-1 text-xs font-bold text-cyan-400 hover:text-white transition"
                       >
-                        <span>Docs</span>
+                        <span>DOCS</span>
                         <ExternalLink className="h-3 w-3" />
                       </a>
                     )}
@@ -238,18 +239,18 @@ export function MarketplaceView() {
                       {installed ? (
                         <button
                           onClick={() => uninstallPlugin(plugin.id)}
-                          className="inline-flex items-center gap-1.5 rounded-xl border border-rose-500/30 bg-rose-500/10 px-4 py-2 text-xs font-semibold text-rose-400 hover:bg-rose-500/20 transition"
+                          className="inline-flex items-center gap-1.5 rounded-xl border border-rose-400 bg-rose-500/15 px-4 py-2 text-xs font-bold text-rose-400 hover:bg-rose-500/25 transition shadow-sm"
                         >
                           <Trash2 className="h-3.5 w-3.5" />
-                          Uninstall
+                          UNINSTALL
                         </button>
                       ) : (
                         <button
                           onClick={() => installPlugin(plugin)}
-                          className="inline-flex items-center gap-1.5 rounded-xl bg-primary px-4 py-2 text-xs font-semibold text-primary-foreground hover:bg-primary/90 transition"
+                          className="inline-flex items-center gap-1.5 rounded-xl border border-lime-400 bg-lime-500/20 px-4 py-2 text-xs font-bold text-lime-400 hover:bg-lime-500/30 transition shadow-[0_0_12px_rgba(57,255,20,0.25)]"
                         >
-                          <Download className="h-3.5 w-3.5" />
-                          Install Plugin
+                          <Download className="h-3.5 w-3.5 stroke-[3]" />
+                          MOUNT_PLUGIN
                         </button>
                       )}
                     </div>
@@ -265,11 +266,11 @@ export function MarketplaceView() {
       {activeTab === 'installed' && (
         <div className="space-y-6">
           {installedPlugins.length === 0 ? (
-            <div className="rounded-2xl border border-dashed border-border p-16 text-center space-y-3">
-              <Package className="h-8 w-8 text-muted-foreground mx-auto" />
-              <h3 className="font-semibold text-foreground">No Plugins Installed</h3>
-              <p className="text-sm text-muted-foreground">
-                Visit the Explore Marketplace tab to install community plugins.
+            <div className="rounded-3xl border-2 border-dashed border-cyan-500/30 p-16 text-center space-y-3 bg-[#0c091f]/60">
+              <Package className="h-10 w-10 text-fuchsia-400 mx-auto opacity-70 animate-bounce" />
+              <h3 className="font-heading text-lg font-black text-white uppercase">NO PLUGINS MOUNTED IN SANDBOX</h3>
+              <p className="text-xs text-cyan-200/70 max-w-md mx-auto font-sans">
+                Visit the Explore Marketplace tab to discover and install bare-metal WASM extensions.
               </p>
             </div>
           ) : (
@@ -279,29 +280,31 @@ export function MarketplaceView() {
                 return (
                   <div
                     key={plugin.id}
-                    className="flex flex-col md:flex-row md:items-center justify-between gap-4 rounded-2xl border border-border bg-card/40 p-6"
+                    className="flex flex-col md:flex-row md:items-center justify-between gap-4 rounded-3xl border-2 border-cyan-500/30 bg-[#0c091f]/90 p-6 hover:border-cyan-400 transition-all shadow-sm"
                   >
                     <div className="space-y-2">
-                      <div className="flex items-center gap-3">
-                        <h3 className="text-base font-bold text-foreground">
+                      <div className="flex items-center gap-3 flex-wrap">
+                        <h3 className="text-base font-heading font-black text-white uppercase">
                           {plugin.name}
                         </h3>
-                        <Badge variant={enabled ? 'default' : 'outline'} className="text-xs">
-                          {enabled ? 'Active / Enabled' : 'Disabled'}
-                        </Badge>
-                        <span className="text-xs text-muted-foreground">
-                          v{plugin.version}
+                        <span className={`rounded px-2.5 py-0.5 text-[10px] font-bold uppercase border ${
+                          enabled ? 'bg-lime-500/20 border-lime-400 text-lime-400 shadow-[0_0_8px_rgba(57,255,20,0.3)]' : 'bg-[#070512] border-cyan-500/40 text-cyan-400/60'
+                        }`}>
+                          {enabled ? 'STATUS: ACTIVE' : 'STATUS: DISABLED'}
+                        </span>
+                        <span className="text-xs text-cyan-400/70 font-mono">
+                          // v{plugin.version}
                         </span>
                       </div>
 
-                      <p className="text-xs text-muted-foreground max-w-2xl">
+                      <p className="text-xs text-cyan-200/80 max-w-2xl font-sans">
                         {plugin.description}
                       </p>
 
-                      <div className="flex items-center gap-2 text-xs text-muted-foreground">
-                        <ShieldCheck className="h-4 w-4 text-emerald-400" />
-                        <span>
-                          Permissions granted: {plugin.permissions.join(', ') || 'None'}
+                      <div className="flex items-center gap-2 text-xs text-lime-400 font-bold">
+                        <ShieldCheck className="h-4 w-4" />
+                        <span className="uppercase">
+                          PERMISSIONS GRANTED: {plugin.permissions.join(', ') || 'NONE'}
                         </span>
                       </div>
                     </div>
@@ -313,19 +316,19 @@ export function MarketplaceView() {
                             ? disablePlugin(plugin.id)
                             : enablePlugin(plugin.id)
                         }
-                        className={`inline-flex items-center gap-2 rounded-xl px-4 py-2 text-xs font-semibold transition ${
+                        className={`inline-flex items-center gap-2 rounded-xl border px-4 py-2 text-xs font-bold transition ${
                           enabled
-                            ? 'border border-amber-500/30 bg-amber-500/10 text-amber-400 hover:bg-amber-500/20'
-                            : 'bg-primary text-primary-foreground hover:bg-primary/90'
+                            ? 'border-amber-400 bg-amber-500/15 text-amber-300 hover:bg-amber-500/25'
+                            : 'border-lime-400 bg-lime-500/20 text-lime-400 hover:bg-lime-500/30 shadow-[0_0_12px_rgba(57,255,20,0.25)]'
                         }`}
                       >
                         <Power className="h-3.5 w-3.5" />
-                        {enabled ? 'Disable Plugin' : 'Enable Plugin'}
+                        {enabled ? 'DISABLE' : 'ENABLE'}
                       </button>
 
                       <button
                         onClick={() => uninstallPlugin(plugin.id)}
-                        className="rounded-xl border border-rose-500/30 bg-rose-500/10 p-2 text-rose-400 hover:bg-rose-500/20 transition"
+                        className="rounded-xl border border-cyan-500/30 bg-[#070512] p-2 text-cyan-400 hover:border-rose-400 hover:text-rose-400 transition"
                         title="Uninstall plugin"
                       >
                         <Trash2 className="h-4 w-4" />
@@ -344,22 +347,22 @@ export function MarketplaceView() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           <form
             onSubmit={handleCustomInstall}
-            className="rounded-2xl border border-border bg-card/40 p-6 space-y-4"
+            className="rounded-3xl border-2 border-cyan-500/30 bg-[#0c091f]/90 p-6 sm:p-8 space-y-4 shadow-[0_0_25px_rgba(0,240,255,0.15)]"
           >
-            <h3 className="text-base font-semibold text-foreground flex items-center gap-2">
-              <Upload className="h-5 w-5 text-primary" />
-              Install Custom DevForge Plugin JSON
+            <h3 className="text-base font-heading font-black text-white uppercase tracking-wider flex items-center gap-2 border-b border-cyan-500/20 pb-3">
+              <Upload className="h-5 w-5 text-lime-400" />
+              <span>// MOUNT_CUSTOM_MANIFEST_.JSON</span>
             </h3>
-            <p className="text-xs text-muted-foreground">
-              Paste a valid `plugin.json` manifest below to validate and install your local plugin development package.
+            <p className="text-xs text-cyan-200/70 font-sans">
+              Paste a valid `plugin.json` schema blueprint below to validate and mount your local development extension directly into the WASM sandbox.
             </p>
 
             {installStatus.message && (
               <div
-                className={`rounded-xl p-3 text-xs font-medium border ${
+                className={`rounded-2xl p-3.5 text-xs font-bold border-2 ${
                   installStatus.success
-                    ? 'border-emerald-500/30 bg-emerald-500/10 text-emerald-400'
-                    : 'border-rose-500/30 bg-rose-500/10 text-rose-400'
+                    ? 'border-lime-400 bg-lime-500/15 text-lime-300 shadow-[0_0_15px_rgba(57,255,20,0.2)]'
+                    : 'border-rose-400 bg-rose-500/15 text-rose-300 shadow-[0_0_15px_rgba(244,63,94,0.2)]'
                 }`}
               >
                 {installStatus.message}
@@ -370,40 +373,40 @@ export function MarketplaceView() {
               rows={16}
               value={customManifestJson}
               onChange={(e) => setCustomManifestJson(e.target.value)}
-              placeholder={`{\n  "id": "my-custom-kit",\n  "name": "My Custom DevForge Extension",\n  "version": "1.0.0",\n  "author": "My Org",\n  "description": "Custom utility kit",\n  "category": "utilities",\n  "permissions": ["storage"],\n  "tools": [\n    {\n      "slug": "my-custom-kit",\n      "name": "My Custom Tool",\n      "description": "Utility tool description",\n      "category": "utilities"\n    }\n  ]\n}`}
-              className="w-full font-mono text-xs rounded-xl border border-border bg-background p-4 text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none"
+              placeholder={`{\n  "id": "my-custom-kit",\n  "name": "My Custom Cyber Extension",\n  "version": "1.0.0",\n  "author": "Cyber Deck Lab",\n  "description": "Custom utility kit",\n  "category": "utilities",\n  "permissions": ["storage"],\n  "tools": [\n    {\n      "slug": "my-custom-kit",\n      "name": "My Custom Tool",\n      "description": "Sandboxed utility description",\n      "category": "utilities"\n    }\n  ]\n}`}
+              className="w-full font-mono text-xs rounded-2xl border border-cyan-500/40 bg-[#070512] p-4 text-lime-300 placeholder:text-cyan-400/50 focus:border-cyan-300 focus:outline-none leading-relaxed"
             />
 
             <button
               type="submit"
-              className="inline-flex items-center gap-2 rounded-xl bg-primary px-5 py-2.5 text-xs font-semibold text-primary-foreground hover:bg-primary/90 transition w-full justify-center"
+              className="inline-flex items-center gap-2 rounded-xl border border-lime-400 bg-lime-500/20 px-5 py-3 text-xs font-bold text-lime-400 hover:bg-lime-500/30 transition w-full justify-center shadow-[0_0_15px_rgba(57,255,20,0.25)]"
             >
-              <CheckCircle2 className="h-4 w-4" />
-              Validate & Install Manifest
+              <CheckCircle2 className="h-4 w-4 stroke-[3]" />
+              VALIDATE_&_MOUNT_MANIFEST
             </button>
           </form>
 
           {/* Schema Instructions */}
-          <div className="rounded-2xl border border-border bg-card/40 p-6 space-y-4">
-            <h3 className="text-base font-semibold text-foreground flex items-center gap-2">
-              <Code2 className="h-5 w-5 text-primary" />
-              Manifest Schema Specification
+          <div className="rounded-3xl border-2 border-cyan-500/30 bg-[#0c091f]/90 p-6 sm:p-8 space-y-4 shadow-[0_0_25px_rgba(0,240,255,0.15)]">
+            <h3 className="text-base font-heading font-black text-white uppercase tracking-wider flex items-center gap-2 border-b border-cyan-500/20 pb-3">
+              <Code2 className="h-5 w-5 text-fuchsia-400" />
+              <span>// MANIFEST_SCHEMA_SPEC</span>
             </h3>
-            <p className="text-xs text-muted-foreground">
-              Every DevForge plugin must pass strict validation before sandboxed registration:
+            <p className="text-xs text-cyan-200/70 font-sans">
+              Every custom plugin package must pass strict zero-trust sandbox verification:
             </p>
-            <ul className="space-y-2.5 text-xs text-foreground">
-              <li>
-                <strong className="text-primary">id:</strong> Must be lowercase kebab-case (`^[a-z0-9]+(?:-[a-z0-9]+)*$`).
+            <ul className="space-y-3 text-xs text-cyan-100 font-mono">
+              <li className="bg-[#070512] p-3 rounded-xl border border-cyan-500/20">
+                <strong className="text-cyan-400 font-black">id:</strong> Must be strict lowercase kebab-case (`^[a-z0-9]+(?:-[a-z0-9]+)*$`).
               </li>
-              <li>
-                <strong className="text-primary">version:</strong> Standard semantic versioning (`X.Y.Z`).
+              <li className="bg-[#070512] p-3 rounded-xl border border-cyan-500/20">
+                <strong className="text-cyan-400 font-black">version:</strong> Semantic versioning string (`X.Y.Z`).
               </li>
-              <li>
-                <strong className="text-primary">permissions:</strong> Array containing any of: `storage`, `clipboard`, `network`, `notifications`.
+              <li className="bg-[#070512] p-3 rounded-xl border border-cyan-500/20">
+                <strong className="text-cyan-400 font-black">permissions:</strong> Array containing any subset of: `storage`, `clipboard`, `network`, `notifications`.
               </li>
-              <li>
-                <strong className="text-primary">tools:</strong> Non-empty array of tools registered in the DevForge Tool Registry.
+              <li className="bg-[#070512] p-3 rounded-xl border border-cyan-500/20">
+                <strong className="text-cyan-400 font-black">tools:</strong> Array of tool descriptors mapped to the core DevForge Tool Engine.
               </li>
             </ul>
           </div>
@@ -413,35 +416,35 @@ export function MarketplaceView() {
       {/* Tab 4: Sandbox Audit Logs */}
       {activeTab === 'logs' && (
         <div className="space-y-6">
-          <div className="flex items-center justify-between">
-            <h3 className="text-base font-semibold text-foreground flex items-center gap-2">
-              <Terminal className="h-5 w-5 text-primary" />
-              Sandboxed Execution Audit Logs ({auditLogs.length})
+          <div className="flex items-center justify-between border-b-2 border-cyan-500/30 pb-4">
+            <h3 className="text-base font-heading font-black text-white uppercase tracking-wider flex items-center gap-2">
+              <Terminal className="h-5 w-5 text-lime-400" />
+              <span>SANDBOX_AUDIT_LOGS // SECURITY MATRIX ({auditLogs.length})</span>
             </h3>
             <div className="flex items-center gap-2">
               <button
                 onClick={handleRefreshLogs}
-                className="rounded-xl border border-border bg-card px-3 py-1.5 text-xs font-semibold text-foreground hover:bg-muted transition"
+                className="rounded-xl border border-cyan-400 bg-cyan-500/20 px-3.5 py-1.5 text-xs font-bold text-cyan-300 hover:bg-cyan-500/30 transition shadow-sm"
               >
-                Refresh Logs
+                REFRESH_LOGS
               </button>
               {auditLogs.length > 0 && (
                 <button
                   onClick={handleClearLogs}
-                  className="rounded-xl border border-rose-500/30 bg-rose-500/10 px-3 py-1.5 text-xs font-semibold text-rose-400 hover:bg-rose-500/20 transition"
+                  className="rounded-xl border border-rose-400 bg-rose-500/15 px-3.5 py-1.5 text-xs font-bold text-rose-400 hover:bg-rose-500/25 transition shadow-sm"
                 >
-                  Clear Logs
+                  CLEAR_AUDIT_LOGS [X]
                 </button>
               )}
             </div>
           </div>
 
           {auditLogs.length === 0 ? (
-            <div className="rounded-2xl border border-dashed border-border p-16 text-center space-y-3">
-              <Terminal className="h-8 w-8 text-muted-foreground mx-auto" />
-              <h4 className="font-semibold text-foreground">No Security Logs Recorded Yet</h4>
-              <p className="text-sm text-muted-foreground">
-                Sandboxed plugin operations and permission verifications will be recorded here in real time.
+            <div className="rounded-3xl border-2 border-dashed border-cyan-500/30 p-16 text-center space-y-3 bg-[#0c091f]/60">
+              <Terminal className="h-10 w-10 text-lime-400 mx-auto opacity-70 animate-pulse" />
+              <h4 className="font-heading text-lg font-black text-white uppercase">NO SANDBOX SECURITY LOGS RECORDED YET</h4>
+              <p className="text-xs text-cyan-200/70 max-w-md mx-auto font-sans">
+                Sandboxed WASM operations, IPC calls, and permission checks will be logged here in real time.
               </p>
             </div>
           ) : (
@@ -449,30 +452,33 @@ export function MarketplaceView() {
               {auditLogs.map((log) => (
                 <div
                   key={log.id}
-                  className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 rounded-xl border border-border bg-card/40 p-4"
+                  className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 rounded-2xl border border-cyan-500/30 bg-[#070512] p-4.5 hover:border-cyan-400 transition-all"
                 >
-                  <div className="space-y-1">
-                    <div className="flex items-center gap-2">
-                      <span className="font-semibold text-sm text-foreground">
+                  <div className="space-y-1.5">
+                    <div className="flex items-center gap-2.5 flex-wrap">
+                      <span className="font-bold text-sm text-white uppercase">
                         {log.pluginId}
                       </span>
-                      <Badge variant="outline" className="text-[10px]">
-                        Action: {log.action}
-                      </Badge>
-                      <span className="text-[10px] text-muted-foreground">
-                        {new Date(log.timestamp).toLocaleTimeString()}
+                      <span className="rounded bg-cyan-500/20 border border-cyan-400/50 px-2 py-0.5 text-[10px] text-cyan-300 font-bold uppercase">
+                        ACTION: {log.action}
+                      </span>
+                      <span className="text-[10px] text-cyan-400/70">
+                        // {new Date(log.timestamp).toLocaleTimeString()}
                       </span>
                     </div>
-                    <p className="text-xs text-muted-foreground">{log.message}</p>
+                    <p className="text-xs text-cyan-200/80 font-sans">{log.message}</p>
                   </div>
 
                   <div>
-                    <Badge
-                      variant={log.granted ? 'default' : 'destructive'}
-                      className="text-xs shrink-0"
+                    <span
+                      className={`rounded px-3 py-1 text-xs font-black uppercase border ${
+                        log.granted
+                          ? 'bg-lime-500/20 border-lime-400 text-lime-400 shadow-[0_0_8px_rgba(57,255,20,0.3)]'
+                          : 'bg-rose-500/20 border-rose-400 text-rose-400 shadow-[0_0_8px_rgba(244,63,94,0.3)]'
+                      }`}
                     >
-                      {log.granted ? 'GRANTED' : 'BLOCKED'}
-                    </Badge>
+                      {log.granted ? 'GRANTED [OK]' : 'BLOCKED [X]'}
+                    </span>
                   </div>
                 </div>
               ))}

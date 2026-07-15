@@ -7,57 +7,57 @@ import {
   Database,
   FileCode,
   Globe,
-  Sparkles,
   Keyboard,
   ArrowRight,
+  Cpu,
 } from 'lucide-react';
 import { useWorkspace } from './workspace-context';
 
 const POPULAR_TOOLS = [
   {
     id: 'json-formatter',
-    title: 'JSON Formatter Pro',
-    description: 'Format, validate, minify, and inspect JSON structures with tree view.',
+    title: 'JSON AST Formatter Pro',
+    description: 'Validate, minify, and inspect JSON payloads with high-speed WASM AST parsing.',
     category: 'Formatters',
     icon: Braces,
     href: '/dashboard/tools/json-formatter',
   },
   {
     id: 'regex-tester',
-    title: 'Regex Tester & Debugger',
-    description: 'Real-time regular expression evaluation with match highlighting & explanation.',
-    category: 'Text',
+    title: 'Regex Compiler & Lab',
+    description: 'Real-time regular expression evaluation with live capture highlights.',
+    category: 'Matching',
     icon: Regex,
     href: '/dashboard/tools/regex-tester',
   },
   {
     id: 'jwt-decoder',
-    title: 'JWT Token Inspector',
-    description: 'Decode and inspect header, payload, and signature claims instantly.',
+    title: 'JWT Crypto Inspector',
+    description: 'Decode and verify cryptographic header, payload, and signature claims instantly.',
     category: 'Security',
     icon: Key,
     href: '/dashboard/tools/jwt-decoder',
   },
   {
     id: 'sql-formatter',
-    title: 'SQL Formatter & Validator',
-    description: 'Beautify messy queries for PostgreSQL, MySQL, and SQLite.',
-    category: 'Formatters',
+    title: 'SQL AST Beautifier',
+    description: 'Beautify messy database queries for PostgreSQL, MySQL, and SQLite dialects.',
+    category: 'Database',
     icon: Database,
     href: '/dashboard/tools/sql-formatter',
   },
   {
     id: 'base64-encoder',
-    title: 'Base64 String & File Studio',
-    description: 'Encode and decode Base64 strings, images, and raw binary payloads.',
+    title: 'Base64 Binary Studio',
+    description: 'Encode and decode Base64 strings, images, and raw binary streams.',
     category: 'Encoding',
     icon: FileCode,
     href: '/dashboard/tools/base64-encoder',
   },
   {
     id: 'curl-builder',
-    title: 'HTTP cURL Builder',
-    description: 'Construct cURL commands with headers, body, and auth parameters.',
+    title: 'HTTP cURL Deck',
+    description: 'Construct complex cURL commands with headers, body payloads, and auth flags.',
     category: 'Network',
     icon: Globe,
     href: '/dashboard/tools/curl-builder',
@@ -68,24 +68,24 @@ export function WorkspaceEmpty() {
   const { openTab } = useWorkspace();
 
   return (
-    <div className="flex flex-1 flex-col items-center justify-center p-6 sm:p-10 overflow-y-auto">
+    <div className="flex flex-1 flex-col items-center justify-center p-6 sm:p-10 overflow-y-auto font-mono select-none bg-[#070512]">
       <div className="mx-auto max-w-4xl w-full space-y-8 text-center">
         {/* Header badge & title */}
         <div className="flex flex-col items-center space-y-3">
-          <div className="inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/10 px-3.5 py-1.5 text-xs font-semibold text-primary">
-            <Sparkles className="h-3.5 w-3.5" />
-            <span>DevForge Workspace Engine</span>
+          <div className="inline-flex items-center gap-2 terminal-badge">
+            <Cpu className="h-3.5 w-3.5 text-cyan-400 animate-pulse" />
+            <span>// CYBER_DECK_WORKSTATION_IDLE</span>
           </div>
-          <h2 className="font-heading text-2xl sm:text-3xl font-bold tracking-tight text-foreground">
-            No Active Tool Tab Open
+          <h2 className="font-heading text-2xl sm:text-4xl font-black uppercase tracking-tight text-white">
+            NO ACTIVE TOOL BUFFER OPEN
           </h2>
-          <p className="max-w-md text-sm text-muted-foreground">
-            Launch a tool from the quick grid below or press <kbd className="rounded border border-border bg-muted px-1.5 py-0.5 font-mono text-xs">Ctrl+K</kbd> to search all 40+ developer tools.
+          <p className="max-w-md text-xs sm:text-sm text-cyan-200/70 font-mono">
+            Select a utility module below or press <kbd className="rounded border border-cyan-500/40 bg-cyan-500/20 px-2 py-0.5 font-mono text-xs font-bold text-cyan-300">⌘K</kbd> to summon the spotlight terminal.
           </p>
         </div>
 
         {/* Popular Tools Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 text-left">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 text-left">
           {POPULAR_TOOLS.map((tool) => {
             const Icon = tool.icon;
             return (
@@ -99,28 +99,28 @@ export function WorkspaceEmpty() {
                     href: tool.href,
                   })
                 }
-                className="group relative flex flex-col justify-between rounded-xl border border-border/80 bg-card/60 p-4 transition-all hover:border-primary/50 hover:bg-card hover:shadow-md"
+                className="group relative flex flex-col justify-between neo-card p-5 border-cyan-500/30 transition-all hover:border-cyan-400 hover:shadow-[0_0_25px_rgba(0,240,255,0.25)]"
               >
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between">
-                    <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between border-b border-cyan-500/20 pb-2">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-cyan-500/15 border border-cyan-400/40 text-cyan-400 shadow-[0_0_10px_rgba(0,240,255,0.2)]">
                       <Icon className="h-5 w-5" />
                     </div>
-                    <span className="rounded-full bg-muted px-2 py-0.5 text-[10px] font-medium text-muted-foreground">
-                      {tool.category}
+                    <span className="rounded bg-cyan-500/15 border border-cyan-500/30 px-2 py-0.5 text-[10px] font-mono font-bold text-cyan-300 uppercase">
+                      // {tool.category}
                     </span>
                   </div>
-                  <h3 className="font-heading text-sm font-semibold text-foreground group-hover:text-primary transition-colors">
+                  <h3 className="font-heading text-sm font-black text-white group-hover:text-cyan-300 transition-colors uppercase">
                     {tool.title}
                   </h3>
-                  <p className="text-xs text-muted-foreground line-clamp-2">
+                  <p className="text-xs text-cyan-200/70 line-clamp-2 font-sans">
                     {tool.description}
                   </p>
                 </div>
 
-                <div className="mt-4 flex items-center gap-1 text-xs font-medium text-primary opacity-80 group-hover:opacity-100 transition-opacity">
-                  <span>Open Tool</span>
-                  <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+                <div className="mt-5 flex items-center justify-between border-t border-cyan-500/20 pt-3 text-[11px] font-mono text-cyan-400 font-bold">
+                  <span>LAUNCH MODULE</span>
+                  <ArrowRight className="h-3.5 w-3.5 text-lime-400 transition-transform group-hover:translate-x-1 stroke-[3]" />
                 </div>
               </button>
             );
@@ -128,23 +128,23 @@ export function WorkspaceEmpty() {
         </div>
 
         {/* Keyboard Shortcuts Hint */}
-        <div className="mx-auto max-w-xl rounded-xl border border-border/60 bg-muted/20 p-4">
-          <div className="flex items-center gap-2 text-xs font-semibold text-foreground mb-3">
-            <Keyboard className="h-4 w-4 text-primary" />
-            <span>Workspace Power Shortcuts</span>
+        <div className="mx-auto max-w-xl rounded-2xl border-2 border-cyan-500/30 bg-[#0c091f] p-5 shadow-[0_0_20px_rgba(0,240,255,0.15)]">
+          <div className="flex items-center gap-2 text-xs font-bold text-cyan-300 mb-3 border-b border-cyan-500/20 pb-2">
+            <Keyboard className="h-4 w-4 text-fuchsia-400" />
+            <span>// WORKSTATION_KEYBOARD_SHORTCUTS</span>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs text-muted-foreground">
-            <div className="flex items-center justify-between rounded-lg border border-border/40 bg-background/50 px-3 py-2">
-              <span>Command Search</span>
-              <kbd className="font-mono text-[10px] bg-muted px-1.5 py-0.5 rounded">Ctrl + K</kbd>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs text-cyan-200/80">
+            <div className="flex items-center justify-between rounded-xl border border-cyan-500/20 bg-[#070512] px-3 py-2">
+              <span>COMMAND SPOTLIGHT</span>
+              <kbd className="font-mono text-[10px] bg-cyan-500/20 border border-cyan-400/40 text-cyan-300 px-1.5 py-0.5 rounded font-bold">⌘K</kbd>
             </div>
-            <div className="flex items-center justify-between rounded-lg border border-border/40 bg-background/50 px-3 py-2">
-              <span>Switch Tabs</span>
-              <kbd className="font-mono text-[10px] bg-muted px-1.5 py-0.5 rounded">Ctrl + Tab</kbd>
+            <div className="flex items-center justify-between rounded-xl border border-cyan-500/20 bg-[#070512] px-3 py-2">
+              <span>SWITCH TABS</span>
+              <kbd className="font-mono text-[10px] bg-cyan-500/20 border border-cyan-400/40 text-cyan-300 px-1.5 py-0.5 rounded font-bold">⌘+TAB</kbd>
             </div>
-            <div className="flex items-center justify-between rounded-lg border border-border/40 bg-background/50 px-3 py-2">
-              <span>Close Tab</span>
-              <kbd className="font-mono text-[10px] bg-muted px-1.5 py-0.5 rounded">Ctrl + W</kbd>
+            <div className="flex items-center justify-between rounded-xl border border-cyan-500/20 bg-[#070512] px-3 py-2">
+              <span>CLOSE TAB</span>
+              <kbd className="font-mono text-[10px] bg-cyan-500/20 border border-cyan-400/40 text-cyan-300 px-1.5 py-0.5 rounded font-bold">⌘W</kbd>
             </div>
           </div>
         </div>

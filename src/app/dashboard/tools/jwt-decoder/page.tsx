@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import { DashboardShell } from '@/components/dashboard/dashboard-shell';
 import { JwtDecoderPro } from '@/components/tools/jwt-decoder';
 
 export const metadata: Metadata = {
@@ -10,10 +9,8 @@ export const metadata: Metadata = {
 
 export default function JwtDecoderPage() {
   return (
-    <DashboardShell>
       <div className="flex flex-1 flex-col p-6">
         <JwtDecoderPro />
       </div>
-    </DashboardShell>
   );
 }

@@ -1,59 +1,42 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import { Github, Heart, Map, Scale } from 'lucide-react';
+import { Github, Terminal, ArrowRight } from 'lucide-react';
 
 export function OpenSourceSection() {
   return (
-    <section id="open-source" className="relative px-4 py-24 sm:py-32">
-      <div className="mx-auto max-w-4xl text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-100px' }}
-          transition={{ duration: 0.5 }}
-          className="flex flex-col items-center gap-6"
-        >
-          <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary/10">
-            <Heart className="h-7 w-7 text-primary" />
+    <section id="opensource" className="relative w-full select-none font-mono">
+      <div className="w-full">
+        <div className="relative rounded-3xl border-2 border-cyan-500/40 bg-gradient-to-br from-[#0c091f] via-[#070512] to-[#140c28] p-10 sm:p-16 text-center shadow-[0_0_50px_rgba(0,240,255,0.25)] overflow-hidden space-y-8">
+          {/* Ambient glow */}
+          <div className="absolute -top-32 left-1/2 -translate-x-1/2 h-80 w-80 rounded-full bg-cyan-500/20 blur-3xl pointer-events-none" />
+
+          <div className="relative z-10 space-y-4 max-w-3xl mx-auto">
+            <div className="inline-flex items-center gap-2 terminal-badge">
+              <Terminal className="h-3.5 w-3.5 text-fuchsia-400 animate-pulse" />
+              <span>// 100% OPEN_SOURCE_ARCHIVE</span>
+            </div>
+            <h2 className="font-heading text-3xl sm:text-[36px] font-black uppercase tracking-tight text-foreground leading-tight">
+              BUILT IN <span className="glow-cyan-text">PUBLIC</span>. <br />
+              AUDIT EVERY WASM MODULE.
+            </h2>
+            <p className="text-base sm:text-[16px] text-cyan-200/80 leading-relaxed font-sans">
+              DevForge is 100% open-source under an MIT-compatible license. Host it inside your own air-gapped enterprise cluster or inspect how our local WebAssembly modules process data without telemetry.
+            </p>
           </div>
 
-          <h2 className="font-heading text-3xl font-bold sm:text-4xl md:text-5xl">
-            Open Source at Heart
-          </h2>
-          <p className="max-w-2xl text-muted-foreground sm:text-lg">
-            DevForge is free, open source, and community driven.
-            <br />
-            Built by developers, for developers.
-          </p>
-
-          <div className="mt-4 grid grid-cols-2 gap-4 sm:grid-cols-4">
-            {[
-              { icon: <Scale className="h-5 w-5" />, label: 'MIT License' },
-              { icon: <Heart className="h-5 w-5" />, label: 'Community Driven' },
-              { icon: <Github className="h-5 w-5" />, label: 'Contributions Welcome' },
-              { icon: <Map className="h-5 w-5" />, label: 'Public Roadmap' },
-            ].map((item) => (
-              <div
-                key={item.label}
-                className="flex flex-col items-center gap-2 rounded-xl border border-border bg-card/50 p-4 text-center"
-              >
-                <div className="text-primary">{item.icon}</div>
-                <span className="text-xs font-medium text-foreground">{item.label}</span>
-              </div>
-            ))}
+          <div className="relative z-10 flex flex-wrap items-center justify-center gap-3 pt-4">
+            <a
+              href="https://github.com/Arterouss/ForgeKit"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="neo-btn px-8 py-4 text-sm flex items-center justify-center gap-3 shadow-[0_0_30px_rgba(0,240,255,0.5)]"
+            >
+              <Github className="h-5 w-5" />
+              <span>INSPECT CODEBASE ON GITHUB</span>
+              <ArrowRight className="h-5 w-5 stroke-[3]" />
+            </a>
           </div>
-
-          <a
-            href="https://github.com/Arterouss/ForgeKit"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-4 flex items-center gap-2 rounded-xl bg-foreground px-6 py-3 text-sm font-semibold text-background transition-all hover:opacity-90 active:scale-[0.98]"
-          >
-            <Github className="h-4 w-4" />
-            Star on GitHub
-          </a>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

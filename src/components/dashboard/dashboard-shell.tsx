@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Sidebar } from './sidebar';
 import { TopBar } from './topbar';
@@ -19,14 +20,16 @@ interface DashboardShellProps {
 }
 
 export function DashboardShell({ children }: DashboardShellProps) {
+  const pathname = usePathname();
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [rightPanelOpen, setRightPanelOpen] = useState(false);
+  const showTabs = pathname?.startsWith('/dashboard/workspace');
 
   return (
     <CommandProvider>
       <PluginProvider>
         <WorkspaceProvider>
-          <div className="flex h-screen w-screen flex-col overflow-hidden bg-background font-sans text-foreground select-none">
+          <div className="flex h-screen w-screen flex-col overflow-hidden bg-[#09090b] font-sans text-foreground">
             <TopBar
               onSidebarToggle={() => setSidebarCollapsed(!sidebarCollapsed)}
               onRightPanelToggle={() => setRightPanelOpen(!rightPanelOpen)}
@@ -35,11 +38,14 @@ export function DashboardShell({ children }: DashboardShellProps) {
 
             {/* Main Workspace + Sidebar + Panel */}
             <div className="flex flex-1 overflow-hidden">
-              <Sidebar collapsed={sidebarCollapsed} setCollapsed={setSidebarCollapsed} />
+              <Sidebar
+                collapsed={sidebarCollapsed}
+                setCollapsed={setSidebarCollapsed}
+              />
 
               {/* Main Content Area / Workspace Engine */}
-              <main className="flex flex-1 flex-col overflow-hidden bg-background/50">
-                <WorkspaceTabs />
+              <main className="flex min-w-0 flex-1 flex-col overflow-hidden bg-[#09090b]">
+                {showTabs && <WorkspaceTabs />}
                 <ToolContainer>{children}</ToolContainer>
               </main>
 
@@ -51,7 +57,7 @@ export function DashboardShell({ children }: DashboardShellProps) {
                     animate={{ width: 320, opacity: 1 }}
                     exit={{ width: 0, opacity: 0 }}
                     transition={{ duration: 0.2 }}
-                    className="hidden lg:flex w-[320px] shrink-0 flex-col border-l border-border overflow-hidden"
+                    className="hidden w-[320px] shrink-0 flex-col overflow-hidden border-l border-white/[.07] bg-[#101014]/90 backdrop-blur-xl lg:flex"
                   >
                     <UtilityPanel />
                   </motion.aside>
@@ -59,10 +65,7 @@ export function DashboardShell({ children }: DashboardShellProps) {
               </AnimatePresence>
             </div>
 
-            {/* Status Bar */}
             <StatusBar />
-
-            {/* Global Command Palette Modal */}
             <CommandPalette />
           </div>
         </WorkspaceProvider>

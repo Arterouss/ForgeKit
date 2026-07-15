@@ -1,5 +1,4 @@
 import type { Metadata } from 'next';
-import { DashboardShell } from '@/components/dashboard/dashboard-shell';
 import { OpenApiViewerPro } from '@/components/tools/openapi-viewer';
 
 export const metadata: Metadata = {
@@ -10,10 +9,8 @@ export const metadata: Metadata = {
 
 export default function OpenApiViewerPage() {
   return (
-    <DashboardShell>
       <div className="flex flex-1 flex-col p-6">
         <OpenApiViewerPro />
       </div>
-    </DashboardShell>
   );
 }

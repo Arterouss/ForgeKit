@@ -1,4 +1,4 @@
-# DevForge — The Ultimate All-In-One Developer Toolbox v1.0.0 ⚡
+# DevForge — The Premium Desktop-First Developer Workspace v3.0.0 ⚡
 
 [![Next.js 16](https://img.shields.io/badge/Next.js-16.2.10-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
 [![React 19](https://img.shields.io/badge/React-19.2.4-blue?style=for-the-badge&logo=react)](https://react.dev/)
@@ -6,18 +6,21 @@
 [![Tailwind CSS v4](https://img.shields.io/badge/Tailwind_CSS-v4-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
 [![Vitest](https://img.shields.io/badge/Vitest-210_Tests-646CFF?style=for-the-badge&logo=vitest)](https://vitest.dev/)
 
-DevForge is an enterprise-grade, extensible developer platform housing **60 instant developer tools**, an integrated **Workspace Ecosystem**, a sandboxed **Plugin Marketplace**, and **6 developer themes**.
+DevForge is a premium, desktop-grade developer workspace running directly inside your browser. Built to specifications outlined in **`DEVFORGE DESIGN BIBLE v3.0` (Chapters 01 - 40)**, DevForge abandons conventional admin dashboard templates and generic Bootstrap layouts in favor of a handcrafted, high-contrast spatial dark glass architecture inspired by **Raycast, Linear, Arc Browser, Warp Terminal, VS Code, and Vercel**.
 
 ---
 
-## ✨ Features at a Glance
+## ✨ v3.0 Highlights & Core Capabilities
 
-- **60 Instant Developer Tools** across 9 specialized domains (Formatting, Encoding, Generators, Regex, Crypto, SQL, Network/API, DevOps, and Server Configs).
-- **Extensible Tool SDK & Engine** (`@/sdk/`): Type-safe metadata, schema validation, persistent input/output caching, and search registry.
-- **Developer Workspace Ecosystem** (`Ctrl+K` Command Palette, Workspace Hub, Custom Collections, Sticky Notes, Code Snippet Vault, and Multi-Tab dock).
-- **Plugin Marketplace & Extension SDK** (`Ctrl+M`): Secure sandboxed execution wrapper (`executeSandboxed`), permission audit telemetry, and community extensions catalog.
-- **6 Curated Developer Themes**: DevForge Dark, Light Canvas, Midnight OLED, Nord Frost, Tokyo Night, and Dracula Purple.
-- **100% Quality Gates**: Fully tested with 210 Vitest unit tests, 0 TypeScript errors, 0 ESLint warnings, and Next.js 16 App Router Turbopack SSG/SSR readiness.
+- **Desktop-First Spatial Glass Architecture (`DEVFORGE DESIGN BIBLE v3.0`)**:
+  - **Sidebar (`w-72` / `288px` Expanded & `w-[72px]` Collapsed)**: Multi-category grouping with sticky section headers, instant `⌘K` Quick Search pill, and automatic `localStorage` persistence (`devforge_sidebar_collapsed`).
+  - **Topbar Command Center (`64px` Sticky)**: Global search/Command Palette trigger (`Ctrl+K`), dynamic Breadcrumbs, live WASM sandbox telemetry (`0.4ms avg latency`), and notification center.
+  - **Landing Portal**: Zero horizontal shift (`max-w-6xl mx-auto`), interactive macOS IDE window showcase (`ToolPreviewSection`), and Bento Box feature matrix.
+- **60 Instant Developer Utilities** across 9 specialized domains (Formatting, Encoding, Generators, Regex, Crypto, SQL, Network/API, DevOps, and Linux/Server Configs).
+- **Split-Screen IDE Studio (`ToolContainer` & `UtilityPanel`)**: Split/Single view toggles, unsaved changes indicators, quick URL link sharing, and fullscreen mode without page reloads.
+- **Sandboxed Plugin Marketplace & Extension SDK (`Ctrl+M`)**: Secure capability verification wrapper (`executeSandboxed`), permission audit buffer, and community extensions catalog.
+- **6 Curated Developer Themes**: DevForge Dark, Light Canvas, Midnight OLED (`#09090b`), Nord Frost, Tokyo Night Cyberpunk, and Dracula Purple.
+- **100% Quality Gates**: 0 ESLint warnings, 0 TypeScript errors, 210/210 Vitest unit tests passing across 62 suites, and clean Next.js 16 production build.
 
 ---
 
@@ -57,21 +60,31 @@ Open [http://localhost:3000](http://localhost:3000) to launch DevForge.
 ## 🧪 Quality Verification & Commands
 
 ```bash
-# Run TypeScript compiler check (0 errors required)
-pnpm type-check
-
-# Run ESLint validation (--max-warnings 0)
+# 1. Run ESLint code quality audit (0 warnings required)
 pnpm lint
 
-# Run automated Vitest unit test suite (210 tests across 62 suites)
+# 2. Run TypeScript strict compiler check (0 errors required)
+pnpm type-check
+
+# 3. Execute automated unit test suite across all 62 test files (210 tests)
 pnpm test
 
-# Build production bundle with Next.js Turbopack
+# 4. Generate optimized Next.js production static & dynamic bundles
 pnpm build
 ```
 
 ---
 
-## 📄 License & Contributing
+## 📚 Official Documentation & Architecture Reports
 
-DevForge is licensed under the MIT License. See [CONTRIBUTING.md](./CONTRIBUTING.md) for contribution guidelines.
+- **[REDESIGN_REPORT.md](file:///d:/Kuliah/Web/ForgeKit/REDESIGN_REPORT.md)** — Comprehensive UX & Architectural Redesign verification report (Chapter 40 deliverable).
+- **[DESIGN_SYSTEM.md](file:///d:/Kuliah/Web/ForgeKit/DESIGN_SYSTEM.md)** — Design tokens, geometry rules, and spatial glass specifications.
+- **[ARCHITECTURE.md](file:///d:/Kuliah/Web/ForgeKit/ARCHITECTURE.md)** — System design, module boundaries, and Core Engine SDK.
+- **[CHANGELOG.md](file:///d:/Kuliah/Web/ForgeKit/CHANGELOG.md)** — Chronological release history.
+- **[ROADMAP.md](file:///d:/Kuliah/Web/ForgeKit/ROADMAP.md)** — Forward-looking post-v3.0 product milestones.
+
+---
+
+## 📄 License
+
+DevForge is open-source software licensed under the MIT License.

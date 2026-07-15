@@ -2,6 +2,21 @@
 
 All notable changes to DevForge will be documented in this file.
 
+## [3.0.0] - 2026-07-15
+
+### Added & Redesigned (Desktop-First Browser OS Redesign)
+- **Comprehensive UI/UX Visual Overhaul (`DEVFORGE DESIGN BIBLE v3.0` Chapters 01 - 40)**
+  - Replaced conventional admin dashboard templates and generic Bootstrap/Tailwind containers with a handcrafted, high-contrast spatial dark glass design (`#09090b` canvas, `border-white/[0.08]`, `rounded-[24px]` / `rounded-[28px]`).
+  - **Sidebar (`src/components/dashboard/sidebar.tsx`)**: Rebuilt with exact `288px` (`w-72`) expanded / `72px` collapsed dimensions, subtle left accent indicators (`w-0.5 bg-primary`), sticky category headers, and automatic `localStorage` persistence (`devforge_sidebar_collapsed`).
+  - **Topbar Command Center (`src/components/dashboard/topbar.tsx`)**: Sticky `64px` header with dynamic Breadcrumbs, instant `Ctrl+K` Command Palette pill, local WASM telemetry (`0.4ms avg latency`), and notification center.
+  - **Landing Page (`src/app/page.tsx`)**: Zero horizontal shift, 100% centered architecture featuring an interactive macOS IDE live showcase (`ToolPreviewSection`), Bento Box feature grid, and local execution benchmarks.
+  - **Dashboard Command Center (`src/app/dashboard/page.tsx`)**: Time-sensitive greeting, instant Spotlight Search (`Ctrl+K`), and 1-click Quick Launch pills for top engineering utilities.
+  - **IDE Tool Sandbox (`src/components/workspace/*`)**: Split view vs Single view layout toggles, unsaved changes indicators, instant URL link sharing, and fullscreen execution mode without page reloads.
+  - **React 19 & Hydration Compliance**: Implemented `useMounted` (`useSyncExternalStore`) across theme switching and appearance settings to guarantee zero hydration mismatches and zero lint errors.
+  - **Quality Gates Verification**: Verified with `0 errors` on `pnpm lint` and `pnpm type-check`, `210/210 passing tests` on `pnpm test`, and clean production build compilation (`pnpm build`).
+
+---
+
 ## [1.0.0] - 2026-07-13
 
 ### Added
