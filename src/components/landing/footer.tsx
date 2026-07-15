@@ -17,6 +17,7 @@ const FOOTER_LINKS = [
     title: '// OPEN_SOURCE_ARCHIVE',
     links: [
       { label: 'GitHub Repository', href: 'https://github.com/Arterouss/ForgeKit', external: true },
+      { label: 'Creator Profile (@Arterouss)', href: 'https://github.com/Arterouss', external: true },
       { label: 'Report Issue / Bug', href: 'https://github.com/Arterouss/ForgeKit/issues', external: true },
       { label: 'Contributing Guide', href: 'https://github.com/Arterouss/ForgeKit/blob/main/CONTRIBUTING.md', external: true },
     ],
@@ -49,15 +50,24 @@ export function Footer() {
             <p className="max-w-sm text-xs text-cyan-200/70 leading-relaxed">
               The retro-futuristic desktop engineering platform powered by local WebAssembly. Zero network round-trips. Air-gapped privacy by default.
             </p>
-            <div className="flex items-center gap-3 pt-1">
+            <div className="flex flex-wrap items-center gap-3 pt-1">
               <a
                 href="https://github.com/Arterouss/ForgeKit"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex h-10 w-10 items-center justify-center rounded-xl border border-cyan-500/30 bg-[#0c091f] text-cyan-400 hover:border-cyan-400 hover:bg-cyan-500/20 transition-all shadow-sm"
-                aria-label="GitHub"
+                aria-label="GitHub Repository"
+                title="ForgeKit GitHub Repository"
               >
                 <Github className="h-4.5 w-4.5 text-fuchsia-400" />
+              </a>
+              <a
+                href="https://github.com/Arterouss"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-xl border border-cyan-500/30 bg-[#0c091f] px-3.5 py-2 text-xs font-bold text-cyan-300 hover:border-cyan-400 hover:bg-cyan-500/20 hover:text-white transition-all shadow-sm"
+              >
+                <span>Created by @Arterouss</span>
               </a>
             </div>
           </div>
@@ -97,8 +107,18 @@ export function Footer() {
 
         {/* Bottom copyright row */}
         <div className="flex flex-col sm:flex-row items-center justify-between border-t border-cyan-500/20 pt-8 text-xs font-mono text-cyan-400/70 gap-4">
-          <div>
-            © {new Date().getFullYear()} DEVFORGE_OS // PROTOCOL v3.5
+          <div className="flex flex-wrap items-center justify-center sm:justify-start gap-2">
+            <span>© {new Date().getFullYear()} DEVFORGE_OS // PROTOCOL v3.5</span>
+            <span className="text-cyan-500/40">|</span>
+            <span>Crafted & Engineered by</span>
+            <a
+              href="https://github.com/Arterouss"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-bold text-white underline decoration-fuchsia-400 decoration-2 underline-offset-4 hover:text-fuchsia-300 transition-colors"
+            >
+              @Arterouss
+            </a>
           </div>
           <div className="flex items-center gap-2">
             <span className="h-2 w-2 rounded-full bg-lime-400 animate-ping" />
